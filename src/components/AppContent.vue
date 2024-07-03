@@ -1,19 +1,19 @@
 <script>
-
+ 
 export default {
-  components: {
-  },
-  data() {
-    return {
-    }
-  }
+  // components: {
+  // },
+  // data() {
+  //   return {
+  //   }
+  // }
 }
 
 </script>
 
 <template>
 
-  <main>
+  <!-- <main>
     <section class="h-100">
       <div class="container py-5 h-100">
         <div class="row aling-items-center flex-column justify-content-center h-100">
@@ -23,7 +23,7 @@ export default {
         </div>
       </div>
     </section>
-  </main>
+  </main> -->
 
 </template>
 

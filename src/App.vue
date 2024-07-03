@@ -1,8 +1,8 @@
 <script>
-import { store } from './store.js'
-import AppHeader from './components/AppHeader.vue'
-import AppContent from './components/AppContent.vue'
-import AppFooter from './components/AppFooter.vue'
+import { store } from "./store.js";
+import AppHeader from "./components/AppHeader.vue";
+import AppContent from "./components/AppContent.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 export default {
   components: {
@@ -13,24 +13,26 @@ export default {
   data() {
     return {
       store,
-    }
-  }
-}
-
+    };
+  },
+};
 </script>
 
 <template>
-
   <div id="app">
     <AppHeader></AppHeader>
-    <AppContent></AppContent>
+    <!-- <p><strong>Current route path:</strong> {{ $route.fullPath }}</p> -->
+
+
+    <main>
+      <RouterView />
+    </main>
+
     <AppFooter></AppFooter>
-
   </div>
-
 </template>
 
 <style lang="scss">
-@use './assets/style/general.scss';
-@use 'bootstrap'
+@import "./style/general.scss";
+@import "bootstrap";
 </style>

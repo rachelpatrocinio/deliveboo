@@ -17,6 +17,7 @@ export default {
     <section class="bg-dark">
       <div class="container py-5 text-center text-white">
         <h1>HEADER</h1>
+        <RouterLink to="/">Go to Home</RouterLink>
       </div>
     </section>
   </header>
