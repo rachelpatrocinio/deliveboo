@@ -15,17 +15,15 @@ export default {
     fetchRestaurants() {
       axios.get("http://127.0.0.1:8000/api/restaurants").then((res) => {
         // console.log(res.data.restaurants);
-
-        //popolo l'array dei ristoranti
-        this.restaurants = res.data.restaurants;
+        
+        this.restaurants = res.data.restaurants; //popolo l'array dei ristoranti
       });
     },
     //rescupero le tipologie tramite l'api
     fetchTypes() {
       axios.get("http://127.0.0.1:8000/api/types").then((res) => {
-
-        //popolo l'array delle tipologie
-        this.types = res.data.types;
+        
+        this.types = res.data.types; //popolo l'array delle tipologie
       });
     },
   },
