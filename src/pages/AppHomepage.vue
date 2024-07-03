@@ -1,19 +1,42 @@
+<template>
+  <main>
+    <section class="h-100">
+      <div class="container py-5 h-100">
+        <div>
+          <h1>Ristoranti</h1>
+          <div>
+            <label v-for="type in types" :key="type.id">
+              <input type="checkbox" :value="type.name" v-model="type_ids" />
+              {{ type.name }}
+            </label>
+          </div>
+          <button @click="fetchRestaurants">Filtra Ristoranti</button>
+          <ul>
+            <li v-for="restaurant in restaurants" :key="restaurant.id">
+              {{ restaurant.name }}
+            </li>
+          </ul>
+          <p v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</template>
+
 <script>
 import axios from "axios";
 
 export default {
-  components: {},
   data() {
     return {
-      restaurants: [], //array vuoto da popolare con la chiamata axios
-      types: [], //array vuoto da popolare con la chiamata axios
-
-      type_ids: [], //salvare gli ids delle checkbox
+      restaurants: [], // Array vuoto da popolare con la chiamata axios
+      types: [], // Array vuoto da popolare con la chiamata axios
+      type_ids: [], // Salva gli ids delle checkbox
+      searchPerformed: false // Indica se una ricerca è stata effettuata
     };
   },
-
   methods: {
-    //recupero i ristoranti tramite l'api
+    // Recupera i ristoranti tramite l'API
     fetchRestaurants() {
       const params = {};
       if (this.type_ids.length) {
@@ -22,57 +45,33 @@ export default {
       axios
         .get("http://127.0.0.1:8000/api/restaurants", { params })
         .then((res) => {
-          //   console.log(res.data.restaurants);
-
-          this.restaurants = res.data.restaurants; //popolo l'array dei ristoranti
+          this.restaurants = res.data; // Popola l'array dei ristoranti
+          this.searchPerformed = true; // Indica che una ricerca è stata effettuata
+        })
+        .catch((error) => {
+          console.error("Errore nel recupero dei ristoranti:", error);
         });
     },
-    //recupero le tipologie tramite l'api
+    // Recupera le tipologie tramite l'API
     fetchTypes() {
-      axios.get("http://127.0.0.1:8000/api/types").then((res) => {
-        // console.log(res.data.types);
-
-        this.types = res.data.types; //popolo l'array delle tipologie
-      });
-    },
-
-    // fitered restaurant
-    getIdType(index) {
-      this.type_ids.push(index);
-      //   console.log("n. " + index);
-      //   console.log(this.type_ids);
+      axios
+        .get("http://127.0.0.1:8000/api/types")
+        .then((res) => {
+          console.log("Dati tipi ricevuti:", res.data); // Aggiungi questo log
+          this.types = res.data.types; // Popola l'array delle tipologie
+        })
+        .catch((error) => {
+          console.error("Errore nel recupero delle tipologie:", error);
+        });
     },
   },
   created() {
-    //richiamo le funzioni dei methods per la stampa in pagina
-    // this.fetchRestaurants();
+    // Richiama le funzioni dei methods per la stampa in pagina
     this.fetchTypes();
   },
 };
 </script>
 
-<template>
-  <main>
-    <section class="h-100">
-      <div class="container py-5 h-100">
-        <div>
-          <h1>Ristoranti</h1>
-          <div>
-            <label v-for="type in types" :key="type">
-              <input type="checkbox" :value="type" v-model="type_ids" />
-              {{ type.name }}
-            </label>
-          </div>
-          <button @click="fetchRestaurants()">Filtra Ristoranti</button>
-          <ul>
-            <li v-for="restaurant in restaurants" :key="restaurant.id">
-              {{ restaurant.name }} - {{ restaurant.slug }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-</template>
-
-<style></style>
+<style>
+/* Inserisci qui i tuoi stili */
+</style>
