@@ -9,28 +9,30 @@
             </li>
         </ul>
     </div>
+
+    <img class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
+
     <div class="text-end">
         <button class="btn btn-info">
             <RouterLink class="link" :to="{name: 'menu', params: {slug: 'show.slug'}}">Menu</RouterLink>
         </button>
     </div>
-    <img class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
+</div>
 </div>
 </template>
 
 <script>
     export default {
-        props:{
-            restaurant: Object,
-            slug: {type:Object},
-        }
-            restaurant: Object
-        },
         data() {
             return {
             imgPath: '../../public/restaurants/'
             };
         },
+        props:{
+            restaurant: Object,
+            slug: {type:Object},
+        }
+
     }
 </script>
 
