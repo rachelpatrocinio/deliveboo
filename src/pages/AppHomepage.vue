@@ -98,8 +98,10 @@ export default {
 
 <style lang="scss" scoped>
 .types{
-  border: 2px solid var(--color-darkgreen);
-  border-radius: 10px;
+  ul{
+    border: 2px solid var(--color-darkgreen);
+    border-radius: 10px;
+  }
 
   li{
     font-weight: 600;

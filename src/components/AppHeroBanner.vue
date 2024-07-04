@@ -1,6 +1,5 @@
 <template>
 <section class="hero-banner mt-2">
-    <!-- <img src="../../public/hero-banner.jpeg" alt="Hero-Banner"> -->
     <div class="container">
         <div class="row py-5">
             <div class="col-6 py-5">
