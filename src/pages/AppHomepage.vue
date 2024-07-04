@@ -1,7 +1,25 @@
 <template>
   <main>
     <AppHeroBanner></AppHeroBanner>
-    <section class="h-100">
+    <section class="restaurants py-5 h-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-2 d-flex flex-column types">
+            <ul class="p-0 m-0">
+              <li v-for="type in types" :key="type.id" class="p-3">
+                <label :for="type.name">{{ type.name }}</label>
+                <input class="d-none" :id="type.name" :value="type.name" v-model="type_ids" type="checkbox">
+              </li>
+            </ul>       
+          </div>
+          <div class="col-10">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- <section class="h-100">
       <div class="container py-5 h-100">
         <div>
           <h1>Ristoranti</h1>
@@ -20,7 +38,8 @@
           <p v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</p>
         </div>
       </div>
-    </section>
+    </section> -->
+    
   </main>
 </template>
 
@@ -78,6 +97,16 @@ export default {
 };
 </script>
 
-<style>
-/* Inserisci qui i tuoi stili */
+<style lang="scss" scoped>
+.types{
+  border: 2px solid var(--color-darkgreen);
+  border-radius: 10px;
+
+  li{
+    font-weight: 600;
+    &:hover{
+      color: var(--color-darkgreen);
+    }
+  }
+}
 </style>

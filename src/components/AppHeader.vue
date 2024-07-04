@@ -13,7 +13,7 @@ export default {
 
 <template>
 
-  <header class="d-flex">
+  <header class="d-flex pb-1">
     <div class="container d-flex justify-content-between align-items-center p-0">
       <div class="logo col-3">
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
@@ -38,6 +38,7 @@ header{
   left: 0;
   right: 0;
   background-color: var(--color-yellow);
+  border-bottom: 2px solid var(--color-darkgreen);
 }
 
 .logo{

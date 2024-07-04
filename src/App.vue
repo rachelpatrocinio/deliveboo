@@ -30,7 +30,4 @@ export default {
 
 <style lang="scss">
 @import "bootstrap";
-.main{
-  margin-top: 135px;
-}
 </style>
