@@ -1,5 +1,6 @@
 <template>
   <main>
+    <AppHeroBanner></AppHeroBanner>
     <section class="h-100">
       <div class="container py-5 h-100">
         <div>
@@ -25,8 +26,13 @@
 
 <script>
 import axios from "axios";
+import AppHeroBanner from "../components/AppHeroBanner.vue";
+
 
 export default {
+  components: {
+    AppHeroBanner,
+  },
   data() {
     return {
       restaurants: [], // Array vuoto da popolare con la chiamata axios
