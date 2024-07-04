@@ -6,13 +6,13 @@
         <div class="row">
           <div class="col-2 d-flex flex-column types">
             <ul class="p-0 m-0">
-              <li v-for="type in types" :key="type.id" class="p-3">
+              <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
                 <label :for="type.name">{{ type.name }}</label>
-                <input class="d-none" :id="type.name" :value="type.name" v-model="type_ids" type="checkbox">
+                <input :id="type.name" :value="type.name" v-model="type_ids" type="checkbox">
               </li>
             </ul>       
           </div>
-          <div class="col-10">
+          <div class="d-flex col-10">
           </div>
         </div>
       </div>
@@ -29,7 +29,6 @@
               {{ type.name }}
             </label>
           </div>
-          <button @click="fetchRestaurants">Filtra Ristoranti</button>
           <ul>
             <li v-for="restaurant in restaurants" :key="restaurant.id">
               {{ restaurant.name }}
@@ -46,11 +45,14 @@
 <script>
 import axios from "axios";
 import AppHeroBanner from "../components/AppHeroBanner.vue";
+import AppCard from "../components/AppCard.vue";
+
 
 
 export default {
   components: {
     AppHeroBanner,
+    AppCard
   },
   data() {
     return {
