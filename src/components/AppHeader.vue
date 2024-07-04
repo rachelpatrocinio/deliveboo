@@ -39,6 +39,7 @@ header{
   right: 0;
   background-color: var(--color-yellow);
   border-bottom: 2px solid var(--color-darkgreen);
+  z-index: 100;
 }
 
 .logo{
