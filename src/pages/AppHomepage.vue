@@ -1,5 +1,25 @@
 <template>
-    <section class="h-100">
+  <main>
+    <AppHeroBanner></AppHeroBanner>
+    <section class="restaurants py-5 h-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-2 d-flex flex-column types">
+            <ul class="p-0 m-0">
+              <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
+                <label :for="type.name">{{ type.name }}</label>
+                <input :id="type.name" :value="type.name" v-model="type_ids" type="checkbox">
+              </li>
+            </ul>       
+          </div>
+          <div class="d-flex col-10">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- <section class="h-100">
       <div class="container py-5 h-100">
         <div>
           <h1>Ristoranti</h1>
@@ -9,7 +29,6 @@
               {{ type.name }}
             </label>
           </div>
-          <!-- <button @click="fetchRestaurants">Filtra Ristoranti</button> -->
           <ul>
             <li v-for="restaurant in restaurants" :key="restaurant.id">
               {{ restaurant.name }}
@@ -18,13 +37,23 @@
           <p v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</p>
         </div>
       </div>
-    </section>
+    </section> -->
+    
+  </main>
 </template>
 
 <script>
 import axios from "axios";
+import AppHeroBanner from "../components/AppHeroBanner.vue";
+import AppCard from "../components/AppCard.vue";
+
+
 
 export default {
+  components: {
+    AppHeroBanner,
+    AppCard
+  },
   data() {
     return {
       restaurants: [], // Array vuoto da popolare con la chiamata axios
@@ -80,6 +109,16 @@ export default {
 
 </script>
 
-<style>
-/* Inserisci qui i tuoi stili */
+<style lang="scss" scoped>
+.types{
+  border: 2px solid var(--color-darkgreen);
+  border-radius: 10px;
+
+  li{
+    font-weight: 600;
+    &:hover{
+      color: var(--color-darkgreen);
+    }
+  }
+}
 </style>

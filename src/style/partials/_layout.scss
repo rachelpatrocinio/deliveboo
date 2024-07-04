@@ -1,0 +1,23 @@
+:root{
+    --color-orange: #F09C65;
+    --color-yellow: #FCDC94;
+    --color-lightgreen: #C7CFA0;
+    --color-green: #78AAA8;
+    --color-darkgreen: #40684E;
+    --color-dark: #212529;
+}
+
+*{
+    // <weight>: Use a value from 100 to 900
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+#app {
+    background-color: var(--color-yellow);
+  }
+  
+  main {
+    margin-top: 140px;
+  }

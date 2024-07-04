@@ -21,18 +21,13 @@ export default {
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <!-- <p><strong>Current route path:</strong> {{ $route.fullPath }}</p> -->
-
-
-    <main>
+    <main class="main">
       <RouterView />
     </main>
-
     <AppFooter></AppFooter>
   </div>
 </template>
 
 <style lang="scss">
-@import "./style/general.scss";
 @import "bootstrap";
 </style>
