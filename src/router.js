@@ -9,7 +9,7 @@ import AppMenu from './pages/AppMenu.vue'
 const routes = [
   { path: '/', component: AppHomepage },
   { path: '/admin', component: AppAdmin },
-  { path: '/menu/:slug', component: AppMenu }
+  { path: '/menu/:slug', name: 'menu', component: AppMenu}
 //   { path: '/portfolio', component: AppPortfolio },
 //   { path: '/portfolio/:slug', name: 'project.show' , component: AppProject},
 //   { path: '/contact', component: AppContact },
