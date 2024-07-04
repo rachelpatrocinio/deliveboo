@@ -21,7 +21,7 @@ export default {
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <main>
+    <main class="main">
       <RouterView />
     </main>
     <AppFooter></AppFooter>
@@ -30,4 +30,7 @@ export default {
 
 <style lang="scss">
 @import "bootstrap";
+.main{
+  margin-top: 135px;
+}
 </style>

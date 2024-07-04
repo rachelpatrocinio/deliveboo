@@ -32,6 +32,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '../style/partials/layout';
+header{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-yellow);
+}
+
 .logo{
   img{
     width: 200px;
