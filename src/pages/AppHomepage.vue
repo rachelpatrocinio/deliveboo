@@ -4,41 +4,28 @@
     <section class="restaurants py-5 h-100">
       <div class="container">
         <div class="row">
+
           <div class="col-2 d-flex flex-column types">
             <ul class="p-0 m-0">
               <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
                 <label :for="type.name">{{ type.name }}</label>
-                <input :id="type.name" :value="type.name" v-model="type_ids" type="checkbox">
+                <input :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
               </li>
             </ul>       
           </div>
-          <div class="d-flex col-10">
+
+          <div class="col-10">
+            <ul class="p-0 m-0 d-flex flex-wrap">
+              <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-4 mb-3 p-2">
+                <AppCard :restaurant="restaurant"></AppCard>
+              </li>
+            </ul>
+            <h2 v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</h2>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- <section class="h-100">
-      <div class="container py-5 h-100">
-        <div>
-          <h1>Ristoranti</h1>
-          <div>
-            <label v-for="type in types" :key="type.id">
-              <input type="checkbox" :value="type.name" v-model="type_names"/>
-              {{ type.name }}
-            </label>
-          </div>
-          <ul>
-            <li v-for="restaurant in restaurants" :key="restaurant.id">
-              {{ restaurant.name }}
-            </li>
-          </ul>
-          <p v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</p>
-        </div>
-      </div>
-    </section> -->
-    
   </main>
 </template>
 
