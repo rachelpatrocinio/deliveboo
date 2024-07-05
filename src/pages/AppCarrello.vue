@@ -16,8 +16,15 @@ export default {
             store
         }
     },
+    methods:{
+        saveChartToLocalStorage() {
+            localStorage.chart = JSON.stringify(this.store.chart);
+        }
+    },
+
     mounted(){
-        console.log(this.store.chart)
+        // console.log(this.store.chart)
+        this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
     }
 }
         

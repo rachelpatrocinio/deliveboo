@@ -63,9 +63,14 @@ export default {
         //     if(this.itemN !== 0)
         //     this.itemN--
         // }
+        keep(){
+            localStorage.chart = JSON.stringify(this.store.chart);
+        },
+
         addToChart(dish){
-            this.store.chart.push(dish);
-            console.log(this.store.chart);
+                this.store.chart.push(dish);
+                // console.log(this.store.chart);
+                this.keep();
         }
     },
     created() {
