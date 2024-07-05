@@ -27,7 +27,7 @@
     export default {
         data() {
             return {
-            imgPath: '../../public/restaurants/'
+            imgPath: '../../public/'
             };
         },
         props:{
