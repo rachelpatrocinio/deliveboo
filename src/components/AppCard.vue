@@ -2,8 +2,6 @@
 <div class="card p-2"> 
 <div class="card p-5">
     <h4 class="text-center">{{ restaurant.name }}</h4>
- 
-
     <img class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
 
     <div>
@@ -16,7 +14,7 @@
 
     <div class="text-center mt-2">
         <button class="btn">
-            <RouterLink class="link" :to="{name: 'menu', params: {slug: 'show.slug'}}">Menu</RouterLink>
+            <RouterLink class="link" :to="pathAppMenu + restaurant.slug">Menu</RouterLink>
         </button>
     </div>
 </div>
@@ -27,7 +25,8 @@
     export default {
         data() {
             return {
-            imgPath: '../../public/'
+            imgPath: '../../public/',
+            pathAppMenu: '/menu/'
             };
         },
         props:{
