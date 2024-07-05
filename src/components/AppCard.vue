@@ -33,7 +33,6 @@
             restaurant: Object,
             slug: {type:Object},
         }
-
     }
 </script>
 
