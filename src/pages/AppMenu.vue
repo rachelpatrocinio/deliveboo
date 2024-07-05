@@ -16,24 +16,29 @@
                             <input class="item-number" type="text" v-model="itemN">
                             <span class="addButton" @click="increment()"> +</span>
                         </div> -->
+                        <button class="btn" @click="addToChart(dish)">AGGIUNGI AL CARRELLO</button>
                     </div>
                 </div>
             </div>
             <div class="mt-4">
                 <button class="btn" @click="goBack">Torna Indietro</button>
+                <RouterLink to="/carrello">VAI AL CARRELLO</RouterLink>
             </div>
         </div>
     </div>
 
 </template>
 <script>
+import {store} from '../store.js';
 import axios from "axios";
+
 export default {
     props:{
         restaurant: Object,
     },
     data() {
         return {
+            store,
             restaurant: [],
             imgPath: '../../public/',
             itemN: 0
@@ -58,6 +63,10 @@ export default {
         //     if(this.itemN !== 0)
         //     this.itemN--
         // }
+        addToChart(dish){
+            this.store.chart.push(dish);
+            console.log(this.store.chart);
+        }
     },
     created() {
     this.fetchRestaurant();
