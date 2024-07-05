@@ -63,6 +63,8 @@ export default {
         //     if(this.itemN !== 0)
         //     this.itemN--
         // }
+
+        //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
         keep(){
             localStorage.chart = JSON.stringify(this.store.chart);
         },
@@ -70,7 +72,7 @@ export default {
         addToChart(dish){
                 this.store.chart.push(dish);
                 // console.log(this.store.chart);
-                this.keep();
+                this.keep(); //richiamo della funzione di salvataggio per l'aggiiunta dei piatti
         }
     },
     created() {
