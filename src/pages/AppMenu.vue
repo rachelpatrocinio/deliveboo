@@ -11,6 +11,11 @@
                             <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto">
                         </figure>
                         <p>{{ dish.description_ingredients }}</p>
+                        <!-- <div class="quantity">
+                            <span class="deductButton" @click="decrement()">- </span>
+                            <input class="item-number" type="text" v-model="itemN">
+                            <span class="addButton" @click="increment()"> +</span>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -31,6 +36,7 @@ export default {
         return {
             restaurant: [],
             imgPath: '../../public/',
+            itemN: 0
         }
     },
     methods: {
@@ -44,7 +50,14 @@ export default {
         },
         goBack(){
             this.$router.back()
-        }
+        },
+        // increment(){
+        //     this.itemN++
+        // },
+        // decrement(){
+        //     if(this.itemN !== 0)
+        //     this.itemN--
+        // }
     },
     created() {
     this.fetchRestaurant();
@@ -53,6 +66,17 @@ export default {
 </script>
     
 <style lang="scss" scoped>
+
+.item-number{
+    width: 50px;
+    text-align: center;
+}
+
+.quantity{
+    span{
+        cursor: pointer;
+    }
+}
 
 .dish-img{
     aspect-ratio: 1/1;
