@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="container py-5">
+        <div class="row py-5">
             <div class="col">
                 <div class="card"
                 v-for="dish in dishes"
