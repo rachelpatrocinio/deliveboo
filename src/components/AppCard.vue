@@ -1,19 +1,21 @@
 <template>
 <div class="card p-2"> 
 <div class="card p-5">
-    <h3 class="text-center">{{ restaurant.name }}</h3>
+    <h4 class="text-center">{{ restaurant.name }}</h4>
+ 
+
+    <img class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
+
     <div>
-        <ul>
-            <li v-for="type in restaurant.types">
+        <ul class="d-flex justify-content-center mt-3 p-0">
+            <li class="px-2" v-for="type in restaurant.types">
                 {{ type.name }}
             </li>
         </ul>
     </div>
 
-    <img class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
-
-    <div class="text-end">
-        <button class="btn btn-info">
+    <div class="text-center mt-2">
+        <button class="btn">
             <RouterLink class="link" :to="{name: 'menu', params: {slug: 'show.slug'}}">Menu</RouterLink>
         </button>
     </div>
@@ -40,6 +42,21 @@
 .restaurant-img{
     aspect-ratio: 1/1;
     object-fit: cover;
+}
+
+.btn{
+    background-color: var(--color-orange);
+    color: var(--color-dark);
+    font-weight: 600;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.link{
+    color: currentColor;
+    text-decoration: none;
 }
 
 </style>
