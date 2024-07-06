@@ -6,16 +6,18 @@
             <thead>
                 <tr>
                     <th> Piatto </th>
+                    <th> Quantità </th>
                     <th> Prezzo </th>
                     <th> Elimina</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="dish in store.chart">
+                <tr v-for="(dish, i) in store.chart">
                     <td>{{dish.name}}</td>
+                    <td>{{dish.qty}}</td>
                     <td>{{dish.price}}</td>
                     <td>
-                        <button class="btn delete-button" @click="deleteDish(dish)">
+                        <button class="btn delete-button" @click="deleteDish(i)">
                             <img src="../../public/icons/bin.png" alt="Eliminazione">
                         </button>
                     </td>
@@ -43,9 +45,10 @@ export default {
         },
         deleteDish(dish){
             console.log('delete dish', dish.name);
+
             this.store.chart.splice(dish, 1);
+
             localStorage.chart = JSON.stringify(this.store.chart);
-            console.log(localStorage.chart); 
 
             // localStorage.removeItem(dish); // qui ritornano anche quando cambio rotta
             // localStorage.chart = localStorage.removeItem(dish); // si blocca tutto
