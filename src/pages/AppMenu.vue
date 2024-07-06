@@ -11,11 +11,11 @@
                             <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto">
                         </figure>
                         <p>{{ dish.description_ingredients }}</p>
-                        <!-- <div class="quantity">
-                            <span class="deductButton" @click="decrement()">- </span>
-                            <input class="item-number" type="text" v-model="itemN">
-                            <span class="addButton" @click="increment()"> +</span>
-                        </div> -->
+                        <div class="quantity">
+                            <button class="deductButton" @click="decrement(dish)">-</button>
+                            <input class="item-number" type="text" v-model="dish.qty">
+                            <span class="addButton" @click="increment(dish)">+</span>
+                        </div>
                         <button class="btn" @click="addToChart(dish)">AGGIUNGI AL CARRELLO</button>
                     </div>
                 </div>
@@ -39,9 +39,9 @@ export default {
     data() {
         return {
             store,
-            restaurant: [],
+            restaurant: {},
             imgPath: '../../public/',
-            itemN: 0
+            // itemN: 0
         }
     },
     methods: {
@@ -50,19 +50,30 @@ export default {
                 .get("http://127.0.0.1:8000/api/restaurants/" + this.$route.params.slug)
                 .then((res)=>{
                     this.restaurant = res.data.restaurant;
-                    console.log(this.restaurant);
+                    // console.log(this.restaurant);
+                    this.restaurant.dishes.forEach(dish => {
+                        dish.qty = 0;
+                    });
+                    console.log(this.restaurant)
+                    
                 })
         },
         goBack(){
             this.$router.back()
         },
-        // increment(){
-        //     this.itemN++
-        // },
-        // decrement(){
-        //     if(this.itemN !== 0)
-        //     this.itemN--
-        // }
+        increment(dish){
+            dish.qty++
+            this.updateQty(dish)
+        },
+        decrement(dish){
+            if(dish.qty !== 0)
+            dish.qty--
+            this.updateQty(dish);
+        },
+        // Debug
+        updateQty(dish) {
+            console.log(`${dish.name}: ${dish.qty}`);
+        },
 
         //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
         keep(){
@@ -70,9 +81,10 @@ export default {
         },
 
         addToChart(dish){
-                this.store.chart.push(dish);
-                // console.log(this.store.chart);
-                this.keep(); //richiamo della funzione di salvataggio per l'aggiiunta dei piatti
+            const dishAdd = { ...dish, qty: dish.qty };
+            this.store.chart.push(dishAdd)
+            this.keep()
+            console.log(this.store.chart)
         }
     },
     created() {
