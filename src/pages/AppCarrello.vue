@@ -12,10 +12,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(dish, i) in store.chart">
+                <tr v-for="(dish, i) in store.chart" :key="i">
                     <td>{{dish.name}}</td>
                     <td>{{dish.qty}}</td>
-                    <td>{{dish.price}}</td>
+                    <td>€ {{dish.price}}</td>
                     <td>
                         <button class="btn delete-button" @click="deleteDish(i)">
                             <img src="../../public/icons/bin.png" alt="Eliminazione">
@@ -44,7 +44,6 @@ export default {
             localStorage.chart = JSON.stringify(this.store.chart);
         },
         deleteDish(dish){
-            console.log('delete dish', dish.name);
 
             this.store.chart.splice(dish, 1);
 
@@ -62,7 +61,7 @@ export default {
     },
 
     mounted(){
-        // console.log(this.store.chart)
+        console.log(this.store.chart)
         
         //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
         this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];

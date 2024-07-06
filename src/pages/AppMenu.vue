@@ -85,11 +85,26 @@ export default {
         addToChart(dish){
             if(dish.qty >= 1) {
                 const dishAdd = { ...dish, qty: dish.qty };
+                // const newDish = dish
+
+                // console.log(this.store.chart.id)
+                // Scomporre con for i piatti
+                // Se nel carrello è presente id
+                // if(this.store.chart.id === newDish.id) {
+
+                //     console.log('if')
+                //     // Addizioni le 2 quantity
+                //     const finalDish = dish.qty + newDish.qty
+                //     this.keep()
+                //     return finalDish
+
+                // }
+                // Altrimenti aggiungi al carrello
+
                 this.store.chart.push(dishAdd)
                 this.keep()
                 console.log(this.store.chart)
-            } else 
-            console.log(this.store.chart)
+            }
         }
     },
     created() {
