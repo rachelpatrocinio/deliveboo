@@ -11,10 +11,12 @@
                             <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto">
                         </figure>
                         <p>{{ dish.description_ingredients }}</p>
+                        <p>€ {{ dish.price }}</p>
                         <div class="quantity">
-                            <button class="deductButton" @click="decrement(dish)">-</button>
+                            <!-- Abbellire bottoni -->
+                            <button class="" @click="decrement(dish)">-</button>
                             <input class="item-number" type="text" v-model="dish.qty">
-                            <span class="addButton" @click="increment(dish)">+</span>
+                            <span class="" @click="increment(dish)">+</span>
                         </div>
                         <button class="btn" @click="addToChart(dish)">AGGIUNGI AL CARRELLO</button>
                     </div>
@@ -52,7 +54,7 @@ export default {
                     this.restaurant = res.data.restaurant;
                     // console.log(this.restaurant);
                     this.restaurant.dishes.forEach(dish => {
-                        dish.qty = 0;
+                        dish.qty = 1;
                     });
                     console.log(this.restaurant)
                     
@@ -66,7 +68,7 @@ export default {
             this.updateQty(dish)
         },
         decrement(dish){
-            if(dish.qty !== 0)
+            if(dish.qty >= 2)
             dish.qty--
             this.updateQty(dish);
         },
@@ -81,9 +83,12 @@ export default {
         },
 
         addToChart(dish){
-            const dishAdd = { ...dish, qty: dish.qty };
-            this.store.chart.push(dishAdd)
-            this.keep()
+            if(dish.qty >= 1) {
+                const dishAdd = { ...dish, qty: dish.qty };
+                this.store.chart.push(dishAdd)
+                this.keep()
+                console.log(this.store.chart)
+            } else 
             console.log(this.store.chart)
         }
     },
