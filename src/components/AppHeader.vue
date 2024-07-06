@@ -24,6 +24,9 @@ export default {
       </div>
       <div class="col-3 text-end">
         <RouterLink class="link" to="/admin">Area Riservata Admin</RouterLink>
+        <RouterLink to="/carrello">
+          <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
+        </RouterLink>
       </div>
     </div>
   </header>
@@ -46,6 +49,10 @@ header{
   img{
     width: 200px;
   }
+}
+
+.cart-button{
+  width: 30px;
 }
 
 .searchbar{
