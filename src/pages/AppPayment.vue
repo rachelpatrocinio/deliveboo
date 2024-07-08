@@ -1,7 +1,6 @@
 <template>
   <div class="bootstrap-basic">
-    <form class="needs-validation" novalidate="">
-
+    <form @submit.prevent="handleSubmit" class="needs-validation">
       <div class="row">
         <div class="col-sm-6 mb-3">
           <label for="cc-name">Cardholder Name</label>
@@ -13,7 +12,7 @@
         </div>
         <div class="col-sm-6 mb-3">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com" v-model="email" @change="validateEmail">
+          <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" @change="validateEmail">
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -36,7 +35,7 @@
           </div>
         </div>
         <div class="col-sm-3 mb-3">
-          <label for="cc-expiration">CVV</label>
+          <label for="cc-cvv">CVV</label>
           <div class="form-control" id="cc-cvv"></div>
           <div class="invalid-feedback">
             Security code required
@@ -49,25 +48,24 @@
         <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>
       </div>
     </form>
-  </div>
-  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-      <div class="toast-header">
-        <strong class="mr-auto">Success!</strong>
-        <small>Just now</small>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="toast-body">
-        Next, submit the payment method nonce to your server.
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+        <div class="toast-header">
+          <strong class="mr-auto">Success!</strong>
+          <small>Just now</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Next, submit the payment method nonce to your server.
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import dropin from 'braintree-web-drop-in';
 import client from 'braintree-web/client';
 import hostedFields from 'braintree-web/hosted-fields';
 
@@ -75,14 +73,17 @@ export default {
   data() {
     return {
       email: '',
-      hostedFieldInstance: null,
-      clientInstance: null
-    }
+      hostedFieldsInstance: null,
+      clientInstance: null,
+    };
+  },
+  mounted() {
+    this.setupBraintree();
   },
   methods: {
     setupBraintree() {
       client.create({
-        authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b' // Mio token per test
+        authorization: 'sandbox_d5nd6vpw_zvnjrm5f86qmnnj8' // Token 
       }, (err, clientInstance) => {
         if (err) {
           console.error(err);
@@ -138,14 +139,26 @@ export default {
         return true;
       }
     },
-  },
-  mounted() {
-    this.setupBraintree
+    handleSubmit() {
+      if (!this.validateEmail()) {
+        return;
+      }
+
+      this.hostedFieldsInstance.tokenize((err, payload) => {
+        if (err) {
+          console.error('Tokenization Error:', err);
+          return;
+        }
+
+        console.log('Payment Method Nonce:', payload.nonce);
+        // Submit the nonce to your server
+      });
+    }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 body {
   background-color: #fff;
   padding: 15px;
