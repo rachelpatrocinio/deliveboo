@@ -1,78 +1,16 @@
-<template>
-  <div class="bootstrap-basic">
-    <form @submit.prevent="handleSubmit" class="needs-validation">
-      <div class="row">
-        <div class="col-sm-6 mb-3">
-          <label for="cc-name">Cardholder Name</label>
-          <div class="form-control" id="cc-name"></div>
-          <small class="text-muted">Full name as displayed on card</small>
-          <div class="invalid-feedback">
-            Name on card is required
-          </div>
-        </div>
-        <div class="col-sm-6 mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" @change="validateEmail">
-          <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6 mb-3">
-          <label for="cc-number">Credit card number</label>
-          <div class="form-control" id="cc-number"></div>
-          <div class="invalid-feedback">
-            Credit card number is required
-          </div>
-        </div>
-        <div class="col-sm-3 mb-3">
-          <label for="cc-expiration">Expiration</label>
-          <div class="form-control" id="cc-expiration"></div>
-          <div class="invalid-feedback">
-            Expiration date required
-          </div>
-        </div>
-        <div class="col-sm-3 mb-3">
-          <label for="cc-cvv">CVV</label>
-          <div class="form-control" id="cc-cvv"></div>
-          <div class="invalid-feedback">
-            Security code required
-          </div>
-        </div>
-      </div>
-
-      <hr class="mb-4">
-      <div class="text-center">
-        <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>
-      </div>
-    </form>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-        <div class="toast-header">
-          <strong class="mr-auto">Success!</strong>
-          <small>Just now</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="toast-body">
-          Next, submit the payment method nonce to your server.
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import client from 'braintree-web/client';
 import hostedFields from 'braintree-web/hosted-fields';
+import axios from 'axios';
 
 export default {
   data() {
     return {
+      name: '',
       email: '',
+      number: '',
+      address: '',
+      total_price: 0, // Prezzo totale
       hostedFieldsInstance: null,
       clientInstance: null,
     };
@@ -83,7 +21,7 @@ export default {
   methods: {
     setupBraintree() {
       client.create({
-        authorization: 'sandbox_d5nd6vpw_zvnjrm5f86qmnnj8' // Token 
+        authorization: 'sandbox_d5nd6vpw_zvnjrm5f86qmnnj8' // Token sandbox per test
       }, (err, clientInstance) => {
         if (err) {
           console.error(err);
@@ -151,40 +89,26 @@ export default {
         }
 
         console.log('Payment Method Nonce:', payload.nonce);
-        // Submit the nonce to your server
+
+        // Invia il nonce al backend
+        axios.post('/api/process-payment', {
+          paymentMethodNonce: payload.nonce,
+          name: this.name,
+          email: this.email,
+          number: this.number,
+          address: this.address,
+          total_price: this.total_price
+        })
+        .then(response => {
+          console.log('Payment successful:', response.data);
+          // Mostra un messaggio di successo
+        })
+        .catch(error => {
+          console.error('Payment error:', error);
+          // Mostra un messaggio di errore
+        });
       });
     }
   }
 };
 </script>
-
-<style scoped>
-body {
-  background-color: #fff;
-  padding: 15px;
-}
-
-.toast {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-}
-
-.bootstrap-basic {
-  background: white;
-}
-
-.braintree-hosted-fields-focused {
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.braintree-hosted-fields-focused.is-invalid {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-</style>
