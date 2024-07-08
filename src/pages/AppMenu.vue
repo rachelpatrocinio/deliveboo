@@ -15,7 +15,7 @@
                         <div class="quantity">
                             <!-- Abbellire bottoni -->
                             <button class="" @click="decrement(dish)">-</button>
-                            <input class="item-number" type="text" v-model="dish.qty">
+                                <input class="item-number" type="text" v-model="dish.qty">
                             <span class="" @click="increment(dish)">+</span>
                         </div>
                         <button class="btn" @click="addToChart(dish)">AGGIUNGI AL CARRELLO</button>
@@ -65,12 +65,14 @@ export default {
         },
         increment(dish){
             dish.qty++
-            this.updateQty(dish)
+            // this.updateQty(dish)
         },
         decrement(dish){
-            if(dish.qty >= 2)
-            dish.qty--
-            this.updateQty(dish);
+            if(dish.qty >= 2){
+                            dish.qty--
+            }
+
+            // this.updateQty(dish);
         },
         // Debug
         updateQty(dish) {
@@ -81,30 +83,17 @@ export default {
         keep(){
             localStorage.chart = JSON.stringify(this.store.chart);
         },
-
-        addToChart(dish){
-            if(dish.qty >= 1) {
-                const dishAdd = { ...dish, qty: dish.qty };
-                // const newDish = dish
-
-                // console.log(this.store.chart.id)
-                // Scomporre con for i piatti
-                // Se nel carrello è presente id
-                // if(this.store.chart.id === newDish.id) {
-
-                //     console.log('if')
-                //     // Addizioni le 2 quantity
-                //     const finalDish = dish.qty + newDish.qty
-                //     this.keep()
-                //     return finalDish
-
-                // }
-                // Altrimenti aggiungi al carrello
-
-                this.store.chart.push(dishAdd)
-                this.keep()
-                console.log(this.store.chart)
+        addToChart(dish) {
+            // Controlla se il piatto è già nel carrello
+            let cartDish = this.store.chart.find(item => item.id === dish.id);
+            if (cartDish) {
+                // Se è presente, incrementa la quantità
+                cartDish.qty += dish.qty;
+            } else {
+                // Altrimenti aggiungi il piatto al carrello
+                this.store.chart.push({ ...dish });
             }
+            this.keep();
         }
     },
     created() {
