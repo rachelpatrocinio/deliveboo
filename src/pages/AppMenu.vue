@@ -1,7 +1,7 @@
 <template>
     <div class="container py-5">
         <div class="row py-5">
-            <div class="col-4 text-center" v-for="dish in restaurant.dishes">
+            <div class="col-4 text-center" v-for="(dish, index) in restaurant.dishes">
                 <div class="card p-4">
                     <div class="card-title">
                         {{ dish.name }}
@@ -12,16 +12,28 @@
                         </figure>
                         <p>{{ dish.description_ingredients }}</p>
                         <p>€ {{ dish.price }}</p>
-                        <div class="quantity">
-                            <!-- Abbellire bottoni -->
-                            <span class="" @click="decrement(dish)">- </span>
-                            <input class="item-number" type="text" v-model="dish.qty" />
-                            <span class="" @click="increment(dish)"> +</span>
+                        <div v-if="qtyBox === false || index !== idCard">
+                            <div class="btn" @click="openChart(index)">
+                            Scegli il piatto
+                            </div>
                         </div>
-                        <button class="btn" @click="addToChart(dish)">
-                            AGGIUNGI AL CARRELLO
-                        </button>
 
+
+                        <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
+                            <!-- Abbellire bottoni -->
+                             <div>
+                                <span class="" @click="decrement(dish)">- </span>
+                                <input class="item-number" type="text" disabled v-model="dish.qty" />
+                                <span class="" @click="increment(dish)"> +</span>
+                             </div>
+
+                            <button class="btn" @click="addToChart(dish)">
+                            AGGIUNGI AL CARRELLO
+                            </button>
+                        </div>
+                        <div class="h3" v-if="qtyError === true && index === idCard">
+                            Scegli una quantità!!
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,8 +41,13 @@
                 <button class="btn" @click="goBack">Torna Indietro</button>
                 <RouterLink to="/carrello">VAI AL CARRELLO</RouterLink>
             </div>
-            <div v-if="message === true">
-                <h3>Puoi selezionare piatti da un solo ristorante alla volta! </h3>
+            <div v-if="message === true" class="card text-center my-4 p-2">
+                <h3 class="card-title">Puoi selezionare piatti da un solo ristorante alla volta!</h3>
+                <div class="d-flex gap-3 justify-content-center">
+                    <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+                    <div class="btn" @click="message = false">Annulla</div>
+                </div>
+
             </div>
 
             
@@ -59,7 +76,10 @@ export default {
             store,
             restaurant: {},
             imgPath: "../../public/",
-            message: false
+            message: false,
+            qtyBox: false,
+            qtyError: false,
+            idCard: ''
 
         };
     },
@@ -72,13 +92,17 @@ export default {
                     this.restaurant = res.data.restaurant;
                     // console.log(this.restaurant);
                     this.restaurant.dishes.forEach((dish) => {
-                        dish.qty = 1;
+                        dish.qty = 0;
                     });
                     console.log(this.restaurant);
                 });
         },
         goBack() {
             this.$router.back();
+        },
+        emptChart(){
+            this.store.chart = [];
+            this.message = false;
         },
         partialTotal(price, qty) {
             const total = price * qty;
@@ -103,26 +127,43 @@ export default {
         keep() {
             localStorage.chart = JSON.stringify(this.store.chart);
         },
-        addToChart(dish) {
-
-            // Controlla se il piatto è già nel carrello
-            let cartDish = this.store.chart.find((item) => item.id === dish.id);
-
-            
-            if (cartDish) {
-                // Se è presente, incrementa la quantità
-                cartDish.qty += dish.qty;
-                this.message = false
-            } else if(this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)){
-                // Altrimenti aggiungi il piatto al carrello
-                this.store.chart.push({ ...dish });
-
-                this.message = false
+        openChart(id){
+            this.idCard = id;
+            if(this.qtyBox !== true){
+                this.qtyBox = true;
             }
             else{
-                this.message = true;
+                this.qtyBox = false;
             }
-            this.keep();
+        },
+        addToChart(dish) {
+            if(dish.qty > 0){
+                this.qtyError = false
+                    // Controlla se il piatto è già nel carrello
+                let cartDish = this.store.chart.find((item) => item.id === dish.id);
+                
+                
+                if (cartDish) {
+                    // Se è presente, incrementa la quantità
+                    cartDish.qty += dish.qty;
+                    this.message = false;
+                    this.qtyBox = false;
+                } else if(this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)){
+                    // Altrimenti aggiungi il piatto al carrello
+                    this.store.chart.push({ ...dish });
+                    
+                    this.message = false;
+                    this.qtyBox = false;
+                }
+                else{
+                    this.message = true;
+                }
+                this.keep();
+            }
+            else {
+                this.qtyError = true
+            }
+            
         }
     },
     created() {
@@ -156,5 +197,16 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
+}
+
+.btn-dark {
+    background-color: var(--color-dark);
+    color: var(--color-yellow);
+    font-weight: 600;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+    
 }
 </style>

@@ -104,7 +104,16 @@ export default {
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
     this.totalPrice();
-  }
+  },
+//   watch: {
+
+// total: {
+//   handler() {
+//     this.totalPrice()
+//   }
+// }
+
+// }
 };
 </script>
 
