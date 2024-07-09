@@ -61,7 +61,6 @@ export default {
     saveChart() {
       localStorage.chart = JSON.stringify(this.store.chart);
     },
-
     deleteDish(dish) {
       this.store.chart.splice(dish, 1);
 

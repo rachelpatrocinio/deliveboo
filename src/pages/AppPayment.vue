@@ -89,7 +89,6 @@
     </div> -->
   </div>
 </template>
-
 <script>
 import client from 'braintree-web/client';
 import hostedFields from 'braintree-web/hosted-fields';

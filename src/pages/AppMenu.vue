@@ -52,7 +52,6 @@
                     <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     <div class="btn" @click="message = false">Annulla</div>
                 </div>
-
             </div>
 
             
