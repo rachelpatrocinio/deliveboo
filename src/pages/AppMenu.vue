@@ -22,9 +22,14 @@
                         <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
                             <!-- Abbellire bottoni -->
                              <div>
-                                <span class="" @click="decrement(dish)">- </span>
-                                <input class="item-number" type="text" disabled v-model="dish.qty" />
-                                <span class="" @click="increment(dish)"> +</span>
+                                <div>
+                                    <h5>Quantità</h5>
+                                </div>
+                                <div>
+                                    <span class="" @click="decrement(dish)">- </span>
+                                    <input class="item-number" type="text" disabled v-model="dish.qty" />
+                                    <span class="" @click="increment(dish)"> +</span>
+                                </div>
                              </div>
 
                             <button class="btn" @click="addToChart(dish)">
@@ -42,7 +47,7 @@
                 <RouterLink to="/carrello">VAI AL CARRELLO</RouterLink>
             </div>
             <div v-if="message === true" class="card text-center my-4 p-2">
-                <h3 class="card-title">Puoi selezionare piatti da un solo ristorante alla volta!</h3>
+                <h3>Puoi selezionare piatti da un solo ristorante alla volta!</h3>
                 <div class="d-flex gap-3 justify-content-center">
                     <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     <div class="btn" @click="message = false">Annulla</div>
@@ -52,11 +57,14 @@
 
             
             <div class="card my-3" v-if="store.chart.length !== 0">
+                <div>
+                   <h3> Riepilogo:</h3>
+                </div>
                 <ul class="card-body">
                     <li class="d-flex gap-3" v-for="cartDish in store.chart">
                         <span><strong>Piatto: </strong>{{ cartDish.name }}</span>
                         <span><strong>Quantità: </strong>{{ cartDish.qty }}</span>
-                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty) }} €</span>
+                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €</span>
                     </li>
                 </ul>
             </div>
