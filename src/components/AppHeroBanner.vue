@@ -5,7 +5,7 @@
             <div class="col-6 py-5">
                 <h1 class="pt-5 title"> DELIVEBOO </h1>
                 <p class="pb-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quasi laborum veniam ratione sint? Non, perferendis nobis. Veniam nam ipsam in. Aliquid eos quod repudiandae distinctio voluptate debitis error labore.</p>
-                <button class="btn">ORDINA ORA!</button>
+                <a class="btn" href="#types">ORDINA ORA!</a>
             </div>
         </div>
     </div>
