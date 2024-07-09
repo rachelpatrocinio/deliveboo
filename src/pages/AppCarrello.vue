@@ -31,7 +31,7 @@
       </table>
       <div>
         <h3>GRAND TOTALE</h3>
-        <p>€ {{ total }}</p>
+        <p>€ {{ store.total_price }}</p>
       </div>
       <RouterLink to="/pagamento">VAI AL PAGAMENTO</RouterLink>
     </div>
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       store,
-      total: 0
+      // total: 0
       // partialTotal = 0
     };
   },
@@ -80,7 +80,7 @@ export default {
         const singleDish = this.store.chart[i];
         console.log(singleDish);
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
-        this.total += singleDishPrice
+        this.store.total_price += singleDishPrice
       }
     },
     increment(dish) {

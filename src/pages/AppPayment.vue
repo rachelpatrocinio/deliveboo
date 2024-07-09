@@ -1,4 +1,5 @@
 <template>
+    <h1>€ {{ store.total_price }}</h1>
   <div class="bootstrap-basic">
     <form @submit.prevent="handleSubmit" class="needs-validation">
       <div class="row">
@@ -72,7 +73,7 @@
         <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>
       </div>
     </form>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+    <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
       <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
         <div class="toast-header">
           <strong class="mr-auto">Success!</strong>
@@ -85,7 +86,7 @@
           Next, submit the payment method nonce to your server.
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -103,13 +104,14 @@ export default {
       email: '',
       number: '',
       address: '',
-      total_price: 10, // Passare dallo store
+      total_price: store.total_price, // Passare dallo store
       hostedFieldsInstance: null,
       clientInstance: null,
     };
   },
   mounted() {
     this.setupBraintree();
+    console.log(store.total_price);
   },
   methods: {
     setupBraintree() {
