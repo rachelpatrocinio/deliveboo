@@ -1,72 +1,82 @@
 <template>
-    <div class="container py-5">
-        <div class="row py-5">
-            <div class="col-4 text-center" v-for="(dish, index) in restaurant.dishes">
-                <div class="card p-4">
-                    <div class="card-title">
-                        {{ dish.name }}
-                    </div>
-                    <div class="card-body">
-                        <figure>
-                            <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
-                        </figure>
-                        <p>{{ dish.description_ingredients }}</p>
-                        <p>€ {{ dish.price }}</p>
-                        <div v-if="qtyBox === false || index !== idCard">
-                            <div class="btn" @click="openChart(index)">
-                            Scegli il piatto
+    <div class="container position-relative py-3">
+        <div class="row">
+            <div class="mb-4">
+                    <button class="btn" @click="goBack">Torna Indietro</button>
+                </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-4 text-center" v-for="(dish, index) in restaurant.dishes">
+                        <div class="card p-4">
+                            <div class="card-title">
+                                {{ dish.name }}
                             </div>
-                        </div>
-
-
-                        <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
-                            <!-- Abbellire bottoni -->
-                             <div>
-                                <div>
-                                    <h5>Quantità</h5>
+                            <div class="card-body">
+                                <figure>
+                                    <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
+                                </figure>
+                                <p>{{ dish.description_ingredients }}</p>
+                                <p>€ {{ dish.price }}</p>
+                                <div v-if="qtyBox === false || index !== idCard">
+                                    <div class="btn" @click="openChart(index)">
+                                    Scegli il piatto
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="" @click="decrement(dish)">- </span>
-                                    <input class="item-number" type="text" disabled v-model="dish.qty" />
-                                    <span class="" @click="increment(dish)"> +</span>
-                                </div>
-                             </div>
 
-                            <button class="btn" @click="addToChart(dish)">
-                            AGGIUNGI AL CARRELLO
-                            </button>
-                        </div>
-                        <div class="h3" v-if="qtyError === true && index === idCard">
-                            Scegli una quantità!!
+
+                                <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
+                                    <!-- Abbellire bottoni -->
+                                    <div>
+                                        <div>
+                                            <h5>Quantità</h5>
+                                        </div>
+                                        <div>
+                                            <span class="" @click="decrement(dish)">- </span>
+                                            <input class="item-number" type="text" disabled v-model="dish.qty" />
+                                            <span class="" @click="increment(dish)"> +</span>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn" @click="addToChart(dish)">
+                                    AGGIUNGI AL CARRELLO
+                                    </button>
+                                </div>
+                                <div class="h3" v-if="qtyError === true && index === idCard">
+                                    Scegli una quantità!!
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-4">
-                <button class="btn" @click="goBack">Torna Indietro</button>
-                <RouterLink to="/carrello">VAI AL CARRELLO</RouterLink>
+            <div class="col-3">
+                <div class="summary p-3" v-if="store.chart.length !== 0">
+                    <h3 class="mb-4"> Riepilogo Ordine</h3>
+                    <ul class="card-body">
+                        <li class="d-flex justify-content-between" v-for="cartDish in store.chart">
+                            <p>
+                                {{ cartDish.qty }}x {{ cartDish.name }}
+                            </p>
+                            <p>
+                                {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
+                            </p>    
+                        </li>
+                    </ul>
+                    <RouterLink to="/carrello">
+                        <button class="btn">
+                            VAI AL CARRELLO
+                        </button>
+                    </RouterLink>
+                </div>
             </div>
-            <div v-if="message === true" class="card text-center my-4 p-2">
-                <h3>Puoi selezionare piatti da un solo ristorante alla volta!</h3>
+        </div>
+        <div v-if="message === true" class="one-restaurant-message text-center p-5 d-flex justify-content-center">
+            <div class="modal-message p-5">
+                <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
                 <div class="d-flex gap-3 justify-content-center">
                     <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     <div class="btn" @click="message = false">Annulla</div>
                 </div>
-
-            </div>
-
-            
-            <div class="card my-3" v-if="store.chart.length !== 0">
-                <div>
-                   <h3> Riepilogo:</h3>
-                </div>
-                <ul class="card-body">
-                    <li class="d-flex gap-3" v-for="cartDish in store.chart">
-                        <span><strong>Piatto: </strong>{{ cartDish.name }}</span>
-                        <span><strong>Quantità: </strong>{{ cartDish.qty }}</span>
-                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €</span>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
@@ -216,6 +226,30 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
-    
+}
+
+.one-restaurant-message{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.734);
+
+    .modal-message{
+        width: 40%;
+        background-color: white;
+    }
+}
+
+.summary{
+    background-color: var(--color-green);
+    border-radius: 10px;
+    color: white;
 }
 </style>

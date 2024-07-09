@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-2 d-flex flex-column types">
+          <div class="col-2 d-flex flex-column types" id="types">
             <ul class="p-0 m-0">
               <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
                 <label :for="type.name">{{ type.name }}</label>
