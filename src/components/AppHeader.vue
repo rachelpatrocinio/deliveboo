@@ -18,10 +18,6 @@ export default {
       <div class="logo col-3">
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
       </div>
-      <div class="col-6 position-relative">
-        <input name="searchbar" class="searchbar" id="searchbar" type="text">
-        <label for="searchbar"><img class="glass-icon" src="../../../public/icons/magnifying-glass.png" alt=""></label>
-      </div>
       <div class="col-3 text-end">
         <RouterLink class="link" to="/admin">Area Riservata Admin</RouterLink>
         <RouterLink to="/carrello">
@@ -53,20 +49,6 @@ header{
 
 .cart-button{
   width: 30px;
-}
-
-.searchbar{
-  width: 100%;
-  border-radius: 99px;
-  border: 2px solid var(--color-darkgreen);
-  padding: 8px 50px;
-  outline-color: var(--color-orange);
-}
-
-.glass-icon{
-  position: absolute;
-  left: 10px;
-  top: 6px;
 }
 
 .link{
