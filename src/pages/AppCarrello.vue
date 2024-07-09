@@ -14,7 +14,12 @@
         <tbody>
           <tr v-for="(dish, i) in store.chart" :key="i">
             <td>{{ dish.name }}</td>
-            <td>{{ dish.qty }}</td>
+            <td>
+              <!-- {{ dish.qty }} -->
+              <span class="" @click="decrement(dish)">- </span>
+              <span>{{ dish.qty }}</span>
+              <span class="" @click="increment(dish)"> +</span>
+            </td>
             <td>€ {{ partialTotal(dish.price, dish.qty) }}</td>
             <td>
               <button class="btn delete-button" @click="deleteDish(i, price)">
@@ -77,6 +82,19 @@ export default {
         const singleDish = this.totalDishPrice[i];
         this.total += singleDish
       }
+    },
+    increment(dish) {
+            dish.qty++;
+            this.updateQty(dish);
+        },
+
+    decrement(dish) {
+        if (dish.qty >= 2) dish.qty--;
+        this.updateQty(dish);
+    },
+    // Debug
+    updateQty(dish) {
+        console.log(`${dish.name}: ${dish.qty}`);
     }
   },
 
