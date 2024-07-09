@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       store,
-      totalDishPrice: [],
       total: 0
       // partialTotal = 0
     };
@@ -70,42 +69,42 @@ export default {
       // localStorage.removeItem(localStorage.chart[dish]); // undefiened index
       // console.log(localStorage)
     },
-
     partialTotal(price, qty) {
       const total = price * qty;
-      this.totalDishPrice.push(total);
+      // this.totalDishPrice.push(total);
       // console.log(this.totalDishPrice)
       return total;
     },
     totalPrice(){
-      for(let i = 0; i < this.totalDishPrice.length; i++){
-        const singleDish = this.totalDishPrice[i];
-        this.total += singleDish
+      for(let i = 0; i < this.store.chart.length; i++){
+        const singleDish = this.store.chart[i];
+        console.log(singleDish);
+        const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
+        this.total += singleDishPrice
       }
     },
     increment(dish) {
-            dish.qty++;
-            this.updateQty(dish);
-        },
-
+        dish.qty++;
+        this.updateQty(dish);
+        console.log(this.totalDishPrice);
+    },
     decrement(dish) {
         if (dish.qty >= 2) dish.qty--;
         this.updateQty(dish);
+        console.log(this.totalDishPrice);
     },
     // Debug
     updateQty(dish) {
         console.log(`${dish.name}: ${dish.qty}`);
     }
   },
-
   mounted() {
     // console.log(this.store.chart)
     
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
     this.totalPrice();
-    console.log(this.total)
-  },
+  }
 };
 </script>
 
