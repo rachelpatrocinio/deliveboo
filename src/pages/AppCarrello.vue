@@ -24,6 +24,7 @@
           </tr>
         </tbody>
       </table>
+      <RouterLink to="/pagamento">VAI AL PAGAMENTO</RouterLink>
     </div>
   </div>
 </template>
