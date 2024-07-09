@@ -24,6 +24,10 @@
           </tr>
         </tbody>
       </table>
+      <div>
+        <h3>GRAND TOTALE</h3>
+        <p>€ {{ total }}</p>
+      </div>
       <RouterLink to="/pagamento">VAI AL PAGAMENTO</RouterLink>
     </div>
   </div>
@@ -36,6 +40,8 @@ export default {
   data() {
     return {
       store,
+      totalDishPrice: [],
+      total: 0
       // partialTotal = 0
     };
   },
@@ -62,8 +68,16 @@ export default {
 
     partialTotal(price, qty) {
       const total = price * qty;
+      this.totalDishPrice.push(total);
+      // console.log(this.totalDishPrice)
       return total;
     },
+    totalPrice(){
+      for(let i = 0; i < this.totalDishPrice.length; i++){
+        const singleDish = this.totalDishPrice[i];
+        this.total += singleDish
+      }
+    }
   },
 
   mounted() {
@@ -71,7 +85,8 @@ export default {
     
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
-
+    this.totalPrice();
+    console.log(this.total)
   },
 };
 </script>
