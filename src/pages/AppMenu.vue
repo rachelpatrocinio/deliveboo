@@ -33,7 +33,8 @@
                 <h3>Puoi selezionare piatti da un solo ristorante alla volta! </h3>
             </div>
 
-            <div class="card my-3">
+            
+            <div class="card my-3" v-if="store.chart.length !== 0">
                 <ul class="card-body">
                     <li class="d-flex gap-3" v-for="cartDish in store.chart">
                         <span><strong>Piatto: </strong>{{ cartDish.name }}</span>
