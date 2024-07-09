@@ -111,6 +111,7 @@ export default {
         emptChart(){
             this.store.chart = [];
             this.message = false;
+            localStorage.chart = JSON.stringify(this.store.chart);
         },
         partialTotal(price, qty) {
             const total = price * qty;

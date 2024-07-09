@@ -106,6 +106,7 @@ export default {
     },
     emptChart(){
             this.store.chart = [];
+            localStorage.chart = JSON.stringify(this.store.chart);
             this.totalPrice()
         },
     // Debug
