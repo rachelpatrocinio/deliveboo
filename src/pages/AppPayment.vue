@@ -104,7 +104,6 @@ export default {
       number: '',
       address: '',
       total_price: 10, // Passare dallo store
-      restaurant_id: 2, // Togliere la relazione
       hostedFieldsInstance: null,
       clientInstance: null,
     };
@@ -187,7 +186,6 @@ export default {
         // Invia il nonce al backend
         axios.post(`http://127.0.0.1:${store.port}/api/checkout`, {
           paymentMethodNonce: payload.nonce,
-          restaurant_id: this.restaurant_id,
           name: this.name,
           email: this.email,
           number: this.number,
