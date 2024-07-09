@@ -33,6 +33,7 @@
 import axios from "axios";
 import AppHeroBanner from "../components/AppHeroBanner.vue";
 import AppCard from "../components/AppCard.vue";
+import { store } from "../store.js";
 
 
 
@@ -43,6 +44,7 @@ export default {
   },
   data() {
     return {
+      store,
       restaurants: [], // Array vuoto da popolare con la chiamata axios
       types: [], // Array vuoto da popolare con la chiamata axios
       type_names: [], // Salva gli ids delle checkbox
@@ -57,7 +59,7 @@ export default {
         params.types = this.type_names.join(",");
       }
       axios
-        .get("http://127.0.0.1:8000/api/restaurants", {params})
+        .get(`http://127.0.0.1:${store.port}/api/restaurants`, {params})
         .then((res) => {
           this.restaurants = res.data; // Popola l'array dei ristoranti
           this.searchPerformed = true; // Indica che una ricerca è stata effettuata
@@ -68,7 +70,7 @@ export default {
     },
     // Recupera le tipologie tramite l'API
     fetchTypes() {
-      axios.get("http://127.0.0.1:8000/api/types")
+      axios.get(`http://127.0.0.1:${store.port}/api/types`)
         .then((res) => {
           this.types = res.data.types; // Popola l'array delle tipologie
         })

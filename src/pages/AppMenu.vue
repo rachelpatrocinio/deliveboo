@@ -66,7 +66,7 @@ export default {
         fetchRestaurant() {
             // chiamata parametrica del singolo ristorante
             axios
-                .get("http://127.0.0.1:8000/api/restaurants/" + this.$route.params.slug)
+                .get(`http://127.0.0.1:${store.port}/api/restaurants/` + this.$route.params.slug)
                 .then((res) => {
                     this.restaurant = res.data.restaurant;
                     // console.log(this.restaurant);

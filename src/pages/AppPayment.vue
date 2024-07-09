@@ -93,10 +93,12 @@
 import client from 'braintree-web/client';
 import hostedFields from 'braintree-web/hosted-fields';
 import axios from 'axios';
+import { store } from "../store.js";
 
 export default {
   data() {
     return {
+      store,
       name: '',
       email: '',
       number: '',
@@ -183,7 +185,7 @@ export default {
         console.log('Payment Method Nonce:', payload.nonce);
 
         // Invia il nonce al backend
-        axios.post('http://127.0.0.1:8000/api/checkout', {
+        axios.post(`http://127.0.0.1:${store.port}/api/checkout`, {
           paymentMethodNonce: payload.nonce,
           restaurant_id: this.restaurant_id,
           name: this.name,
