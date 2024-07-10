@@ -1,46 +1,45 @@
 <template>
   <div class="container py-5">
-    <div class="row py-5">
-      <h1 class="p-0">CARRELLO</h1>
-      <div v-if="store.chart.length > 0" class="my-4 text-end">
-        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+    <div class="row p-5">
+      <div class="d-flex justify-content-between">
+        <h1 class="p-0">CARRELLO</h1>
+        <div v-if="store.chart.length > 0" class="my-4">
+          <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+        </div>
       </div>
-      <table v-if="store.chart.length > 0">
-        <thead>
-          <tr>
-            <th>Piatto</th>
-            <th>Quantità</th>
-            <th>Prezzo unità</th>
-            <th>Prezzo totale</th>
-            <th>Elimina</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(dish, i) in store.chart" :key="i">
-            <td>{{ dish.name }}</td>
-            <td>
-              <!-- {{ dish.qty }} -->
-              <span class="" @click="decrement(dish)">- </span>
-              <span>{{ dish.qty }}</span>
-              <span class="" @click="increment(dish)"> +</span>
-            </td>
-            <td>€ {{ dish.price }}</td>
-            <td>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</td>
-            <td>
-              <button class="btn delete-button" @click="deleteDish(i, price)">
+      <ul class="mt-5" v-if="store.chart.length> 0">
+        <li class="d-flex" v-for="(dish, i) in store.chart" :key="i">
+          <p class="col-4">
+            {{ dish.qty }}x {{ dish.name }}
+          </p>
+          <div class="col-2">
+            <span class="" @click="decrement(dish)">- </span>
+            <span class="mx-4">{{ dish.qty }}</span>
+            <span class="" @click="increment(dish)"> +</span>
+          </div>
+          <div class=" d-flex col-2">
+            <p>€ {{ dish.price }}</p>
+          </div>
+          <div class="col-2 price">
+            <p>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</p>
+          </div>
+          <div class="col-2 text-end">
+            <div class="delete-button" @click="deleteDish(i, price)">
                 <img src="../../public/icons/bin.png" alt="Eliminazione" />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div v-if="store.chart.length > 0" class="my-4">
-        <h3>Totale dell'ordine: € {{ store.total_price.toFixed(2) }}</h3>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <hr>
+      <div v-if="store.chart.length> 0" class="my-4 d-flex justify-content-between">
+        <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
+        <RouterLink v-if="store.chart.length > 0" to="/pagamento" class="btn">VAI AL PAGAMENTO</RouterLink>
       </div>
+
       <div v-if="store.chart.length === 0" class="py-5">
         <h3>Il tuo carrello è vuoto</h3>
       </div>
-      <RouterLink v-if="store.chart.length > 0" to="/pagamento">VAI AL PAGAMENTO</RouterLink>
     </div>
   </div>
 </template>
@@ -139,8 +138,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.row{
+  background-color: var(--color-green);
+  color: white;
+}
+
+.price{
+  font-weight: 600;
+}
+
 .btn {
-    background-color: var(--color-orange);
+  background-color: var(--color-orange);
     color: var(--color-dark);
     font-weight: 600;
 
