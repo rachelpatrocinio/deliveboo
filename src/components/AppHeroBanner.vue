@@ -2,7 +2,7 @@
 <section class="hero-banner mt-2">
     <div class="container">
         <div class="row py-5">
-            <div class="col-6 py-5">
+            <div class="col-12 col-md-6 py-5">
                 <h1 class="pt-5 title"> DELIVEBOO </h1>
                 <p class="pb-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quasi laborum veniam ratione sint? Non, perferendis nobis. Veniam nam ipsam in. Aliquid eos quod repudiandae distinctio voluptate debitis error labore.</p>
                 <a class="btn" href="#types">ORDINA ORA!</a>
