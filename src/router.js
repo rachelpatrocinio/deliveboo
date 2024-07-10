@@ -9,7 +9,7 @@ import AppPayment from './pages/AppPayment.vue'
 
 
 const routes = [
-  { path: '/', component: AppHomepage },
+  { path: '/', name:'home', component: AppHomepage },
   { path: '/admin', component: AppAdmin },
   { path: '/menu/:slug', name: 'menu', component: AppMenu},
   { path: '/carrello', name: 'carrello', component: AppCarrello},
