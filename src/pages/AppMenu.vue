@@ -14,14 +14,14 @@
                         <p>€ {{ dish.price }}</p>
                         <div v-if="qtyBox === false || index !== idCard">
                             <div class="btn" @click="openChart(index)">
-                            Scegli il piatto
+                                Scegli il piatto
                             </div>
                         </div>
 
 
                         <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
                             <!-- Abbellire bottoni -->
-                             <div>
+                            <div>
                                 <div>
                                     <h5>Quantità</h5>
                                 </div>
@@ -30,10 +30,10 @@
                                     <input class="item-number" type="text" disabled v-model="dish.qty" />
                                     <span class="" @click="increment(dish)"> +</span>
                                 </div>
-                             </div>
+                            </div>
 
                             <button class="btn" @click="addToChart(dish)">
-                            AGGIUNGI AL CARRELLO
+                                AGGIUNGI AL CARRELLO
                             </button>
                         </div>
                         <div class="h3" v-if="qtyError === true && index === idCard">
@@ -44,7 +44,6 @@
             </div>
             <div class="mt-4">
                 <button class="btn" @click="goBack">Torna Indietro</button>
-                <RouterLink to="/carrello">VAI AL CARRELLO</RouterLink>
             </div>
             <div v-if="message === true" class="card text-center my-4 p-2">
                 <h3>Puoi selezionare piatti da un solo ristorante alla volta!</h3>
@@ -54,18 +53,37 @@
                 </div>
             </div>
 
-            
+
             <div class="card my-3" v-if="store.chart.length !== 0">
                 <div>
-                   <h3> Riepilogo:</h3>
+                    <h3>Riepilogo:</h3>
                 </div>
                 <ul class="card-body">
-                    <li class="d-flex gap-3" v-for="cartDish in store.chart">
+                    <li class="d-flex gap-3 mb-3" v-for="cartDish in store.chart">
                         <span><strong>Piatto: </strong>{{ cartDish.name }}</span>
-                        <span><strong>Quantità: </strong>{{ cartDish.qty }}</span>
-                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €</span>
+                        <span>
+                            <strong>Quantità: </strong>
+                            <span class="" @click="decrement(cartDish)">- </span>
+                            {{ cartDish.qty }}
+                            <span class="" @click="increment(cartDish)"> +</span>
+                        </span>
+                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }}
+                            €</span>
+                    </li>
+                    <li class="mb-5">
+                        <h5>Totale carrello: {{ store.total_price.toFixed(2) }}</h5>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <div>
+                            <RouterLink class="btn" to="/carrello">VAI AL CARRELLO</RouterLink>
+                        </div>
+                        
+                        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     </li>
                 </ul>
+            </div>
+            <div class="card my-3" v-if="store.chart.length === 0">
+                <h3>Il tuo carrello è vuoto</h3>
             </div>
         </div>
     </div>
@@ -99,7 +117,7 @@ export default {
                     this.restaurant = res.data.restaurant;
                     // console.log(this.restaurant);
                     this.restaurant.dishes.forEach((dish) => {
-                        dish.qty = 0;
+                        dish.qty = 1;
                     });
                     console.log(this.restaurant);
                 });
@@ -107,24 +125,21 @@ export default {
         goBack() {
             this.$router.back();
         },
-        emptChart(){
+        emptChart() {
             this.store.chart = [];
             this.message = false;
             localStorage.chart = JSON.stringify(this.store.chart);
         },
-        partialTotal(price, qty) {
-            const total = price * qty;
-            return total;
-        },
-
         increment(dish) {
             dish.qty++;
             this.updateQty(dish);
+            this.totalPrice();
         },
 
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
             this.updateQty(dish);
+            this.totalPrice();
         },
         // Debug
         updateQty(dish) {
@@ -135,43 +150,59 @@ export default {
         keep() {
             localStorage.chart = JSON.stringify(this.store.chart);
         },
-        openChart(id){
+        partialTotal(price, qty) {
+            const total = price * qty;
+            // this.totalDishPrice.push(total);
+            // console.log(this.totalDishPrice)
+            return total;
+        },
+        totalPrice() {
+            this.store.total_price = 0;
+            for (let i = 0; i < this.store.chart.length; i++) {
+                const singleDish = this.store.chart[i];
+                console.log(singleDish);
+                const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
+                this.store.total_price += singleDishPrice
+            }
+        },
+        openChart(id) {
             this.idCard = id;
-            if(this.qtyBox !== true){
+            if (this.qtyBox !== true) {
                 this.qtyBox = true;
             }
-            else{
+            else {
                 this.qtyBox = false;
             }
         },
         addToChart(dish) {
-            if(dish.qty > 0){
+            if (dish.qty > 0) {
                 this.qtyError = false
-                    // Controlla se il piatto è già nel carrello
+                // Controlla se il piatto è già nel carrello
                 let cartDish = this.store.chart.find((item) => item.id === dish.id);
-                
-                
+
+
                 if (cartDish) {
                     // Se è presente, incrementa la quantità
                     cartDish.qty += dish.qty;
                     this.message = false;
                     this.qtyBox = false;
-                } else if(this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)){
+                } else if (this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)) {
                     // Altrimenti aggiungi il piatto al carrello
                     this.store.chart.push({ ...dish });
-                    
+
                     this.message = false;
                     this.qtyBox = false;
                 }
-                else{
+                else {
                     this.message = true;
                 }
                 this.keep();
+                this.totalPrice();
             }
             else {
                 this.qtyError = true
             }
-            
+
         }
     },
     created() {
@@ -215,6 +246,6 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
-    
+
 }
 </style>
