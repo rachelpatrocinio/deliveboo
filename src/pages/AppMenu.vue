@@ -38,7 +38,7 @@
                                         <button class="btn" @click="addToChart(dish)">
                                         AGGIUNGI
                                         </button>
-                                        <button class="btn" @click="qtyBox = false">
+                                        <button class="btn" @click="close()">
                                             Annulla
                                         </button>
                                     </div>
@@ -194,6 +194,10 @@ export default {
             else {
                 this.qtyError = true
             }
+        },
+        close(){
+            this.qtyBox = false;
+            this.qtyError = false;
         }
     },
     created() {
