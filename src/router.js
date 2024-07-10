@@ -5,6 +5,8 @@ import AppAdmin from './pages/AppAdmin.vue'
 import AppMenu from './pages/AppMenu.vue'
 import AppCarrello from './pages/AppCarrello.vue'
 import AppPayment from './pages/AppPayment.vue'
+import AppSuccess from './pages/AppSuccess.vue'
+import AppNotFound from './pages/AppNotFound.vue'
 
 
 
@@ -13,8 +15,9 @@ const routes = [
   { path: '/admin', component: AppAdmin },
   { path: '/menu/:slug', name: 'menu', component: AppMenu},
   { path: '/carrello', name: 'carrello', component: AppCarrello},
-  //   { path: '/:pathMatch(.*)*', name:'not-found', component: AppNotFound},
   { path: '/pagamento', name: 'pagamento', component: AppPayment},
+  { path: '/pagamento/success', name: 'success', component: AppSuccess},
+  { path: '/:pathMatch(.*)*', name:'not-found', component: AppNotFound},
 ]
 
 const router = createRouter({

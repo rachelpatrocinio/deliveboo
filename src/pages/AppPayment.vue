@@ -208,7 +208,7 @@ export default {
           // Mostra un messaggio di successo
 
           // Redirect alla home
-          this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'success' });
         })
         .catch(error => {
           console.error('Payment error:', error);
