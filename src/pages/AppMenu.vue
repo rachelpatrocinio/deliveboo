@@ -6,30 +6,27 @@
                 </div>
             <div class="col-9">
                 <div class="row">
-                    <div class="col-4 text-center" v-for="(dish, index) in restaurant.dishes">
-                        <div class="card p-4">
-                            <div class="card-title">
-                                {{ dish.name }}
-                            </div>
-                            <div class="card-body">
+                    <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
+                        <div class="card d-flex flex-row p-4 mb-2">
+                            <div class="card-title w-25">
+                                <h5>{{ dish.name }}</h5>
                                 <figure>
                                     <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
                                 </figure>
-                                <p>{{ dish.description_ingredients }}</p>
-                                <p>€ {{ dish.price }}</p>
-                                <div v-if="qtyBox === false || index !== idCard">
+                            </div>
+                            <div class="card-body d-flex justify-content-between align-items-center w-75 text-center">
+                                <div class="w-75">
+                                    <p class="ingredients">{{ dish.description_ingredients }}</p>
+                                    <p>€ {{ dish.price }}</p>
+                                </div>
+                                <div class="w-25" v-if="qtyBox === false || index !== idCard">
                                     <div class="btn" @click="openChart(index)">
                                     Scegli il piatto
                                     </div>
                                 </div>
 
-
-                                <div class="quantity d-flex gap-3 my-4" v-if="qtyBox === true && index === idCard">
-                                    <!-- Abbellire bottoni -->
+                                <div class="quantity my-4" v-if="qtyBox === true && index === idCard">
                                     <div>
-                                        <div>
-                                            <h5>Quantità</h5>
-                                        </div>
                                         <div>
                                             <span class="" @click="decrement(dish)">- </span>
                                             <input class="item-number" type="text" disabled v-model="dish.qty" />
@@ -37,9 +34,14 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn" @click="addToChart(dish)">
-                                    AGGIUNGI AL CARRELLO
-                                    </button>
+                                    <div class="d-flex gap-2 mt-2">
+                                        <button class="btn" @click="addToChart(dish)">
+                                        AGGIUNGI
+                                        </button>
+                                        <button class="btn" @click="qtyBox = false">
+                                            Annulla
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="h3" v-if="qtyError === true && index === idCard">
                                     Scegli una quantità!!
@@ -208,6 +210,19 @@ export default {
 }
 
 .quantity {
+
+    // top: 0;
+    // bottom: 0;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // background-color: rgba(0, 0, 0, 0.506);
+
+    // .quantity-content{
+    //     width: 50%;
+    //     background-color: white;
+    // }
+
     span {
         cursor: pointer;
     }
@@ -216,6 +231,7 @@ export default {
 .dish-img {
     aspect-ratio: 1/1;
     object-fit: cover;
+    width: 150px;
 }
 
 .btn {
