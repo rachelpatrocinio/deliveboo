@@ -1,5 +1,5 @@
 <template>
-    <h1>€ {{ store.total_price.toFixed(2) }}</h1>
+  <h1>€ {{ store.total_price.toFixed(2) }}</h1>
   <div class="bootstrap-basic">
     <form @submit.prevent="handleSubmit" class="needs-validation">
       <div class="row">
@@ -115,6 +115,10 @@ export default {
     this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : [];
     console.log(store.total_price); 
     console.log(store.restaurant_id)
+
+  },
+  unmounted() {
+    this.deleteData()
   },
   methods: {
     setupBraintree() {
@@ -200,14 +204,25 @@ export default {
         })
         .then(response => {
           console.log('Payment successful:', response.data);
+          
           // Mostra un messaggio di successo
+
+          // Redirect alla home
+          this.$router.push({ name: 'home' });
         })
         .catch(error => {
           console.error('Payment error:', error);
           // Mostra un messaggio di errore
         });
       });
+    },
+    deleteData() {
+
+    localStorage.removeItem('total_price');
+    localStorage.removeItem('restaurant_id');
+    localStorage.removeItem('chart');
+    // console.log('Dati eliminati localstorage');
     }
-  }
+  },
 };
 </script>
