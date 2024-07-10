@@ -122,26 +122,35 @@ export default {
             this.store.chart = [];
             this.message = false;
             localStorage.chart = JSON.stringify(this.store.chart);
+            this.totalQty();
         },
         partialTotal(price, qty) {
             const total = price * qty;
             return total;
         },
-
+        totalQty(){
+            this.store.total_qty = 0;
+            for(let i = 0; i < this.store.chart.length; i++){
+                const singleDish = this.store.chart[i];
+                console.log(singleDish);
+                const singleDishQty = singleDish.qty
+                this.store.total_qty += singleDishQty
+            }
+        },
         increment(dish) {
             dish.qty++;
             this.updateQty(dish);
+            this.totalQty();
         },
-
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
             this.updateQty(dish);
+            this.totalQty();
         },
         // Debug
         updateQty(dish) {
             console.log(`${dish.name}: ${dish.qty}`);
         },
-
         //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
         keep() {
             localStorage.chart = JSON.stringify(this.store.chart);
@@ -167,12 +176,13 @@ export default {
                     cartDish.qty += dish.qty;
                     this.message = false;
                     this.qtyBox = false;
+                    this.totalQty();
                 } else if(this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)){
                     // Altrimenti aggiungi il piatto al carrello
                     this.store.chart.push({ ...dish });
-                    
                     this.message = false;
                     this.qtyBox = false;
+                    this.totalQty();
                 }
                 else{
                     this.message = true;
@@ -182,12 +192,12 @@ export default {
             else {
                 this.qtyError = true
             }
-            
         }
     },
     created() {
         this.fetchRestaurant();
-    },
+        this.totalQty();
+    }
 };
 </script>
 

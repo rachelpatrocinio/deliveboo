@@ -37,7 +37,7 @@
       <div v-if="store.chart.length > 0" class="my-4">
         <h3>Totale dell'ordine: € {{ store.total_price.toFixed(2) }}</h3>
       </div>
-      <div v-if="store.chart.length === 0">
+      <div v-if="store.chart.length === 0" class="py-5">
         <h3>Il tuo carrello è vuoto</h3>
       </div>
       <RouterLink v-if="store.chart.length > 0" to="/pagamento">VAI AL PAGAMENTO</RouterLink>
@@ -68,6 +68,7 @@ export default {
       localStorage.chart = JSON.stringify(this.store.chart);
 
       this.totalPrice();
+      this.totalQty();
       // localStorage.removeItem(dish); // qui ritornano anche quando cambio rotta
       // localStorage.chart = localStorage.removeItem(dish); // si blocca tutto
 
@@ -92,23 +93,35 @@ export default {
         this.store.total_price += singleDishPrice
       }
     },
+    totalQty(){
+      this.store.total_qty = 0;
+      for(let i = 0; i < this.store.chart.length; i++){
+        const singleDish = this.store.chart[i];
+        console.log(singleDish);
+        const singleDishQty = singleDish.qty
+        this.store.total_qty += singleDishQty
+      }
+    },
     increment(dish) {
         dish.qty++;
         this.updateQty(dish);
         console.log(this.totalDishPrice);
-        this.totalPrice()
+        this.totalPrice();
+        this.totalQty();
     },
     decrement(dish) {
         if (dish.qty >= 2) dish.qty--;
         this.updateQty(dish);
         console.log(this.totalDishPrice);
-        this.totalPrice()
+        this.totalPrice();
+        this.totalQty();
     },
     emptChart(){
-            this.store.chart = [];
-            localStorage.chart = JSON.stringify(this.store.chart);
-            this.totalPrice()
-        },
+        this.store.chart = [];
+        localStorage.chart = JSON.stringify(this.store.chart);
+        this.totalPrice();
+        this.totalQty();
+    },
     // Debug
     updateQty(dish) {
         console.log(`${dish.name}: ${dish.qty}`);
@@ -120,16 +133,8 @@ export default {
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
     this.totalPrice();
-  },
-//   watch: {
-
-// total: {
-//   handler() {
-//     this.totalPrice()
-//   }
-// }
-
-// }
+    this.totalQty();
+  }
 };
 </script>
 
@@ -152,6 +157,5 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
-    
 }
 </style>
