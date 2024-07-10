@@ -1,5 +1,5 @@
 <template>
-    <h1>€ {{ store.total_price }}</h1>
+    <h1>€ {{ store.total_price.toFixed(2) }}</h1>
   <div class="bootstrap-basic">
     <form @submit.prevent="handleSubmit" class="needs-validation">
       <div class="row">
@@ -103,14 +103,18 @@ export default {
       email: '',
       number: '',
       address: '',
-      total_price: store.total_price, // Passare dallo store
+      restaurant_id: localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : [],
+      total_price: localStorage.total_price ? JSON.parse(localStorage.total_price) : [],
       hostedFieldsInstance: null,
       clientInstance: null,
     };
   },
   mounted() {
     this.setupBraintree();
-    console.log(store.total_price);
+    this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : [];
+    this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : [];
+    console.log(store.total_price); 
+    console.log(store.restaurant_id)
   },
   methods: {
     setupBraintree() {
@@ -191,6 +195,7 @@ export default {
           email: this.email,
           number: this.number,
           address: this.address,
+          restaurant_id: this.restaurant_id,
           total_price: this.total_price
         })
         .then(response => {
