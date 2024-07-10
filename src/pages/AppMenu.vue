@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <figure>
-                            <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
+                            <img class="dish-img" :src="dish.thumb_url" :alt="`piatto ${dish.name}`" />
                         </figure>
                         <p>{{ dish.description_ingredients }}</p>
                         <p>€ {{ dish.price }}</p>
@@ -80,7 +80,7 @@
                         <div>
                             <RouterLink class="btn" to="/carrello">VAI AL CARRELLO</RouterLink>
                         </div>
-                        
+
                         <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     </li>
                 </ul>
@@ -113,17 +113,18 @@ export default {
     },
     methods: {
         fetchRestaurant() {
-            // chiamata parametrica del singolo ristorante
             axios
                 .get(`http://127.0.0.1:${store.port}/api/restaurants/` + this.$route.params.slug)
                 .then((res) => {
                     this.restaurant = res.data.restaurant;
-                    // console.log(this.restaurant);
                     this.restaurant.dishes = this.restaurant.dishes.filter(dish => dish.visible === 1);
                     this.restaurant.dishes.forEach((dish) => {
                         dish.qty = 1;
                     });
-                    console.log(this.restaurant);
+                    console.log(this.restaurant)
+                })
+                .catch((error) => {
+                    console.error("There was an error fetching the restaurant data!", error);
                 });
         },
         goBack() {
