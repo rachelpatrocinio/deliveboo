@@ -18,7 +18,7 @@
         <tbody>
           <tr v-for="(dish, i) in store.chart" :key="i">
             <td>{{ dish.name }}</td>
-            <td>
+            <td class="decein">
               <!-- {{ dish.qty }} -->
               <span class="" @click="decrement(dish)">- </span>
               <span>{{ dish.qty }}</span>
@@ -160,5 +160,9 @@ export default {
         transform: scale(1.1);
     }
     
+}
+
+.decein {
+  cursor: default;
 }
 </style>
