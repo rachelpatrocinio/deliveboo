@@ -1,9 +1,12 @@
 <template>
     <div class="container py-5">
         <div class="row py-5">
+            <div v-if="restaurant.dishes.length === 0" class="card">
+                <h3>Questo ristorante non ha ancora registrato piatti</h3>
+            </div>
             <div class="col-4 text-center" v-for="(dish, index) in restaurant.dishes">
                 <div class="card p-4">
-                    <div class="card-title">
+                    <div class="card-header">
                         {{ dish.name }}
                     </div>
                     <div class="card-body">
@@ -116,6 +119,7 @@ export default {
                 .then((res) => {
                     this.restaurant = res.data.restaurant;
                     // console.log(this.restaurant);
+                    this.restaurant.dishes = this.restaurant.dishes.filter(dish => dish.visible === 1);
                     this.restaurant.dishes.forEach((dish) => {
                         dish.qty = 1;
                     });
