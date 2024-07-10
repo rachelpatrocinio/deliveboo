@@ -5,42 +5,42 @@
       <form @submit.prevent="handleSubmit" class="needs-validation">
         <div class="row">
           <div class="col-sm-6 mb-3">
-            <label for="cc-name">Cardholder Name</label>
+            <label for="cc-name">Nome Titolare Carta</label>
             <div class="form-control" id="cc-name"></div>
-            <small class="text-muted">Full name as displayed on card</small>
+            <small class="text-muted">Nome completo</small>
             <div class="invalid-feedback">
-              Name on card is required
+              Nome completo è richiesto
             </div>
           </div>
           <div class="col-sm-6 mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" @change="validateEmail">
+            <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com" @change="validateEmail">
             <div class="invalid-feedback">
-              Please enter a valid email address for shipping updates.
+              Scrivere un email valida per la spedizione.
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-4 mb-3">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" v-model="name" placeholder="Name">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
             <div class="invalid-feedback">
-              Name is required
+              Il Nome è richiesto
             </div>
           </div>
           <div class="col-sm-4 mb-3">
             <label for="number">Phone Number</label>
-            <input type="text" class="form-control" id="number" v-model="number" placeholder="Phone Number">
+            <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
             <div class="invalid-feedback">
-              Phone number is required
+              Il Numero di telefono è richiesto
             </div>
           </div>
           <div class="col-sm-4 mb-3">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" v-model="address" placeholder="Address">
+            <label for="address">Indirizzo</label>
+            <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
             <div class="invalid-feedback">
-              Address is required
+              L'indirizzo è richiesto
             </div>
           </div>
         </div>
@@ -50,28 +50,28 @@
             <label for="cc-number">Credit card number</label>
             <div class="form-control" id="cc-number"></div>
             <div class="invalid-feedback">
-              Credit card number is required
+              Numero della Carta di Credito è richiesta
             </div>
           </div>
           <div class="col-sm-3 mb-3">
-            <label for="cc-expiration">Expiration</label>
+            <label for="cc-expiration">Scadenza</label>
             <div class="form-control" id="cc-expiration"></div>
             <div class="invalid-feedback">
-              Expiration date required
+              Data di scadenza richiesta
             </div>
           </div>
           <div class="col-sm-3 mb-3">
             <label for="cc-cvv">CVV</label>
             <div class="form-control" id="cc-cvv"></div>
             <div class="invalid-feedback">
-              Security code required
+              CVV richiesta
             </div>
           </div>
         </div>
 
         <hr class="mb-4">
         <div class="text-center">
-          <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>
+          <button class="btn btn-primary btn-lg" type="submit">Paga con <span id="card-brand">Carta</span></button>
         </div>
       </form>
       <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
@@ -137,7 +137,7 @@ export default {
           fields: {
             cardholderName: {
               selector: '#cc-name',
-              placeholder: 'Name as it appears on your card'
+              placeholder: 'Nome scritto nella Carta'
             },
             number: {
               selector: '#cc-number',
@@ -149,7 +149,7 @@ export default {
             },
             expirationDate: {
               selector: '#cc-expiration',
-              placeholder: 'MM / YY'
+              placeholder: 'MM / AA'
             }
           }
         }, (err, hostedFieldsInstance) => {
