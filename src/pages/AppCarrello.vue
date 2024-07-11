@@ -108,7 +108,13 @@ export default {
         console.log(singleDish);
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
         this.store.total_price += singleDishPrice
+
+        // recuperare restaurant_id
+        const restaurant_id = singleDish.restaurant_id
+        this.store.restaurant_id = restaurant_id
+        console.log(this.store.restaurant_id)
       }
+      localStorage.restaurant_id = JSON.stringify(this.store.restaurant_id);
       this.keep();
     },
     totalQty(){

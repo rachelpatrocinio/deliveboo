@@ -105,16 +105,16 @@ export default {
       email: '',
       number: '',
       address: '',
-      restaurant_id: localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : [],
-      total_price: localStorage.total_price ? JSON.parse(localStorage.total_price) : [],
+      restaurant_id: localStorage.restaurant_id,
+      total_price: localStorage.total_price,
       hostedFieldsInstance: null,
       clientInstance: null,
     };
   },
   mounted() {
     this.setupBraintree();
-    this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : [];
-    this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : [];
+    this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+    this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : 0;
     console.log(store.total_price); 
     console.log(store.restaurant_id)
 
