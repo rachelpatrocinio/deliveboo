@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
                         <div class="card d-flex flex-row p-4 mb-2">
-                            <div class="card-title w-25">
+                            <div class="card-header w-25">
                                 <h5>{{ dish.name }}</h5>
                                 <figure>
                                     <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
