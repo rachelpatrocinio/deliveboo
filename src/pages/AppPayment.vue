@@ -14,7 +14,8 @@
           </div>
           <div class="col-sm-6 mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com" @change="validateEmail">
+            <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com"
+              @change="validateEmail">
             <div class="invalid-feedback">
               Scrivere un email valida per la spedizione.
             </div>
@@ -115,7 +116,7 @@ export default {
     this.setupBraintree();
     this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
     this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : 0;
-    console.log(store.total_price); 
+    console.log(store.total_price);
     console.log(store.restaurant_id)
 
   },
@@ -201,27 +202,27 @@ export default {
           restaurant_id: this.restaurant_id,
           total_price: this.total_price
         })
-        .then(response => {
-          console.log('Payment successful:', response.data);
-          
-          // Mostra un messaggio di successo
+          .then(response => {
+            console.log('Payment successful:', response.data);
 
-          // Redirect alla home
-          this.$router.push({ name: 'success' });
-          this.deleteData()
-        })
-        .catch(error => {
-          console.error('Payment error:', error);
-          // Mostra un messaggio di errore
-        });
+            // Mostra un messaggio di successo
+
+            // Redirect alla home
+            this.$router.push({ name: 'success' });
+            this.deleteData()
+          })
+          .catch(error => {
+            console.error('Payment error:', error);
+            // Mostra un messaggio di errore
+          });
       });
     },
     deleteData() {
 
-    localStorage.removeItem('total_price');
-    localStorage.removeItem('restaurant_id');
-    localStorage.removeItem('chart');
-    // console.log('Dati eliminati localstorage');
+      localStorage.removeItem('total_price');
+      localStorage.removeItem('restaurant_id');
+      localStorage.removeItem('chart');
+      localStorage.removeItem('total_qty');
     }
   },
 };

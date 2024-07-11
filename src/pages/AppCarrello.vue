@@ -12,7 +12,7 @@
           <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
         </div>
       </div>
-      <ul class="mt-5" v-if="store.chart.length> 0">
+      <ul class="mt-5" v-if="store.chart.length > 0">
         <li class="d-flex" v-for="(dish, i) in store.chart" :key="i">
           <p class="col-4">
             {{ dish.qty }}x {{ dish.name }}
@@ -30,14 +30,14 @@
           </div>
           <div class="col-2 text-end">
             <div class="delete-button" @click="deleteDish(i, price)">
-                <img src="../../public/icons/bin.png" alt="Eliminazione" />
+              <img src="../../public/icons/bin.png" alt="Eliminazione" />
             </div>
           </div>
         </li>
       </ul>
 
       <hr>
-      <div v-if="store.chart.length> 0" class="my-4 d-flex justify-content-between">
+      <div v-if="store.chart.length > 0" class="my-4 d-flex justify-content-between">
         <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
         <!-- <RouterLink v-if="store.chart.length > 0" to="/pagamento" class="btn">VAI AL PAGAMENTO</RouterLink> -->
         <a v-if="store.chart.length > 0" href="/pagamento" class="btn">VAI AL PAGAMENTO</a> <!-- NON TOCCARE -->
@@ -68,16 +68,16 @@ export default {
     },
     // salva i dati nel local storage
     keep() {
-            localStorage.chart = JSON.stringify(this.store.chart);
-            localStorage.total_price = JSON.stringify(this.store.total_price);
-            localStorage.total_qty = JSON.stringify(this.store.total_qty);
-        },
+      localStorage.chart = JSON.stringify(this.store.chart);
+      localStorage.total_price = JSON.stringify(this.store.total_price);
+      localStorage.total_qty = JSON.stringify(this.store.total_qty);
+    },
     //aggiorna i dati nel local storage se diversi da quelli salvati
     keepUp() {
-            this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
-            this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
-            this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
-        },
+      this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+      this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+      this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
+    },
     deleteDish(dish) {
       this.store.chart.splice(dish, 1);
 
@@ -101,9 +101,9 @@ export default {
       // console.log(this.totalDishPrice)
       return total;
     },
-    totalPrice(){
+    totalPrice() {
       this.store.total_price = 0;
-      for(let i = 0; i < this.store.chart.length; i++){
+      for (let i = 0; i < this.store.chart.length; i++) {
         const singleDish = this.store.chart[i];
         console.log(singleDish);
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
@@ -117,9 +117,9 @@ export default {
       localStorage.restaurant_id = JSON.stringify(this.store.restaurant_id);
       this.keep();
     },
-    totalQty(){
+    totalQty() {
       this.store.total_qty = 0;
-      for(let i = 0; i < this.store.chart.length; i++){
+      for (let i = 0; i < this.store.chart.length; i++) {
         const singleDish = this.store.chart[i];
         console.log(singleDish);
         const singleDishQty = singleDish.qty
@@ -128,39 +128,39 @@ export default {
       this.keep();
     },
     increment(dish) {
-        dish.qty++;
-        this.updateQty(dish);
-        console.log(this.totalDishPrice);
-        this.totalPrice();
-        this.totalQty();
-        this.keep();
+      dish.qty++;
+      this.updateQty(dish);
+      console.log(this.totalDishPrice);
+      this.totalPrice();
+      this.totalQty();
+      this.keep();
     },
     decrement(dish) {
-        if (dish.qty >= 2) dish.qty--;
-        this.updateQty(dish);
-        console.log(this.totalDishPrice);
-        this.totalPrice();
-        this.totalQty();
-        this.keep();
+      if (dish.qty >= 2) dish.qty--;
+      this.updateQty(dish);
+      console.log(this.totalDishPrice);
+      this.totalPrice();
+      this.totalQty();
+      this.keep();
     },
-    emptChart(){
-        this.store.chart = [];
-        localStorage.chart = JSON.stringify(this.store.chart);
-        this.totalPrice();
-        this.totalQty();
-        this.keep();
+    emptChart() {
+      this.store.chart = [];
+      localStorage.chart = JSON.stringify(this.store.chart);
+      this.totalPrice();
+      this.totalQty();
+      this.keep();
     },
     // Debug
     updateQty(dish) {
-        console.log(`${dish.name}: ${dish.qty}`);
+      console.log(`${dish.name}: ${dish.qty}`);
     },
     goBack() {
-        this.$router.back();
+      this.$router.back();
     },
   },
   mounted() {
     // console.log(this.store.chart)
-    
+
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.keepUp();
     this.totalPrice();
@@ -170,32 +170,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row{
+.row {
   background-color: var(--color-green);
   color: white;
 }
 
-.price{
+.price {
   font-weight: 600;
 }
 
 .btn {
   background-color: var(--color-orange);
-    color: var(--color-dark);
-    font-weight: 600;
+  color: var(--color-dark);
+  font-weight: 600;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .btn-dark {
-    background-color: var(--color-dark);
-    color: var(--color-yellow);
-    font-weight: 600;
+  background-color: var(--color-dark);
+  color: var(--color-yellow);
+  font-weight: 600;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 </style>
