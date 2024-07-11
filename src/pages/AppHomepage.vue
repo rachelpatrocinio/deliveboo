@@ -7,9 +7,11 @@
 
           <div class="col-4 col-md-3 col-lg-2 d-flex flex-column types" id="types">
             <ul class="p-0 m-0">
-              <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
-                <label :for="type.name">{{ type.name }}</label>
+              <li class="text-center my-2"><h3>Filtra<br>Tipologie</h3></li>
+              <li v-for="type in types" :key="type.id" class="p-3 d-flex gap-2">
                 <input :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
+                <label :class="type.name" class="type-badge" :for="type.name">{{ type.name }}</label>
+
               </li>
             </ul>       
           </div>
@@ -113,11 +115,17 @@ export default {
     border-radius: 10px;
   }
 
-  li{
+  li .type-badge{
     font-weight: 600;
     &:hover{
-      color: var(--color-darkgreen);
+      transform: scale(1.1);
     }
+
   }
 }
+
+
+
+
+
 </style>

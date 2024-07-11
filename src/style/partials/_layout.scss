@@ -5,6 +5,58 @@
     --color-green: #78AAA8;
     --color-darkgreen: #40684E;
     --color-dark: #212529;
+    // colori tipologie
+    --Ristorante: #62653E;
+    --Pizzeria:  #478688;
+    --Messicano:  #98A089;
+    --Bar:  #EB926A;
+    --Sushi:  #C4C3BA;
+    --Burgerheria:  #D5A633;
+    --Vegano:  #C7CB97;
+    --Gluten-free:  #F8B2BC;
+    --Gelateria:  #B8BDA6;
+    --Pub:  #A0AC5B;
+}
+
+//badge
+.Ristorante{
+  background-color: var(--Ristorante);
+}
+.Pizzeria{
+  background-color: var(--Pizzeria);
+}
+.Messicano{
+  background-color: var(--Messicano);
+}
+.Bar{
+  background-color: var(--Bar);
+}
+.Sushi{
+  background-color: var(--Sushi);
+}
+.Burgerheria{
+  background-color: var(--Burgerheria);
+}
+.Vegano{
+  background-color: var(--Vegano);
+}
+.Gluten-free{
+  background-color: var(--Gluten-free);
+}
+.Gelateria{
+  background-color: var(--Gelateria);
+}
+.Pub{
+  background-color: var(--Pub);
+}
+
+ .type-badge{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 6px;
+  cursor: pointer;
 }
 
 *{
