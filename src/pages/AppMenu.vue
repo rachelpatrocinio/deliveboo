@@ -21,12 +21,6 @@
                                 </div>
 
                                 <div class="quantity my-4">
-                                    <div>
-                                        <span class="" @click="decrement(dish)">- </span>
-                                        <input class="item-number" type="text" disabled v-model="dish.qty" />
-                                        <span class="" @click="increment(dish)"> +</span>
-                                    </div>
-
                                     <div class="d-flex gap-2 mt-2">
                                         <button class="btn" @click="addToChart(dish)">
                                         AGGIUNGI
@@ -39,9 +33,10 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="summary p-3" v-if="store.chart.length !== 0">
+                <div class="summary p-3">
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
+                        <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiungo nessun piatto nel carrello</li>
                         <li class="d-flex justify-content-between" v-for="cartDish in store.chart">
                             <div class="d-flex justify-content-between">
                                 <p class="decinc me-1">
@@ -63,11 +58,14 @@
                             {{ store.total_price.toFixed(2)  }}€
                         </strong>
                     </div>
-                    <RouterLink to="/carrello">
-                        <button class="btn">
-                            VAI AL CARRELLO
-                        </button>
-                    </RouterLink>
+                    <div class="d-flex justify-content-between mt-3">
+                        <RouterLink to="/carrello">
+                            <button class="btn">
+                                VAI AL CARRELLO
+                            </button>
+                            </RouterLink>
+                        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,36 +76,6 @@
                     <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
                     <div class="btn" @click="message = false">Annulla</div>
                 </div>
-            </div>
-
-
-            <div class="card my-3" v-if="store.chart.length !== 0">
-                <div>
-                    <h3>Riepilogo:</h3>
-                </div>
-                <ul class="card-body">
-                    <li class="d-flex gap-3 mb-3" v-for="cartDish in store.chart">
-                        <span><strong>Piatto: </strong>{{ cartDish.name }}</span>
-                        <span>
-                            <strong>Quantità: </strong>
-                            <span class="" @click="decrement(cartDish)">- </span>
-                            {{ cartDish.qty }}
-                            <span class="" @click="increment(cartDish)"> +</span>
-                        </span>
-                        <span><strong>Prezzo: </strong>{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }}
-                            €</span>
-                    </li>
-                    <li class="mb-5">
-                        <h5>Totale carrello: {{ store.total_price.toFixed(2) }}</h5>
-                    </li>
-                    <li class="d-flex gap-3">
-                        <div>
-                            <RouterLink class="btn" to="/carrello">VAI AL CARRELLO</RouterLink>
-                        </div>
-
-                        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
-                    </li>
-                </ul>
             </div>
             <div class="card my-3" v-if="store.chart.length === 0">
                 <h3>Il tuo carrello è vuoto</h3>
@@ -164,15 +132,6 @@ export default {
             const total = price * qty;
             return total;
         },
-        totalPrice() {
-            this.store.total_price = 0;
-            for (let i = 0; i < this.store.chart.length; i++) {
-                const singleDish = this.store.chart[i];
-                console.log(singleDish);
-                const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
-                this.store.total_price += singleDishPrice
-            }
-        },
         totalQty(){
             this.store.total_qty = 0;
             for(let i = 0; i < this.store.chart.length; i++){
@@ -195,20 +154,6 @@ export default {
             this.totalQty();
             this.totalPrice();
         },
-        // Debug
-        updateQty(dish) {
-            console.log(`${dish.name}: ${dish.qty}`);
-        },
-        //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
-        keep() {
-            localStorage.chart = JSON.stringify(this.store.chart);
-        },
-        partialTotal(price, qty) {
-            const total = price * qty;
-            // this.totalDishPrice.push(total);
-            // console.log(this.totalDishPrice)
-            return total;
-        },
         totalPrice() {
             this.store.total_price = 0;
             for (let i = 0; i < this.store.chart.length; i++) {
@@ -218,14 +163,13 @@ export default {
                 this.store.total_price += singleDishPrice
             }
         },
-        openChart(id) {
-            this.idCard = id;
-            if (this.qtyBox !== true) {
-                this.qtyBox = true;
-            }
-            else {
-                this.qtyBox = false;
-            }
+        // Debug
+        updateQty(dish) {
+            console.log(`${dish.name}: ${dish.qty}`);
+        },
+        //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
+        keep() {
+            localStorage.chart = JSON.stringify(this.store.chart);
         },
         addToChart(dish) {
             if (dish.qty > 0) {
@@ -264,6 +208,8 @@ export default {
     },
     created() {
         this.fetchRestaurant();
+    },
+    mounted(){
         this.totalQty();
     }
 };
