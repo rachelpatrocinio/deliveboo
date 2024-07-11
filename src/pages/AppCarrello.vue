@@ -30,29 +30,6 @@
           </div>
           <div class="col-2 text-end">
             <div class="delete-button" @click="deleteDish(i, price)">
-      <table v-if="store.chart.length > 0">
-        <thead>
-          <tr>
-            <th>Piatto</th>
-            <th>Quantità</th>
-            <th>Prezzo unità</th>
-            <th>Prezzo totale</th>
-            <th>Elimina</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(dish, i) in store.chart" :key="i">
-            <td>{{ dish.name }}</td>
-            <td class="decein">
-              <!-- {{ dish.qty }} -->
-              <span class="" @click="decrement(dish)">- </span>
-              <span>{{ dish.qty }}</span>
-              <span class="" @click="increment(dish)"> +</span>
-            </td>
-            <td>€ {{ dish.price }}</td>
-            <td>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</td>
-            <td>
-              <button class="btn delete-button" @click="deleteDish(i, price)">
                 <img src="../../public/icons/bin.png" alt="Eliminazione" />
             </div>
           </div>
@@ -68,8 +45,6 @@
       <div v-if="store.chart.length === 0" class="py-5">
         <h3>Il tuo carrello è vuoto</h3>
       </div>
-      <!-- <RouterLink v-if="store.chart.length > 0" to="/pagamento">VAI AL PAGAMENTO</RouterLink> -->
-       <a href="/pagamento" @click="totalPrice()">VAI AL PAGAMENTO</a>
     </div>
   </div>
 </template>
@@ -90,6 +65,7 @@ export default {
     saveChart() {
       localStorage.chart = JSON.stringify(this.store.chart);
     },
+
     deleteDish(dish) {
       this.store.chart.splice(dish, 1);
 
@@ -119,14 +95,7 @@ export default {
         console.log(singleDish);
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
         this.store.total_price += singleDishPrice
-
-        // recuperare restaurant_id
-        const restaurant_id = singleDish.restaurant_id
-        this.store.restaurant_id = restaurant_id
-        console.log(this.store.restaurant_id)
       }
-      localStorage.total_price = JSON.stringify(this.store.total_price);
-      localStorage.restaurant_id = JSON.stringify(this.store.restaurant_id);
     },
     totalQty(){
       this.store.total_qty = 0;
@@ -204,9 +173,5 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
-}
-
-.decein {
-  cursor: default;
 }
 </style>
