@@ -39,7 +39,7 @@
       <hr>
       <div v-if="store.chart.length > 0" class="my-4 d-flex justify-content-between">
         <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
-        <a v-if="store.chart.length > 0" href="/pagamento" class="btn">VAI AL PAGAMENTO</a> <!-- NON TOCCARE -->
+        <a v-if="store.chart.length > 0" href="/pagamento" class="btn btn-orange">VAI AL PAGAMENTO</a> <!-- NON TOCCARE -->
       </div>
 
       <div v-if="store.chart.length === 0" class="py-5">
