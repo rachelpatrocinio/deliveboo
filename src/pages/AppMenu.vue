@@ -59,7 +59,11 @@
                         </strong>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
-                        <a href="/pagamento" class="btn">VAI AL CARRELLO</a> <!-- NON TOCCARE -->
+                        <RouterLink to="/carrello">
+                            <button class="btn">
+                                VAI AL CARRELLO
+                            </button>
+                            </RouterLink>
                         <div class="btn btn-dark" @click="emptChart()">Svuota il carrello</div>
                     </div>
                 </div>
