@@ -9,7 +9,7 @@
             <ul class="p-0 m-0">
               <li class="text-center my-2"><h3>Filtra<br>Tipologie</h3></li>
               <li v-for="type in types" :key="type.id" class="p-3 d-flex gap-2">
-                <input :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
+                <input class="pointer" :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
                 <label :class="type.name" class="type-badge" :for="type.name">{{ type.name }}</label>
 
               </li>

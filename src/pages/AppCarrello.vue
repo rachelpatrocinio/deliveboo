@@ -29,7 +29,7 @@
             <p>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</p>
           </div>
           <div class="col-2 text-end">
-            <div class="delete-button" @click="deleteDish(i, price)">
+            <div class="delete-button pointer" @click="deleteDish(i, price)">
               <img src="../../public/icons/bin.png" alt="Eliminazione" />
             </div>
           </div>
@@ -173,7 +173,4 @@ export default {
   font-weight: 600;
 }
 
-.pointer{
-  cursor: pointer;
-}
 </style>

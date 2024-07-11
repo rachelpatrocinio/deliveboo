@@ -40,8 +40,8 @@
                         <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
                             <div class="d-flex justify-content-between">
                                 <p class="decinc me-1">
-                                    <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
-                                    <img src="../../public/icons/plus.png" @click="increment(cartDish)">
+                                    <img class="pointer" src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
+                                    <img class="pointer" src="../../public/icons/plus.png" @click="increment(cartDish)">
                                 </p>
                                 <p>
                                     {{ cartDish.qty }}x {{ cartDish.name }}
