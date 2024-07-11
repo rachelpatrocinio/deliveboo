@@ -17,7 +17,7 @@ export default {
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
       </div>
       <div class="col-3 text-end">
-        <RouterLink class="link" to="/admin">Area Riservata Admin</RouterLink>
+        <RouterLink class="link" to="/admin">Collabora con noi!</RouterLink>
         <RouterLink to="/carrello" class="position-relative">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
           <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>
