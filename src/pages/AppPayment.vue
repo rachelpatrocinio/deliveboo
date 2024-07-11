@@ -119,9 +119,6 @@ export default {
     console.log(store.restaurant_id)
 
   },
-  unmounted() {
-    this.deleteData()
-  },
   methods: {
     setupBraintree() {
       client.create({
@@ -211,6 +208,7 @@ export default {
 
           // Redirect alla home
           this.$router.push({ name: 'success' });
+          this.deleteData()
         })
         .catch(error => {
           console.error('Payment error:', error);
