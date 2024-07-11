@@ -18,9 +18,9 @@
             {{ dish.qty }}x {{ dish.name }}
           </p>
           <div class="col-2">
-            <span class="" @click="decrement(dish)">- </span>
+            <span class="pointer" @click="decrement(dish)">- </span>
             <span class="mx-4">{{ dish.qty }}</span>
-            <span class="" @click="increment(dish)"> +</span>
+            <span class="pointer" @click="increment(dish)"> +</span>
           </div>
           <div class=" d-flex col-2">
             <p>€ {{ dish.price }}</p>
@@ -171,5 +171,9 @@ export default {
 
 .price {
   font-weight: 600;
+}
+
+.pointer{
+  cursor: pointer;
 }
 </style>
