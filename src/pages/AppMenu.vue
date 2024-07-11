@@ -19,32 +19,19 @@
                                     <p class="ingredients">{{ dish.description_ingredients }}</p>
                                     <p>€ {{ dish.price }}</p>
                                 </div>
-                                <div class="w-25" v-if="qtyBox === false || index !== idCard">
-                                    <div class="btn" @click="openChart(index)">
-                                    Scegli il piatto
-                                    </div>
-                                </div>
 
-                                <div class="quantity my-4" v-if="qtyBox === true && index === idCard">
+                                <div class="quantity my-4">
                                     <div>
-                                        <div>
-                                            <span class="" @click="decrement(dish)">- </span>
-                                            <input class="item-number" type="text" disabled v-model="dish.qty" />
-                                            <span class="" @click="increment(dish)"> +</span>
-                                        </div>
+                                        <span class="" @click="decrement(dish)">- </span>
+                                        <input class="item-number" type="text" disabled v-model="dish.qty" />
+                                        <span class="" @click="increment(dish)"> +</span>
                                     </div>
 
                                     <div class="d-flex gap-2 mt-2">
                                         <button class="btn" @click="addToChart(dish)">
                                         AGGIUNGI
                                         </button>
-                                        <button class="btn" @click="close()">
-                                            Annulla
-                                        </button>
                                     </div>
-                                </div>
-                                <div class="h3" v-if="qtyError === true && index === idCard">
-                                    Scegli una quantità!!
                                 </div>
                             </div>
                         </div>
