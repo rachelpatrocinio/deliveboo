@@ -59,9 +59,9 @@
                             <p>
                                 {{ cartDish.qty }}x {{ cartDish.name }}
                             </p>
-                            <p>
-                                <span class="" @click="decrement(cartDish)">- </span>
-                                <span class="" @click="increment(cartDish)"> +</span>
+                            <p class="decinc">
+                                <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
+                                <img src="../../public/icons/plus.png" @click="increment(cartDish)">
                             </p>
                             <p>
                                 {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
@@ -70,7 +70,9 @@
                     </ul>
                     <hr>  
                     <div class="text-end">
-                        {{ store.total_price.toFixed(2) }}
+                        <strong>
+                            {{ store.total_price.toFixed(2)  }}€
+                        </strong>
                     </div>
                     <RouterLink to="/carrello">
                         <button class="btn">
@@ -138,6 +140,15 @@ export default {
             const total = price * qty;
             return total;
         },
+        totalPrice() {
+            this.store.total_price = 0;
+            for (let i = 0; i < this.store.chart.length; i++) {
+                const singleDish = this.store.chart[i];
+                console.log(singleDish);
+                const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
+                this.store.total_price += singleDishPrice
+            }
+        },
         totalQty(){
             this.store.total_qty = 0;
             for(let i = 0; i < this.store.chart.length; i++){
@@ -151,11 +162,13 @@ export default {
             dish.qty++;
             this.updateQty(dish);
             this.totalQty();
+            this.totalPrice();
         },
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
             this.updateQty(dish);
             this.totalQty();
+            this.totalPrice();
         },
         // Debug
         updateQty(dish) {
@@ -198,6 +211,7 @@ export default {
                     this.message = true;
                 }
                 this.keep();
+                this.totalPrice();
             }
             else {
                 this.qtyError = true
@@ -289,5 +303,16 @@ export default {
     background-color: var(--color-green);
     border-radius: 10px;
     color: white;
+}
+
+.decinc{
+
+    img{
+        margin: 0 3px;
+        width: 14px;
+        background-color: var(--color-orange);
+        padding: 2px;
+        border-radius: 99px;
+    }
 }
 </style>
