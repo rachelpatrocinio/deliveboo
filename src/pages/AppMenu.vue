@@ -6,6 +6,7 @@
                 </div>
             <div class="col-8">
                 <div class="row">
+                    <h1>{{ restaurant.name }}</h1>
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
                         <div class="card d-flex flex-row p-4 mb-2">
                             <div class="card-header w-25">
