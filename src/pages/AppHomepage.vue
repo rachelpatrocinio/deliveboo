@@ -67,6 +67,12 @@ export default {
           console.error("Errore nel recupero dei ristoranti:", error);
         });
     },
+    //aggiorna i dati nel local storage se diversi da quelli salvati
+    keepUp() {
+            this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+            this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+            this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
+        },
     // Recupera le tipologie tramite l'API
     fetchTypes() {
       axios.get(`http://127.0.0.1:${store.port}/api/types`)
@@ -82,6 +88,9 @@ export default {
     // Richiama le funzioni dei methods per la stampa in pagina
     this.fetchTypes()
     this.fetchRestaurants()
+  },
+  mounted(){
+    this.keepUp();
   },
   watch: {
 

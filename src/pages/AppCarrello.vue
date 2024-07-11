@@ -65,7 +65,18 @@ export default {
     saveChart() {
       localStorage.chart = JSON.stringify(this.store.chart);
     },
-
+    // salva i dati nel local storage
+    keep() {
+            localStorage.chart = JSON.stringify(this.store.chart);
+            localStorage.total_price = JSON.stringify(this.store.total_price);
+            localStorage.total_qty = JSON.stringify(this.store.total_qty);
+        },
+    //aggiorna i dati nel local storage se diversi da quelli salvati
+    keepUp() {
+            this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+            this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+            this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
+        },
     deleteDish(dish) {
       this.store.chart.splice(dish, 1);
 
@@ -73,6 +84,7 @@ export default {
 
       this.totalPrice();
       this.totalQty();
+      this.keep();
       // localStorage.removeItem(dish); // qui ritornano anche quando cambio rotta
       // localStorage.chart = localStorage.removeItem(dish); // si blocca tutto
 
@@ -96,6 +108,7 @@ export default {
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
         this.store.total_price += singleDishPrice
       }
+      this.keep();
     },
     totalQty(){
       this.store.total_qty = 0;
@@ -105,6 +118,7 @@ export default {
         const singleDishQty = singleDish.qty
         this.store.total_qty += singleDishQty
       }
+      this.keep();
     },
     increment(dish) {
         dish.qty++;
@@ -112,6 +126,7 @@ export default {
         console.log(this.totalDishPrice);
         this.totalPrice();
         this.totalQty();
+        this.keep();
     },
     decrement(dish) {
         if (dish.qty >= 2) dish.qty--;
@@ -119,12 +134,14 @@ export default {
         console.log(this.totalDishPrice);
         this.totalPrice();
         this.totalQty();
+        this.keep();
     },
     emptChart(){
         this.store.chart = [];
         localStorage.chart = JSON.stringify(this.store.chart);
         this.totalPrice();
         this.totalQty();
+        this.keep();
     },
     // Debug
     updateQty(dish) {
@@ -138,7 +155,7 @@ export default {
     // console.log(this.store.chart)
     
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
-    this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+    this.keepUp();
     this.totalPrice();
     this.totalQty();
   }

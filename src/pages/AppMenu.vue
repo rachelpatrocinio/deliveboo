@@ -11,7 +11,7 @@
                             <div class="card-header w-25">
                                 <h5>{{ dish.name }}</h5>
                                 <figure>
-                                    <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
+                                    <img class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
                                 </figure>
                             </div>
                             <div class="card-body d-flex justify-content-between align-items-center w-75 text-center">
@@ -37,7 +37,7 @@
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
                         <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiungo nessun piatto nel carrello</li>
-                        <li class="d-flex justify-content-between" v-for="cartDish in store.chart">
+                        <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
                             <div class="d-flex justify-content-between">
                                 <p class="decinc me-1">
                                     <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
@@ -99,7 +99,7 @@ export default {
             message: false,
             qtyBox: false,
             qtyError: false,
-            idCard: ''
+            idCard: '',
 
         };
     },
@@ -127,6 +127,8 @@ export default {
             this.message = false;
             localStorage.chart = JSON.stringify(this.store.chart);
             this.totalQty();
+            this.totalPrice();
+            this.keep();
         },
         partialTotal(price, qty) {
             const total = price * qty;
@@ -140,6 +142,7 @@ export default {
                 const singleDishQty = singleDish.qty
                 this.store.total_qty += singleDishQty
             }
+            this.keep();
         },
         increment(dish) {
             dish.qty++;
@@ -147,12 +150,14 @@ export default {
             this.totalPrice();
             this.totalQty();
             this.totalPrice();
+            this.keep();
         },
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
             this.updateQty(dish);
             this.totalQty();
             this.totalPrice();
+            this.keep();
         },
         totalPrice() {
             this.store.total_price = 0;
@@ -162,6 +167,7 @@ export default {
                 const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
                 this.store.total_price += singleDishPrice
             }
+            this.keep();
         },
         // Debug
         updateQty(dish) {
@@ -170,6 +176,14 @@ export default {
         //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
         keep() {
             localStorage.chart = JSON.stringify(this.store.chart);
+            localStorage.total_price = JSON.stringify(this.store.total_price);
+            localStorage.total_qty = JSON.stringify(this.store.total_qty);
+        },
+        //aggiorna i dati nel local storage se diversi da quelli salvati
+        keepUp() {
+            this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+            this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+            this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
         },
         addToChart(dish) {
             if (dish.qty > 0) {
@@ -194,8 +208,9 @@ export default {
                 else {
                     this.message = true;
                 }
-                this.keep();
+                // this.keep();
                 this.totalPrice();
+                this.keep();
             }
             else {
                 this.qtyError = true
@@ -204,13 +219,16 @@ export default {
         close(){
             this.qtyBox = false;
             this.qtyError = false;
-        }
+        },
     },
     created() {
         this.fetchRestaurant();
     },
     mounted(){
+        this.keepUp()
         this.totalQty();
+        this.totalPrice();
+
     }
 };
 </script>
