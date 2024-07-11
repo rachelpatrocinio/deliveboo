@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
                         <div class="card d-flex flex-row p-4 mb-2">
-                            <div class="card-title w-25">
+                            <div class="card-header w-25">
                                 <h5>{{ dish.name }}</h5>
                                 <figure>
                                     <img class="dish-img" :src="imgPath + dish.thumb" alt="Foto Piatto" />
@@ -19,32 +19,19 @@
                                     <p class="ingredients">{{ dish.description_ingredients }}</p>
                                     <p>€ {{ dish.price }}</p>
                                 </div>
-                                <div class="w-25" v-if="qtyBox === false || index !== idCard">
-                                    <div class="btn" @click="openChart(index)">
-                                    Scegli il piatto
-                                    </div>
-                                </div>
 
-                                <div class="quantity my-4" v-if="qtyBox === true && index === idCard">
+                                <div class="quantity my-4">
                                     <div>
-                                        <div>
-                                            <span class="" @click="decrement(dish)">- </span>
-                                            <input class="item-number" type="text" disabled v-model="dish.qty" />
-                                            <span class="" @click="increment(dish)"> +</span>
-                                        </div>
+                                        <span class="" @click="decrement(dish)">- </span>
+                                        <input class="item-number" type="text" disabled v-model="dish.qty" />
+                                        <span class="" @click="increment(dish)"> +</span>
                                     </div>
 
                                     <div class="d-flex gap-2 mt-2">
                                         <button class="btn" @click="addToChart(dish)">
                                         AGGIUNGI
                                         </button>
-                                        <button class="btn" @click="close()">
-                                            Annulla
-                                        </button>
                                     </div>
-                                </div>
-                                <div class="h3" v-if="qtyError === true && index === idCard">
-                                    Scegli una quantità!!
                                 </div>
                             </div>
                         </div>
@@ -59,11 +46,21 @@
                             <p>
                                 {{ cartDish.qty }}x {{ cartDish.name }}
                             </p>
+                            <p class="decinc">
+                                <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
+                                <img src="../../public/icons/plus.png" @click="increment(cartDish)">
+                            </p>
                             <p>
                                 {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
-                            </p>    
+                            </p>  
                         </li>
                     </ul>
+                    <hr>  
+                    <div class="text-end">
+                        <strong>
+                            {{ store.total_price.toFixed(2)  }}€
+                        </strong>
+                    </div>
                     <RouterLink to="/carrello">
                         <button class="btn">
                             VAI AL CARRELLO
@@ -165,6 +162,15 @@ export default {
             const total = price * qty;
             return total;
         },
+        totalPrice() {
+            this.store.total_price = 0;
+            for (let i = 0; i < this.store.chart.length; i++) {
+                const singleDish = this.store.chart[i];
+                console.log(singleDish);
+                const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
+                this.store.total_price += singleDishPrice
+            }
+        },
         totalQty(){
             this.store.total_qty = 0;
             for(let i = 0; i < this.store.chart.length; i++){
@@ -179,6 +185,7 @@ export default {
             this.updateQty(dish);
             this.totalPrice();
             this.totalQty();
+            this.totalPrice();
         },
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
@@ -334,5 +341,16 @@ export default {
     background-color: var(--color-green);
     border-radius: 10px;
     color: white;
+}
+
+.decinc{
+
+    img{
+        margin: 0 3px;
+        width: 14px;
+        background-color: var(--color-orange);
+        padding: 2px;
+        border-radius: 99px;
+    }
 }
 </style>
