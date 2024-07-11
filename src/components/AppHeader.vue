@@ -61,8 +61,10 @@ header{
   font-size: 11px;
   width: 20px;
   height: 20px;
-  text-align: center;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link{

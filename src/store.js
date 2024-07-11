@@ -5,5 +5,5 @@ export const store = reactive({
   chart: [],
   total_price: 0,
   total_qty: 0,
-  restaurant_id: 0
+  restaurant_id: 0,
 })
