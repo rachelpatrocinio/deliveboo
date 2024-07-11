@@ -1,6 +1,6 @@
 <template>
-    <div class="container position-relative py-3">
-        <div class="row">
+    <div class="container position-relative py-5">
+        <div class="row py-5">
             <div class="mb-4">
                     <button class="btn" @click="goBack">Torna Indietro</button>
                 </div>
