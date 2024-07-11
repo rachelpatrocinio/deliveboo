@@ -4,7 +4,8 @@
         <div class="row py-5">
             <div class="col-12 col-md-6 py-5">
                 <h1 class="pt-5 title"> DELIVEBOO </h1>
-                <p class="pb-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quasi laborum veniam ratione sint? Non, perferendis nobis. Veniam nam ipsam in. Aliquid eos quod repudiandae distinctio voluptate debitis error labore.</p>
+                <h4>Il tuo ristorante preferito, direttamente a casa tua!</h4>
+                <p class="pb-5"> Ordina dai migliori ristoranti della città e ricevi il tuo cibo preferito in pochi minuti. Consegniamo a domicilio piatti caldi e freschi, preparati con amore e cura dai migliori chef. Scopri nuove cucine, esplora menù variegati e goditi la comodità di un servizio rapido e affidabile!</p>
                 <a class="btn" href="#types">ORDINA ORA!</a>
             </div>
         </div>
