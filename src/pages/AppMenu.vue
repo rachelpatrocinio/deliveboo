@@ -4,7 +4,7 @@
             <div class="mb-4">
                     <button class="btn" @click="goBack">Torna Indietro</button>
                 </div>
-            <div class="col-9">
+            <div class="col-8">
                 <div class="row">
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
                         <div class="card d-flex flex-row p-4 mb-2">
@@ -38,18 +38,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <div class="summary p-3" v-if="store.chart.length !== 0">
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
                         <li class="d-flex justify-content-between" v-for="cartDish in store.chart">
-                            <p>
-                                {{ cartDish.qty }}x {{ cartDish.name }}
-                            </p>
-                            <p class="decinc">
-                                <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
-                                <img src="../../public/icons/plus.png" @click="increment(cartDish)">
-                            </p>
+                            <div class="d-flex justify-content-between">
+                                <p class="decinc me-1">
+                                    <img src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
+                                    <img src="../../public/icons/plus.png" @click="increment(cartDish)">
+                                </p>
+                                <p>
+                                    {{ cartDish.qty }}x {{ cartDish.name }}
+                                </p>
+                            </div>
                             <p>
                                 {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
                             </p>  
