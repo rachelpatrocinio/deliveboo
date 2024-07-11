@@ -90,6 +90,24 @@
     }
 }
 
+.btn-green {
+  background-color: var(--color-green);
+  color: var(--color-dark);
+  font-weight: 600;
+
+  &:hover {
+      transform: scale(1.1);
+  }
+}
+
 .bg-green{
-    background-color: var(--color-green);
+  background-color: var(--color-green);
+}
+
+.bg-white{
+  background-color: white;
+}
+
+.bg-orange{
+  background-color:var(--color-orange);
 }
