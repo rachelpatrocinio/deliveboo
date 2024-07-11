@@ -107,6 +107,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../style/general';
+
 .types{
   ul{
     border: 2px solid var(--color-darkgreen);

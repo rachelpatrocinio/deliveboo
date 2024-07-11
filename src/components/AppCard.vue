@@ -15,7 +15,7 @@
     </div>
 
     <div class="text-center mt-2">
-        <button class="btn">
+        <button class="btn btn-orange">
             <RouterLink class="link" :to="pathAppMenu + restaurant.slug">Menu</RouterLink>
         </button>
     </div>
@@ -39,19 +39,10 @@
 </script>
 
 <style lang="scss" scoped>
+@use '../style/partials/layout';
 .restaurant-img{
     aspect-ratio: 1/1;
     object-fit: cover;
-}
-
-.btn{
-    background-color: var(--color-orange);
-    color: var(--color-dark);
-    font-weight: 600;
-
-    &:hover{
-        transform: scale(1.1);
-    }
 }
 
 .link{

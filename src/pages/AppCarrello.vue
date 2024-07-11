@@ -1,11 +1,11 @@
 <template>
   <div class="container py-5">
     <div class="mb-5">
-      <button class="btn" @click="goBack()">
+      <button class="btn btn-orange" @click="goBack()">
         TORNA INDIETRO
       </button>
     </div>
-    <div class="row p-5">
+    <div class="row bg-green text-white p-5">
       <div class="d-flex justify-content-between">
         <h1 class="p-0">CARRELLO</h1>
         <div v-if="store.chart.length > 0" class="my-4">
@@ -39,7 +39,6 @@
       <hr>
       <div v-if="store.chart.length > 0" class="my-4 d-flex justify-content-between">
         <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
-        <!-- <RouterLink v-if="store.chart.length > 0" to="/pagamento" class="btn">VAI AL PAGAMENTO</RouterLink> -->
         <a v-if="store.chart.length > 0" href="/pagamento" class="btn">VAI AL PAGAMENTO</a> <!-- NON TOCCARE -->
       </div>
 
@@ -56,9 +55,7 @@ import { store } from "../store.js";
 export default {
   data() {
     return {
-      store,
-      // total: 0
-      // partialTotal = 0
+      store
     };
   },
   methods: {
@@ -170,32 +167,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row {
-  background-color: var(--color-green);
-  color: white;
-}
+@use '../style/general';
 
 .price {
   font-weight: 600;
-}
-
-.btn {
-  background-color: var(--color-orange);
-  color: var(--color-dark);
-  font-weight: 600;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
-
-.btn-dark {
-  background-color: var(--color-dark);
-  color: var(--color-yellow);
-  font-weight: 600;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 </style>

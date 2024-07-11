@@ -2,7 +2,7 @@
     <div class="container position-relative py-5">
         <div class="row py-5">
             <div class="mb-4">
-                    <button class="btn" @click="goBack">Torna Indietro</button>
+                    <button class="btn btn-orange" @click="goBack">Torna Indietro</button>
                 </div>
             <div class="col-8">
                 <div class="row">
@@ -22,7 +22,7 @@
 
                                 <div class="quantity my-4">
                                     <div class="d-flex gap-2 mt-2">
-                                        <button class="btn" @click="addToChart(dish)">
+                                        <button class="btn btn-orange" @click="addToChart(dish)">
                                         AGGIUNGI
                                         </button>
                                     </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <RouterLink to="/carrello">
-                            <button class="btn">
+                            <button class="btn btn-orange">
                                 VAI AL CARRELLO
                             </button>
                             </RouterLink>
@@ -74,7 +74,7 @@
                 <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
                 <div class="d-flex gap-3 justify-content-center">
                     <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
-                    <div class="btn" @click="message = false">Annulla</div>
+                    <div class="btn btn-orange" @click="message = false">Annulla</div>
                 </div>
             </div>
             <div class="card my-3" v-if="store.chart.length === 0">
@@ -234,54 +234,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../style/general';
+
 .item-number {
     width: 50px;
     text-align: center;
-}
-
-.quantity {
-
-    // top: 0;
-    // bottom: 0;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // background-color: rgba(0, 0, 0, 0.506);
-
-    // .quantity-content{
-    //     width: 50%;
-    //     background-color: white;
-    // }
-
-    span {
-        cursor: pointer;
-    }
 }
 
 .dish-img {
     aspect-ratio: 1/1;
     object-fit: cover;
     width: 150px;
-}
-
-.btn {
-    background-color: var(--color-orange);
-    color: var(--color-dark);
-    font-weight: 600;
-
-    &:hover {
-        transform: scale(1.1);
-    }
-}
-
-.btn-dark {
-    background-color: var(--color-dark);
-    color: var(--color-yellow);
-    font-weight: 600;
-
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 
 .one-restaurant-message{
