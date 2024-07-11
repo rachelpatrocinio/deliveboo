@@ -1,4 +1,5 @@
 <template>
+<RouterLink class="link" :to="pathAppMenu + restaurant.slug">
 <div class="card p-2"> 
 <div class="card p-5">
     <h4 class="text-center">{{ restaurant.name }}</h4>
@@ -7,20 +8,15 @@
     <div>
         <ul class="d-flex justify-content-center mt-3 p-0">
             <li class="px-2" v-for="type in restaurant.types">
-                <p class="type">
+                <p class="type-badge" :class="type.name">
                     {{ type.name }}
                 </p>
             </li>
         </ul>
     </div>
-
-    <div class="text-center mt-2">
-        <button class="btn btn-orange">
-            <RouterLink class="link" :to="pathAppMenu + restaurant.slug">Menu</RouterLink>
-        </button>
-    </div>
 </div>
 </div>
+</RouterLink>
 </template>
 
 <script>
