@@ -16,7 +16,7 @@ export default {
       <div class="logo col-3">
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
       </div>
-      <div class="col-3 text-end">
+      <div class="col-3 d-flex justify-content-around text-end">
         <RouterLink class="link" to="/admin">Collabora con noi!</RouterLink>
         <RouterLink to="/carrello" class="position-relative">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
