@@ -1,5 +1,10 @@
 <template>
   <div class="container py-5">
+    <div class="mb-5">
+      <button class="btn" @click="goBack()">
+        TORNA INDIETRO
+      </button>
+    </div>
     <div class="row p-5">
       <div class="d-flex justify-content-between">
         <h1 class="p-0">CARRELLO</h1>
@@ -124,7 +129,10 @@ export default {
     // Debug
     updateQty(dish) {
         console.log(`${dish.name}: ${dish.qty}`);
-    }
+    },
+    goBack() {
+        this.$router.back();
+    },
   },
   mounted() {
     // console.log(this.store.chart)
