@@ -7,10 +7,14 @@
             <p>
                 Siamo alla ricerca di partner entusiasti e appassionati per unirsi alla nostra piattaforma di consegna di cibo, che si distingue per qualità, efficienza e servizio eccellente. Se sei un ristorante, una pizzeria, una gelateria o un qualsiasi locale gastronomico che desidera ampliare il proprio bacino di clienti e incrementare le vendite, siamo la soluzione ideale per te!
             </p>
-            <a target="_blank" href="http://127.0.0.1:8000/">COLLABORA CON NOI</a>
+            <button class="btn">
+                <a target="_blank" href="http://127.0.0.1:8000/">COLLABORA CON NOI</a>
+            </button>
 
             <h4 class="pt-5">Sei già nostro partner?</h4>
-            <a target="_blank" href="http://127.0.0.1:8000/login">LOG IN</a>
+            <button class="btn">
+                <a target="_blank" href="http://127.0.0.1:8000/login">LOG IN</a>
+            </button>
         </div>
     </div>
 </div>
@@ -23,4 +27,17 @@
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  background-color: var(--color-orange);
+    color: var(--color-dark);
+    font-weight: 600;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+    a{
+        text-decoration: none;
+        color: currentColor;
+    }
+}
 </style>
