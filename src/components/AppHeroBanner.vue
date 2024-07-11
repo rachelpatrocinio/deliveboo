@@ -24,7 +24,7 @@
     background-image: url('../../public/hero-banner.jpeg');
 
     .title{
-        font-size: 80px;
+        font-size: 50px;
     }
 
     .btn{
