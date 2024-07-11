@@ -1,10 +1,30 @@
 <template>
   <div class="container py-5">
-    <div class="row py-5">
-      <h1 class="p-0">CARRELLO</h1>
-      <div v-if="store.chart.length > 0" class="my-4 text-end">
-        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+    <div class="row p-5">
+      <div class="d-flex justify-content-between">
+        <h1 class="p-0">CARRELLO</h1>
+        <div v-if="store.chart.length > 0" class="my-4">
+          <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+        </div>
       </div>
+      <ul class="mt-5" v-if="store.chart.length> 0">
+        <li class="d-flex" v-for="(dish, i) in store.chart" :key="i">
+          <p class="col-4">
+            {{ dish.qty }}x {{ dish.name }}
+          </p>
+          <div class="col-2">
+            <span class="" @click="decrement(dish)">- </span>
+            <span class="mx-4">{{ dish.qty }}</span>
+            <span class="" @click="increment(dish)"> +</span>
+          </div>
+          <div class=" d-flex col-2">
+            <p>€ {{ dish.price }}</p>
+          </div>
+          <div class="col-2 price">
+            <p>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</p>
+          </div>
+          <div class="col-2 text-end">
+            <div class="delete-button" @click="deleteDish(i, price)">
       <table v-if="store.chart.length > 0">
         <thead>
           <tr>
@@ -29,15 +49,18 @@
             <td>
               <button class="btn delete-button" @click="deleteDish(i, price)">
                 <img src="../../public/icons/bin.png" alt="Eliminazione" />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div v-if="store.chart.length > 0" class="my-4">
-        <h3>Totale dell'ordine: € {{ store.total_price.toFixed(2) }}</h3>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <hr>
+      <div v-if="store.chart.length> 0" class="my-4 d-flex justify-content-between">
+        <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
+        <RouterLink v-if="store.chart.length > 0" to="/pagamento" class="btn">VAI AL PAGAMENTO</RouterLink>
       </div>
-      <div v-if="store.chart.length === 0">
+
+      <div v-if="store.chart.length === 0" class="py-5">
         <h3>Il tuo carrello è vuoto</h3>
       </div>
       <!-- <RouterLink v-if="store.chart.length > 0" to="/pagamento">VAI AL PAGAMENTO</RouterLink> -->
@@ -68,6 +91,7 @@ export default {
       localStorage.chart = JSON.stringify(this.store.chart);
 
       this.totalPrice();
+      this.totalQty();
       // localStorage.removeItem(dish); // qui ritornano anche quando cambio rotta
       // localStorage.chart = localStorage.removeItem(dish); // si blocca tutto
 
@@ -99,23 +123,35 @@ export default {
       localStorage.total_price = JSON.stringify(this.store.total_price);
       localStorage.restaurant_id = JSON.stringify(this.store.restaurant_id);
     },
+    totalQty(){
+      this.store.total_qty = 0;
+      for(let i = 0; i < this.store.chart.length; i++){
+        const singleDish = this.store.chart[i];
+        console.log(singleDish);
+        const singleDishQty = singleDish.qty
+        this.store.total_qty += singleDishQty
+      }
+    },
     increment(dish) {
         dish.qty++;
         this.updateQty(dish);
         console.log(this.totalDishPrice);
-        this.totalPrice()
+        this.totalPrice();
+        this.totalQty();
     },
     decrement(dish) {
         if (dish.qty >= 2) dish.qty--;
         this.updateQty(dish);
         console.log(this.totalDishPrice);
-        this.totalPrice()
+        this.totalPrice();
+        this.totalQty();
     },
     emptChart(){
-            this.store.chart = [];
-            localStorage.chart = JSON.stringify(this.store.chart);
-            this.totalPrice()
-        },
+        this.store.chart = [];
+        localStorage.chart = JSON.stringify(this.store.chart);
+        this.totalPrice();
+        this.totalQty();
+    },
     // Debug
     updateQty(dish) {
         console.log(`${dish.name}: ${dish.qty}`);
@@ -127,22 +163,23 @@ export default {
     //richiamo il carrello e se è stato riempito, allora mi restituisce un oggetto [JSON.parse()], altrimenti array vuoto
     this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
     this.totalPrice();
-  },
-//   watch: {
-
-// total: {
-//   handler() {
-//     this.totalPrice()
-//   }
-// }
-
-// }
+    this.totalQty();
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.row{
+  background-color: var(--color-green);
+  color: white;
+}
+
+.price{
+  font-weight: 600;
+}
+
 .btn {
-    background-color: var(--color-orange);
+  background-color: var(--color-orange);
     color: var(--color-dark);
     font-weight: 600;
 
@@ -159,7 +196,6 @@ export default {
     &:hover {
         transform: scale(1.1);
     }
-    
 }
 
 .decein {

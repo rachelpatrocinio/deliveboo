@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-2 d-flex flex-column types">
+          <div class="col-4 col-md-3 col-lg-2 d-flex flex-column types" id="types">
             <ul class="p-0 m-0">
               <li v-for="type in types" :key="type.id" class="p-3 d-flex justify-content-between">
                 <label :for="type.name">{{ type.name }}</label>
@@ -14,9 +14,9 @@
             </ul>       
           </div>
 
-          <div class="col-10">
+          <div class="col-8 col-md-9 col-lg-10">
             <ul class="p-0 m-0 d-flex flex-wrap">
-              <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-4 mb-3 p-2">
+              <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-12 col-md-6 col-lg-4 mb-3 p-2">
                 <AppCard :restaurant="restaurant"></AppCard>
               </li>
             </ul>
@@ -76,7 +76,7 @@ export default {
         .catch((error) => {
           console.error("Errore nel recupero delle tipologie:" + error);
         })
-      }
+    }
   },
   created() {
     // Richiama le funzioni dei methods per la stampa in pagina

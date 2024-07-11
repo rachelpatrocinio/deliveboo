@@ -7,7 +7,9 @@
     <div>
         <ul class="d-flex justify-content-center mt-3 p-0">
             <li class="px-2" v-for="type in restaurant.types">
-                {{ type.name }}
+                <p class="type">
+                    {{ type.name }}
+                </p>
             </li>
         </ul>
     </div>
@@ -57,4 +59,7 @@
     text-decoration: none;
 }
 
+.type{
+    font-size: 12px;
+}
 </style>

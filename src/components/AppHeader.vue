@@ -1,31 +1,26 @@
 <script>
+import { store } from "../store.js";
 
 export default {
-  components: {
-  },
   data() {
     return {
+      store
     }
   }
 }
-
 </script>
 
 <template>
-
   <header class="d-flex pb-1">
     <div class="container d-flex justify-content-between align-items-center p-0">
       <div class="logo col-3">
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
       </div>
-      <div class="col-6 position-relative">
-        <input name="searchbar" class="searchbar" id="searchbar" type="text">
-        <label for="searchbar"><img class="glass-icon" src="../../../public/icons/magnifying-glass.png" alt=""></label>
-      </div>
       <div class="col-3 text-end">
         <RouterLink class="link" to="/admin">Area Riservata Admin</RouterLink>
-        <RouterLink to="/carrello">
+        <RouterLink to="/carrello" class="position-relative">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
+          <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>
         </RouterLink>
       </div>
     </div>
@@ -55,18 +50,19 @@ header{
   width: 30px;
 }
 
-.searchbar{
-  width: 100%;
-  border-radius: 99px;
-  border: 2px solid var(--color-darkgreen);
-  padding: 8px 50px;
-  outline-color: var(--color-orange);
-}
-
-.glass-icon{
+.qty{
   position: absolute;
-  left: 10px;
-  top: 6px;
+  padding: 3px;
+  top:-8px;
+  right: 5px;
+  background-color: var(--color-green);
+  border-radius: 99px;
+  color: black;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-weight: 600;
 }
 
 .link{

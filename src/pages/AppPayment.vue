@@ -1,92 +1,94 @@
 <template>
-  <h1>€ {{ store.total_price.toFixed(2) }}</h1>
-  <div class="bootstrap-basic">
-    <form @submit.prevent="handleSubmit" class="needs-validation">
-      <div class="row">
-        <div class="col-sm-6 mb-3">
-          <label for="cc-name">Cardholder Name</label>
-          <div class="form-control" id="cc-name"></div>
-          <small class="text-muted">Full name as displayed on card</small>
-          <div class="invalid-feedback">
-            Name on card is required
+  <div class="container py-5">
+    <h1>€ {{ store.total_price.toFixed(2) }}</h1>
+    <div class="bootstrap-basic">
+      <form @submit.prevent="handleSubmit" class="needs-validation">
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <label for="cc-name">Nome Titolare Carta</label>
+            <div class="form-control" id="cc-name"></div>
+            <small class="text-muted">Nome completo</small>
+            <div class="invalid-feedback">
+              Nome completo è richiesto
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com" @change="validateEmail">
+            <div class="invalid-feedback">
+              Scrivere un email valida per la spedizione.
+            </div>
           </div>
         </div>
-        <div class="col-sm-6 mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" @change="validateEmail">
-          <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-4 mb-3">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" v-model="name" placeholder="Name">
-          <div class="invalid-feedback">
-            Name is required
+        <div class="row">
+          <div class="col-sm-4 mb-3">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
+            <div class="invalid-feedback">
+              Il Nome è richiesto
+            </div>
+          </div>
+          <div class="col-sm-4 mb-3">
+            <label for="number">Phone Number</label>
+            <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
+            <div class="invalid-feedback">
+              Il Numero di telefono è richiesto
+            </div>
+          </div>
+          <div class="col-sm-4 mb-3">
+            <label for="address">Indirizzo</label>
+            <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
+            <div class="invalid-feedback">
+              L'indirizzo è richiesto
+            </div>
           </div>
         </div>
-        <div class="col-sm-4 mb-3">
-          <label for="number">Phone Number</label>
-          <input type="text" class="form-control" id="number" v-model="number" placeholder="Phone Number">
-          <div class="invalid-feedback">
-            Phone number is required
-          </div>
-        </div>
-        <div class="col-sm-4 mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" v-model="address" placeholder="Address">
-          <div class="invalid-feedback">
-            Address is required
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-6 mb-3">
-          <label for="cc-number">Credit card number</label>
-          <div class="form-control" id="cc-number"></div>
-          <div class="invalid-feedback">
-            Credit card number is required
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <label for="cc-number">Credit card number</label>
+            <div class="form-control" id="cc-number"></div>
+            <div class="invalid-feedback">
+              Numero della Carta di Credito è richiesta
+            </div>
+          </div>
+          <div class="col-sm-3 mb-3">
+            <label for="cc-expiration">Scadenza</label>
+            <div class="form-control" id="cc-expiration"></div>
+            <div class="invalid-feedback">
+              Data di scadenza richiesta
+            </div>
+          </div>
+          <div class="col-sm-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            <div class="form-control" id="cc-cvv"></div>
+            <div class="invalid-feedback">
+              CVV richiesta
+            </div>
           </div>
         </div>
-        <div class="col-sm-3 mb-3">
-          <label for="cc-expiration">Expiration</label>
-          <div class="form-control" id="cc-expiration"></div>
-          <div class="invalid-feedback">
-            Expiration date required
-          </div>
-        </div>
-        <div class="col-sm-3 mb-3">
-          <label for="cc-cvv">CVV</label>
-          <div class="form-control" id="cc-cvv"></div>
-          <div class="invalid-feedback">
-            Security code required
-          </div>
-        </div>
-      </div>
 
-      <hr class="mb-4">
-      <div class="text-center">
-        <button class="btn btn-primary btn-lg" type="submit">Pay with <span id="card-brand">Card</span></button>
-      </div>
-    </form>
-    <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-        <div class="toast-header">
-          <strong class="mr-auto">Success!</strong>
-          <small>Just now</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <hr class="mb-4">
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg" type="submit">Paga con <span id="card-brand">Carta</span></button>
         </div>
-        <div class="toast-body">
-          Next, submit the payment method nonce to your server.
+      </form>
+      <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+          <div class="toast-header">
+            <strong class="mr-auto">Success!</strong>
+            <small>Just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body">
+            Next, submit the payment method nonce to your server.
+          </div>
         </div>
-      </div>
-    </div> -->
+      </div> -->
+    </div>
   </div>
 </template>
 <script>
@@ -142,7 +144,7 @@ export default {
           fields: {
             cardholderName: {
               selector: '#cc-name',
-              placeholder: 'Name as it appears on your card'
+              placeholder: 'Nome scritto nella Carta'
             },
             number: {
               selector: '#cc-number',
@@ -154,7 +156,7 @@ export default {
             },
             expirationDate: {
               selector: '#cc-expiration',
-              placeholder: 'MM / YY'
+              placeholder: 'MM / AA'
             }
           }
         }, (err, hostedFieldsInstance) => {
