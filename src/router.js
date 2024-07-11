@@ -7,6 +7,7 @@ import AppCarrello from './pages/AppCarrello.vue'
 import AppPayment from './pages/AppPayment.vue'
 import AppSuccess from './pages/AppSuccess.vue'
 import AppNotFound from './pages/AppNotFound.vue'
+import AppContact from './pages/AppContact.vue'
 
 
 
@@ -17,6 +18,7 @@ const routes = [
   { path: '/carrello', name: 'carrello', component: AppCarrello},
   { path: '/pagamento', name: 'pagamento', component: AppPayment},
   { path: '/pagamento/success', name: 'success', component: AppSuccess},
+  { path: '/contatti', component: AppContact},
   { path: '/:pathMatch(.*)*', name:'not-found', component: AppNotFound},
 ]
 
