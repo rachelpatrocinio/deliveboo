@@ -60,10 +60,18 @@
                                 {{ cartDish.qty }}x {{ cartDish.name }}
                             </p>
                             <p>
+                                <span class="" @click="decrement(cartDish)">- </span>
+                                <span class="" @click="increment(cartDish)"> +</span>
+                            </p>
+                            <p>
                                 {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
-                            </p>    
+                            </p>  
                         </li>
                     </ul>
+                    <hr>  
+                    <div class="text-end">
+                        {{ store.total_price.toFixed(2) }}
+                    </div>
                     <RouterLink to="/carrello">
                         <button class="btn">
                             VAI AL CARRELLO
