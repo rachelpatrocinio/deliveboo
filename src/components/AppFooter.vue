@@ -16,15 +16,15 @@ export default {
   <footer class="bg-dark">
     <div class="container py-5 text-white">
       <div class="row justify-content-between">
-        <div class="col-4">
+        <div class="col-5">
           <img class="px-2" src="../../../public/icons/facebook.png" alt="">
           <img class="px-2" src="../../../public/icons/instagram.png" alt="">
           <img class="px-2" src="../../../public/icons/youtube.png" alt="">
         </div>
-        <div class="col-4 text-end">DeliveBoo S.p.a</div>
+        <div class="col-5 text-end">DeliveBoo S.p.a</div>
         <hr class="mt-5">
-        <section class="d-flex text-center web-developers">
-          <div class="col">
+        <section class="d-flex flex-wrap text-center web-developers">
+          <div class="col-12 col-md-4">
             <img class="developers" src="../../../public/developers/marco.jpeg" alt="">
             <h6>Marco Magnano</h6>
             <figure>
@@ -36,7 +36,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col">
+          <div class="col-12 col-md-4">
             <img class="developers" src="../../../public/developers/davide.jpeg" alt="">
             <h6>Davide Morellato</h6>
             <figure>
@@ -60,7 +60,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col">
+          <div class="col-12 col-md-4">
             <img class="developers" src="../../../public/developers/gabriele.jpeg" alt="" target="_blank">
             <h6>Gabriele Corbiani</h6>
             <figure>
@@ -72,7 +72,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col">
+          <div class="col-12 col-md-4">
             <img class="developers" src="../../../public/developers/fabio.jpeg" alt="" target="_blank">
             <h6>Fabio Mazzilli</h6>
             <figure>
@@ -91,6 +91,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.developer-svg{
+  position: relative;
+  bottom: -10px;
+}
+
 img.developers{
   width: 80px;
   border-radius: 99px;

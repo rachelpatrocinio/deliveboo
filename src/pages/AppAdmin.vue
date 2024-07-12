@@ -1,9 +1,9 @@
 <template>
 <div class="container py-5">
     <div class="row py-5">
-        <div class="col py-5">
-            <div class="d-flex ">
-                <div class="col-6 p-5 bg-green">
+        <div class="col ">
+            <div class="d-flex flex-wrap ">
+                <div class="col-12 col-md-6 p-5 bg-green text-center text-md-start radius-top">
                     <h2>Sei un Ristoratore?</h2>
                     <h4>Diventa nostro Partner!</h4>
                     <p>
@@ -13,7 +13,7 @@
                         <a target="_blank" href="http://127.0.0.1:8000/">COLLABORA CON NOI</a>
                     </button>
                 </div>
-                <div class="col-6 p-5 d-flex flex-column justify-content-center align-items-center bg-orange">
+                <div class="col-12 col-md-6 p-5 d-flex flex-column justify-content-center align-items-center bg-orange radius-bottom">
                     <h4>Sei già nostro partner?</h4>
                     <button class="btn btn-green">
                         <a target="_blank" href="http://127.0.0.1:8000/login">LOG IN</a>
@@ -34,4 +34,13 @@
 <style lang="scss" scoped>
 @use '../style/general';
 
+.radius-top{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.radius-bottom{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
 </style>

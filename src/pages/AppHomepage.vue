@@ -5,24 +5,27 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-4 col-md-3 col-lg-2 d-flex flex-column types" id="types">
-            <ul class="p-0 m-0">
-              <li class="text-center my-2"><h3>Filtra<br>Tipologie</h3></li>
-              <li v-for="type in types" :key="type.id" class="p-3 d-flex gap-2">
-                <input class="pointer" :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
-                <label :class="type.name" class="type-badge" :for="type.name">{{ type.name }}</label>
-
+          <div class="col-12 col-md-4 col-lg-2 d-flex flex-column types mb-2" id="types">
+            <ul class="p-0 m-0 types-content">
+              <li class="text-center my-2"><h3>Filtra Tipologie</h3></li>
+              <li class="p-3 d-flex">
+                <ul class="d-flex flex-wrap p-0">
+                  <li v-for="type in types" :key="type.id" class="col-6 col-md-12 my-2 px-2 text-white">
+                    <input class="pointer d-none checkbox" :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
+                    <label :class="type.name" class="type-badge" :for="type.name">{{ type.name }}</label>
+                  </li>
+                </ul>
               </li>
             </ul>       
           </div>
 
-          <div class="col-8 col-md-9 col-lg-10">
+          <div class="col-12 col-md-8 col-lg-10">
             <ul class="p-0 m-0 d-flex flex-wrap">
               <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-12 col-md-6 col-lg-4 mb-3 p-2">
                 <AppCard :restaurant="restaurant"></AppCard>
               </li>
             </ul>
-            <h2 v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</h2>
+            <h2 class="text-center text-danger mt-5" v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante!</h2>
           </div>
         </div>
       </div>
@@ -112,7 +115,7 @@ export default {
 @use '../style/general';
 
 .types{
-  ul{
+  .types-content{
     border: 2px solid var(--color-darkgreen);
     border-radius: 10px;
   }
@@ -124,6 +127,10 @@ export default {
     }
 
   }
+}
+
+.checkbox:checked + label {
+  border: 4px solid white;
 }
 
 

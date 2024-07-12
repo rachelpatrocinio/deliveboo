@@ -25,7 +25,7 @@
                     <p class="text-danger">{{ errors.message.join(' ') }}</p>
                 </div>
             </div>
-            <button class="bg-brown">INVIO</button>
+            <button class="btn btn-orange">INVIO</button>
         </form>
 
         <div v-else class="text-success py-5">

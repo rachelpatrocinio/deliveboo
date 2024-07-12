@@ -11,30 +11,30 @@
       </RouterLink>
     </div>
     <div class="row bg-green text-white p-5">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex flex-wrap justify-content-between">
         <h1 class="p-0">CARRELLO</h1>
-        <div v-if="store.chart.length > 0" class="my-4">
+        <div v-if="store.chart.length > 0" class="my-md-4 col-12 col-md-4 text-md-end">
           <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
         </div>
       </div>
       <ul class="mt-5" v-if="store.chart.length > 0">
         <li class="d-flex" v-for="(dish, i) in store.chart" :key="i">
-          <p class="col-4">
+          <p class="col-6 col-md-4">
             {{ dish.qty }}x {{ dish.name }}
           </p>
-          <div class="col-2">
-            <span class="pointer" @click="decrement(dish)">- </span>
-            <span class="mx-4">{{ dish.qty }}</span>
-            <span class="pointer" @click="increment(dish)"> +</span>
+          <div class="col-2 d-md-flex align-items-center">
+            <img class="pointer" src="../../public/icons/minus-sign.png" alt="" @click="decrement(dish)">
+            <span class="mx-4 d-none d-md-block">{{ dish.qty }}</span>
+            <img class="pointer" src="../../public/icons/plus.png" @click="increment(dish)">
           </div>
-          <div class=" d-flex col-2">
+          <div class="d-flex col-2 d-none d-md-block">
             <p>€ {{ dish.price }}</p>
           </div>
-          <div class="col-2 price">
+          <div class="col-3 col-md-2 price">
             <p>€ {{ partialTotal(dish.price, dish.qty).toFixed(2) }}</p>
           </div>
-          <div class="col-2 text-end">
-            <div class="delete-button pointer" @click="deleteDish(i, price)">
+          <div class="col-1 col-md-2 text-end">
+            <div class="delete-button" @click="deleteDish(i, price)">
               <img src="../../public/icons/bin.png" alt="Eliminazione" />
             </div>
           </div>
@@ -176,6 +176,18 @@ export default {
 
 .price {
   font-weight: 600;
+}
+
+.delete-button{
+  cursor: pointer;
+}
+
+.pointer{
+    margin: 0 3px;
+    width: 14px;
+    background-color: var(--color-orange);
+    padding: 2px;
+    border-radius: 99px;
 }
 
 </style>
