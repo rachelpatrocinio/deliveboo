@@ -12,7 +12,7 @@
                             <div class="card-header col-12 col-md-4">
                                 <h5>{{ dish.name }}</h5>
                                 <figure v-if="dish.thumb_url">
-                                    <img   class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
+                                    <img class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
                                 </figure>
                                 <figure v-else>
                                     <img class="dish-img" src="../../../public/logo.png" alt="Foto Piatto" />
@@ -26,7 +26,7 @@
                                 <div class="quantity my-md-4 col-12 col-md-4">
                                     <div class="d-flex justify-content-center gap-2 mt-md-2">
                                         <button class="btn btn-orange" @click="addToChart(dish)">
-                                        AGGIUNGI
+                                            AGGIUNGI
                                         </button>
                                     </div>
                                 </div>
@@ -39,11 +39,13 @@
                 <div class="summary p-3">
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
-                        <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiunto nessun piatto nel carrello</li>
+                        <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiunto nessun piatto nel
+                            carrello</li>
                         <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
                             <div class="d-flex justify-content-between">
                                 <p class="decinc me-1">
-                                    <img class="pointer" src="../../public/icons/minus-sign.png" alt="" @click="decrement(cartDish)">
+                                    <img class="pointer" src="../../public/icons/minus-sign.png" alt=""
+                                        @click="decrement(cartDish)">
                                     <img class="pointer" src="../../public/icons/plus.png" @click="increment(cartDish)">
                                 </p>
                                 <p>
@@ -52,13 +54,13 @@
                             </div>
                             <p>
                                 {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
-                            </p>  
+                            </p>
                         </li>
                     </ul>
-                    <hr>  
+                    <hr>
                     <div class="text-end">
                         <strong>
-                            {{ store.total_price.toFixed(2)  }}€
+                            {{ store.total_price.toFixed(2) }}€
                         </strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -71,6 +73,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="lastPage > 1">
+              <div class="d-flex gap-2 justify-content-center">
+                <p v-for="n in lastPage" @click="changePage(n)" :key="n" :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}</p>
+              </div>
         </div>
         <div v-if="message === true" class="one-restaurant-message text-center p-5 d-flex justify-content-center">
             <div class="modal-message p-5 col-12 col-md-6">
@@ -103,24 +110,36 @@ export default {
             qtyBox: false,
             qtyError: false,
             idCard: '',
-
+            lastPage: null,
+            currentPage: 1,
         };
     },
     methods: {
         fetchRestaurant() {
             axios
-                .get(`http://127.0.0.1:${store.port}/api/restaurants/` + this.$route.params.slug)
+                .get(`http://127.0.0.1:${store.port}/api/restaurants/` + this.$route.params.slug, {
+                    params: {
+                        page: this.currentPage,
+                    }
+                })
                 .then((res) => {
-                    this.restaurant = res.data.restaurant;
-                    this.restaurant.dishes = this.restaurant.dishes.filter(dish => dish.visible === 1);
+                    this.restaurant = res.data;
+                    this.lastPage = res.data.dishes.last_page
+                    this.restaurant.dishes = this.restaurant.dishes.data.filter(dish => dish.visible === 1);
                     this.restaurant.dishes.forEach((dish) => {
                         dish.qty = 1;
                     });
-                    console.log(this.restaurant)
+
+                    console.log(this.currentPage)
                 })
                 .catch((error) => {
                     console.error("There was an error fetching the restaurant data!", error);
                 });
+        },
+        changePage(n) {
+            if (n === this.currentPage) return
+            this.currentPage = n
+            this.fetchRestaurant()
         },
         goBack() {
             this.$router.back();
@@ -145,9 +164,9 @@ export default {
             const total = price * qty;
             return total;
         },
-        totalQty(){
+        totalQty() {
             this.store.total_qty = 0;
-            for(let i = 0; i < this.store.chart.length; i++){
+            for (let i = 0; i < this.store.chart.length; i++) {
                 const singleDish = this.store.chart[i];
                 console.log(singleDish);
                 const singleDishQty = singleDish.qty
@@ -210,7 +229,7 @@ export default {
                     this.message = false;
                     this.qtyBox = false;
                     this.totalQty();
-                } else if(this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)){
+                } else if (this.store.chart.length === 0 || this.store.chart.every(item => item.restaurant_id === dish.restaurant_id)) {
                     // Altrimenti aggiungi il piatto al carrello
                     this.store.chart.push({ ...dish });
                     this.message = false;
@@ -230,7 +249,7 @@ export default {
                 this.qtyError = true
             }
         },
-        close(){
+        close() {
             this.qtyBox = false;
             this.qtyError = false;
         },
@@ -238,7 +257,7 @@ export default {
     created() {
         this.fetchRestaurant();
     },
-    mounted(){
+    mounted() {
         this.keepUp()
         this.totalQty();
         this.totalPrice();
@@ -261,13 +280,13 @@ export default {
     width: 150px;
 }
 
-.one-restaurant-message{
+.one-restaurant-message {
     width: 100%;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    right:0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,15 +299,15 @@ export default {
     }
 }
 
-.summary{
+.summary {
     background-color: var(--color-green);
     border-radius: 10px;
     color: white;
 }
 
-.decinc{
+.decinc {
 
-    img{
+    img {
         margin: 0 3px;
         width: 14px;
         background-color: var(--color-orange);
