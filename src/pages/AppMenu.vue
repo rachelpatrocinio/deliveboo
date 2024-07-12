@@ -1,15 +1,15 @@
 <template>
     <div class="container position-relative py-5">
         <div class="row py-5">
-            <div class="mb-4 d-flex justify-content-between">
-                <h1>{{ restaurant.name }}</h1>
-                <button class="btn btn-orange" @click="goBack">Torna Indietro</button>
+            <div class="mb-4">
+                <button class="btn btn-orange mb-3" @click="goBack">Torna Indietro</button>
+                <h1 class="text-center text-md-start">{{ restaurant.name }}</h1>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-8">
                 <div class="row">
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
-                        <div class="card d-flex flex-row p-4 mb-2">
-                            <div class="card-header w-25">
+                        <div class="card d-flex flex-column flex-md-row p-4 mb-2">
+                            <div class="card-header col-12 col-md-4">
                                 <h5>{{ dish.name }}</h5>
                                 <figure v-if="dish.thumb_url">
                                     <img   class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
@@ -17,17 +17,14 @@
                                 <figure v-else>
                                     <img class="dish-img" src="../../../public/logo.png" alt="Foto Piatto" />
                                 </figure>
-
-
                             </div>
-                            <div class="card-body d-flex justify-content-between align-items-center w-75 text-center">
-                                <div class="w-75">
-                                    <p class="ingredients">{{ dish.description_ingredients }}</p>
+                            <div class="card-body d-flex flex-wrap justify-content-between align-items-center text-center">
+                                <div class="col-12 col-md-8">
+                                    <p class="ingredients d-none d-md-block">{{ dish.description_ingredients }}</p>
                                     <p>€ {{ dish.price }}</p>
                                 </div>
-
-                                <div class="quantity my-4">
-                                    <div class="d-flex gap-2 mt-2">
+                                <div class="quantity my-md-4 col-12 col-md-4">
+                                    <div class="d-flex justify-content-center gap-2 mt-md-2">
                                         <button class="btn btn-orange" @click="addToChart(dish)">
                                         AGGIUNGI
                                         </button>
@@ -38,11 +35,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="summary p-3">
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
-                        <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiungo nessun piatto nel carrello</li>
+                        <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiunto nessun piatto nel carrello</li>
                         <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
                             <div class="d-flex justify-content-between">
                                 <p class="decinc me-1">
@@ -64,23 +61,23 @@
                             {{ store.total_price.toFixed(2)  }}€
                         </strong>
                     </div>
-                    <div class="d-flex justify-content-between mt-3">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
                         <RouterLink to="/carrello">
                             <button class="btn btn-orange">
                                 VAI AL CARRELLO
                             </button>
                         </RouterLink>
-                        <div class="btn btn-dark" @click="emptChart()">Svuota il carrello</div>
+                        <div class="btn btn-dark col-4" @click="emptChart()">Svuota il carrello</div>
                     </div>
                 </div>
             </div>
         </div>
         <div v-if="message === true" class="one-restaurant-message text-center p-5 d-flex justify-content-center">
-            <div class="modal-message p-5">
+            <div class="modal-message p-5 col-12 col-md-6">
                 <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
                 <div class="d-flex gap-3 justify-content-center">
-                    <div class="btn btn-dark" @click="newDishChart()">Svuota il carrello </div>
-                    <div class="btn btn-orange" @click="message = false">Annulla</div>
+                    <div class="btn btn-dark col-6 col-md-3" @click="newDishChart()">Svuota il carrello e aggiungi piatto</div>
+                    <div class="btn btn-orange col-6 col-md-3" @click="message = false">Annulla</div>
                 </div>
             </div>
             <div class="card my-3" v-if="store.chart.length === 0">
@@ -278,7 +275,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.734);
 
     .modal-message{
-        width: 40%;
+        // width: 40%;
         background-color: white;
     }
 }

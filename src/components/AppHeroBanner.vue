@@ -1,7 +1,7 @@
 <template>
     <section class="hero-banner mt-2 full-height">
         <div class="container">
-            <div class="row py-5">
+            <div class="row px-3 px-md-0 py-5">
                 <div class="col-12 col-md-6 bg-hero">
                     <h1 class="pt-1 title text-center"> DELIVEBOO </h1>
                     <h4>Il tuo ristorante preferito, direttamente a casa tua!</h4>

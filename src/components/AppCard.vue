@@ -1,22 +1,17 @@
 <template>
 <RouterLink class="link" :to="pathAppMenu + restaurant.slug">
-<div class="card p-2"> 
 <div class="card p-5">
     <h4 class="text-center">{{ restaurant.name }}</h4>
     <img v-if="restaurant.thumb" class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
     <img v-else class="restaurant-img mt-3" src="../../../public/logo.png" alt="Foto Ristorante">
-
-
-
-        <div>
-            <ul class="d-flex justify-content-center mt-3 p-0">
-                <li class="px-2" v-for="type in restaurant.types">
-                    <p class="type-badge" :class="type.name">
-                        {{ type.name }}
-                    </p>
-                </li>
-            </ul>
-        </div>
+    <div>
+        <ul class="d-flex justify-content-center mt-3 p-0">
+            <li class="px-2" v-for="type in restaurant.types">
+                <p class="type-badge text-white" :class="type.name">
+                    {{ type.name }}
+                </p>
+            </li>
+        </ul>
     </div>
 </div>
 </RouterLink>

@@ -4,9 +4,23 @@ import { store } from "../store.js";
 export default {
   data() {
     return {
-      store
+      store,
+      dropdown: ''
     }
-  }
+  },
+  methods:{
+    toggleDropDown(){
+      if(this.dropdown === false){
+        this.dropdown = true
+      }
+      else{
+        this.dropdown = false
+      }
+    }
+  },
+  created() {
+    this.toggleDropDown();
+  },
 }
 </script>
 
@@ -16,17 +30,28 @@ export default {
       <div class="logo col-3">
         <RouterLink to="/"><img src="../../../public/logo.png" alt="DeliveBoo"></RouterLink>
       </div>
-      <div class="col-3 d-flex justify-content-around text-end">
-        <RouterLink class="link" to="/admin">Collabora con noi!</RouterLink>
-        <RouterLink class="link" to="/contatti">Contattaci</RouterLink>
-        <RouterLink to="/carrello" class="position-relative">
+      <div class="col-3 pe-3 d-block d-md-none text-end position-relative">
+        <img src="../../../public/icons/menus.png" alt="" @click="toggleDropDown()">
+        <div v-if="store.total_qty !== 0" class="qty-2">{{ store.total_qty }}</div>
+      </div>
+      <div class="col-8 d-flex justify-content-around text-end d-none d-md-block">
+        <RouterLink class="link col-4 px-2" to="/admin">Collabora con noi!</RouterLink>
+        <RouterLink class="link col-4 px-2" to="/contatti">Contattaci</RouterLink>
+        <RouterLink to="/carrello" class="position-relative col-4 px-2">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
           <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>
         </RouterLink>
       </div>
     </div>
   </header>
-
+  <div class="dropdown d-flex flex-column position-absolute col-12 text-center p-4" v-if="dropdown === true">
+    <RouterLink class="link mt-2" to="/admin" @click="dropdown = false">Collabora con noi!</RouterLink>
+    <RouterLink class="link mt-2" to="/contatti" @click="dropdown = false">Contattaci</RouterLink>
+    <RouterLink to="/carrello" class="d-flex justify-content-center mt-2 link" @click="dropdown = false">
+      <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
+      <div v-if="store.total_qty !== 0">{{ store.total_qty }}</div>
+    </RouterLink>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -56,11 +81,28 @@ header{
   position: absolute;
   padding: 3px;
   top:-8px;
-  right: 5px;
+  right: 10px;
   background-color: var(--color-green);
   border-radius: 99px;
   color: black;
   font-size: 11px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qty-2{
+  position: absolute;
+  padding: 3px;
+  background-color: var(--color-green);
+  right: 10px;
+  top:0;
+  border-radius: 99px;
+  color: black;
+  font-size: 12px;
   width: 20px;
   height: 20px;
   font-weight: 600;
@@ -76,6 +118,19 @@ header{
 
   &:hover{
     color: var(--color-orange);
+  }
+}
+
+.dropdown{
+  background-color: var(--color-orange);
+
+  .link{
+    border-bottom: 1px solid var(--color-darkgreen);
+    padding: 5px;
+
+    &:hover{
+      color: var(--color-yellow);
+    }
   }
 }
 </style>
