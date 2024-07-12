@@ -11,9 +11,14 @@
                         <div class="card d-flex flex-row p-4 mb-2">
                             <div class="card-header w-25">
                                 <h5>{{ dish.name }}</h5>
-                                <figure>
-                                    <img class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
+                                <figure v-if="dish.thumb_url">
+                                    <img   class="dish-img" :src="dish.thumb_url" alt="Foto Piatto" />
                                 </figure>
+                                <figure v-else>
+                                    <img class="dish-img" src="../../../public/logo.png" alt="Foto Piatto" />
+                                </figure>
+
+
                             </div>
                             <div class="card-body d-flex justify-content-between align-items-center w-75 text-center">
                                 <div class="w-75">
