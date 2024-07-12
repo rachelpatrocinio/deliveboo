@@ -22,6 +22,12 @@
                 <AppCard :restaurant="restaurant"></AppCard>
               </li>
             </ul>
+            <div v-if="lastPage > 1">
+              <div class="d-flex gap-2 justify-content-center">
+                <p v-for="n in lastPage" @click="changePage(n)" :key="n" :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}</p>
+              </div>
+
+            </div>
             <h2 v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante</h2>
           </div>
         </div>
@@ -49,21 +55,29 @@ export default {
       restaurants: [], // Array vuoto da popolare con la chiamata axios
       types: [], // Array vuoto da popolare con la chiamata axios
       type_names: [], // Salva gli ids delle checkbox
-      searchPerformed: false // Indica se una ricerca è stata effettuata
+      searchPerformed: false, // Indica se una ricerca è stata effettuata
+      lastPage: null,
+      lastPage: 0,
+      currentPage: 1,
     };
   },
   methods: {
     // Recupera i ristoranti tramite l'API
     fetchRestaurants() {
       const params = {};
+      params.page = this.currentPage
+      // params.perPage = 6
       if (this.type_names.length) {
         params.types = this.type_names.join(",");
       }
       axios
         .get(`http://127.0.0.1:${store.port}/api/restaurants`, {params})
         .then((res) => {
-          this.restaurants = res.data; // Popola l'array dei ristoranti
+          this.restaurants = res.data.data; // Popola l'array dei ristoranti
           this.searchPerformed = true; // Indica che una ricerca è stata effettuata
+          this.lastPage = res.data.last_page;
+          // console.log(res)
+          console.log(res.data)
         })
         .catch((error) => {
           console.error("Errore nel recupero dei ristoranti:", error);
@@ -84,6 +98,11 @@ export default {
         .catch((error) => {
           console.error("Errore nel recupero delle tipologie:" + error);
         })
+    },
+    changePage(n) {
+      if (n === this.currentPage) return
+      this.currentPage = n
+      this.fetchRestaurants()
     }
   },
   created() {
