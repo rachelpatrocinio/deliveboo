@@ -34,6 +34,10 @@ export default {
 header{
   background-color: var(--color-yellow);
   border-bottom: 2px solid var(--color-darkgreen);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .logo{
