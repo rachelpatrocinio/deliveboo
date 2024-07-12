@@ -1,9 +1,14 @@
 <template>
   <div class="container py-5">
     <div class="mb-5">
-      <button class="btn btn-orange" @click="goBack()">
+      <button class="btn btn-orange me-3" @click="goBack()">
         TORNA INDIETRO
       </button>
+      <RouterLink to="/">
+          <button class="btn btn-green">
+              LISTA RISTORANTI
+          </button>
+      </RouterLink>
     </div>
     <div class="row bg-green text-white p-5">
       <div class="d-flex justify-content-between">
