@@ -1,5 +1,5 @@
 <template>
-    <section class="hero-banner mt-2">
+    <section class="hero-banner mt-2 full-height">
         <div class="container">
             <div class="row py-5">
                 <div class="col-12 col-md-6 bg-hero">

@@ -110,6 +110,12 @@
   border-radius: 25px;
 }
 
+.full-height {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .bg-white{
   background-color: white;
 }
