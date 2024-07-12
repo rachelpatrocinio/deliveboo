@@ -1,6 +1,6 @@
 <template>
   <div class="container py-5">
-    <div class="mb-5">
+    <div class="py-5">
       <button class="btn btn-orange me-3" @click="goBack()">
         TORNA INDIETRO
       </button>

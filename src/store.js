@@ -6,5 +6,9 @@ export const store = reactive({
   total_price: 0,
   total_qty: 0,
   restaurant_id: 0,
-  diffDish: ''
+  diffDish: '',
+
+  windowScroll(){
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
 })

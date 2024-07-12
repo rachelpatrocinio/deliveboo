@@ -1,7 +1,7 @@
 <template>
 <div class="container py-5">
     <div class="row py-5">
-        <div class="col ">
+        <div class="col py-md-5">
             <div class="d-flex flex-wrap ">
                 <div class="col-12 col-md-6 p-5 bg-green text-center text-md-start radius-top">
                     <h2>Sei un Ristoratore?</h2>
@@ -33,14 +33,4 @@
 
 <style lang="scss" scoped>
 @use '../style/general';
-
-.radius-top{
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-}
-
-.radius-bottom{
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
 </style>

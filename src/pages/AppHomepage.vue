@@ -22,7 +22,7 @@
           <div class="col-12 col-md-8 col-lg-10">
             <ul class="p-0 m-0 d-flex flex-wrap">
               <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-12 col-md-6 col-lg-4 mb-3 p-2">
-                <AppCard :restaurant="restaurant"></AppCard>
+                <AppCard :restaurant="restaurant" @click="store.windowScroll"></AppCard>
               </li>
             </ul>
             <h2 class="text-center text-danger mt-5" v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante!</h2>

@@ -24,7 +24,7 @@ export default {
         <div class="col-5 text-end">DeliveBoo S.p.a</div>
         <hr class="mt-5">
         <section class="d-flex flex-wrap text-center web-developers">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md">
             <img class="developers" src="../../../public/developers/marco.jpeg" alt="">
             <h6>Marco Magnano</h6>
             <figure>
@@ -36,7 +36,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md">
             <img class="developers" src="../../../public/developers/davide.jpeg" alt="">
             <h6>Davide Morellato</h6>
             <figure>
@@ -48,7 +48,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col">
+          <div class="col-12 col-md">
             <img class="developers" src="../../../public/developers/rachel.jpeg" alt="">
             <h6>Rachel A. Patrocinio</h6>
             <figure>
@@ -60,7 +60,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md">
             <img class="developers" src="../../../public/developers/gabriele.jpeg" alt="" target="_blank">
             <h6>Gabriele Corbiani</h6>
             <figure>
@@ -72,7 +72,7 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md">
             <img class="developers" src="../../../public/developers/fabio.jpeg" alt="" target="_blank">
             <h6>Fabio Mazzilli</h6>
             <figure>
