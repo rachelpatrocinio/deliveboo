@@ -17,9 +17,9 @@ export default {
     <div class="container py-5 text-white">
       <div class="row justify-content-between">
         <div class="col-5">
-          <img class="px-2" src="../../../public/icons/facebook.png" alt="">
-          <img class="px-2" src="../../../public/icons/instagram.png" alt="">
-          <img class="px-2" src="../../../public/icons/youtube.png" alt="">
+          <a href="https://www.facebook.com/"><img class="px-2" src="../../../public/icons/facebook.png" alt=""></a>
+          <a href="https://www.instagram.com/"><img class="px-2" src="../../../public/icons/instagram.png" alt=""></a>
+          <a href="https://www.youtube.com/"><img class="px-2" src="../../../public/icons/youtube.png" alt=""></a>
         </div>
         <div class="col-5 text-end">DeliveBoo S.p.a</div>
         <hr class="mt-5">
