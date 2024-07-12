@@ -1,9 +1,10 @@
 <template>
     <div class="container position-relative py-5">
         <div class="row py-5">
-            <div class="mb-4">
-                    <button class="btn btn-orange" @click="goBack">Torna Indietro</button>
-                </div>
+            <div class="mb-4 d-flex justify-content-between">
+                <h1>{{ restaurant.name }}</h1>
+                <button class="btn btn-orange" @click="goBack">Torna Indietro</button>
+            </div>
             <div class="col-8">
                 <div class="row">
                     <div class="col-12 text-center" v-for="(dish, index) in restaurant.dishes">
@@ -63,7 +64,7 @@
                             <button class="btn btn-orange">
                                 VAI AL CARRELLO
                             </button>
-                            </RouterLink>
+                        </RouterLink>
                         <div class="btn btn-dark" @click="emptChart()">Svuota il carrello</div>
                     </div>
                 </div>

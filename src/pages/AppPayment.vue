@@ -1,6 +1,11 @@
 <template>
   <div class="container py-5">
-    <h1>€ {{ store.total_price.toFixed(2) }}</h1>
+    <RouterLink to="/carrello">
+        <button class="btn btn-orange">
+            RITORNA AL CARRELLO
+        </button>
+      </RouterLink>
+    <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
     <div class="bootstrap-basic">
       <form @submit.prevent="handleSubmit" class="needs-validation">
         <div class="row">
@@ -31,7 +36,7 @@
             </div>
           </div>
           <div class="col-sm-4 mb-3">
-            <label for="number">Phone Number</label>
+            <label for="number">Numero di Telefono</label>
             <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
             <div class="invalid-feedback">
               Il Numero di telefono è richiesto
@@ -48,7 +53,7 @@
 
         <div class="row">
           <div class="col-sm-6 mb-3">
-            <label for="cc-number">Credit card number</label>
+            <label for="cc-number">Numero carta</label>
             <div class="form-control" id="cc-number"></div>
             <div class="invalid-feedback">
               Numero della Carta di Credito è richiesta
@@ -227,3 +232,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@use '../style/general';
+</style>

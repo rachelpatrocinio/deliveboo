@@ -18,6 +18,7 @@ export default {
       </div>
       <div class="col-3 d-flex justify-content-around text-end">
         <RouterLink class="link" to="/admin">Collabora con noi!</RouterLink>
+        <RouterLink class="link" to="/contatti">Contattaci</RouterLink>
         <RouterLink to="/carrello" class="position-relative">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
           <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>

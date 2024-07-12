@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-5">
+  <div class="container py-5">
     <!-- con il @submit.prevent, preveniamo l'invio del form -->
     <form v-if="success === false" @submit.prevent="sendMessage" action="" >
             <div class="mb-5">
@@ -28,10 +28,12 @@
             <button class="bg-brown">INVIO</button>
         </form>
 
-        <div v-else class="text-success">
-            L'invio è andato a buon fine
+        <div v-else class="text-success py-5">
+            <h1>L'invio è andato a buon fine</h1>
             <RouterLink to="/">
+              <button class="btn btn-orange mt-2">
                 Torna alla Homepage
+              </button>
             </RouterLink>
         </div>
   </div>
@@ -78,4 +80,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../style/general';
+</style>
