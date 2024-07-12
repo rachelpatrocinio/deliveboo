@@ -1,7 +1,15 @@
 <template>
-    <div class="d-flex justify-content-center py-5">
-        <h1>pagina non trovata</h1>
+    <div class="container py-5">
+        <div class="row py-5 text-center"">
+            <h1 class="text-danger" >Pagina non Trovata!</h1>
+            <RouterLink to="/">
+                <button class="btn btn-orange mt-3">
+                    VAI ALLA HOME PAGE
+                </button>
+            </RouterLink>
+        </div>
     </div>
+   
 </template>
 
 <script>
@@ -11,5 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
+@use '../style/general';
+
 
 </style>
