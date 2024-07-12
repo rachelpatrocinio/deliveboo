@@ -57,7 +57,6 @@ export default {
       type_names: [], // Salva gli ids delle checkbox
       searchPerformed: false, // Indica se una ricerca è stata effettuata
       lastPage: null,
-      lastPage: 0,
       currentPage: 1,
     };
   },
@@ -66,7 +65,6 @@ export default {
     fetchRestaurants() {
       const params = {};
       params.page = this.currentPage
-      // params.perPage = 6
       if (this.type_names.length) {
         params.types = this.type_names.join(",");
       }
@@ -76,8 +74,6 @@ export default {
           this.restaurants = res.data.data; // Popola l'array dei ristoranti
           this.searchPerformed = true; // Indica che una ricerca è stata effettuata
           this.lastPage = res.data.last_page;
-          // console.log(res)
-          console.log(res.data)
         })
         .catch((error) => {
           console.error("Errore nel recupero dei ristoranti:", error);
