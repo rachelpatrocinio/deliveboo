@@ -63,7 +63,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <RouterLink to="/carrello">
-                            <button class="btn btn-orange">
+                            <button class="btn btn-orange" @click="store.windowScroll">
                                 VAI AL CARRELLO
                             </button>
                         </RouterLink>

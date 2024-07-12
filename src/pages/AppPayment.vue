@@ -1,99 +1,101 @@
 <template>
   <div class="container py-5">
-    <RouterLink to="/carrello">
-        <button class="btn btn-orange">
-            RITORNA AL CARRELLO
-        </button>
-      </RouterLink>
-    <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
-    <div class="bootstrap-basic">
-      <form @submit.prevent="handleSubmit" class="needs-validation">
-        <div class="row">
-          <div class="col-sm-6 mb-3">
-            <label for="cc-name">Nome Titolare Carta</label>
-            <div class="form-control" id="cc-name"></div>
-            <small class="text-muted">Nome completo</small>
-            <div class="invalid-feedback">
-              Nome completo è richiesto
+    <div class="row py-5">
+      <RouterLink to="/carrello">
+          <button class="btn btn-orange">
+              RITORNA AL CARRELLO
+          </button>
+        </RouterLink>
+      <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
+      <div class="bootstrap-basic">
+        <form @submit.prevent="handleSubmit" class="needs-validation">
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label for="cc-name">Nome Titolare Carta</label>
+              <div class="form-control" id="cc-name"></div>
+              <small class="text-muted">Nome completo</small>
+              <div class="invalid-feedback">
+                Nome completo è richiesto
+              </div>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com"
+                @change="validateEmail">
+              <div class="invalid-feedback">
+                Scrivere un email valida per la spedizione.
+              </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-3">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com"
-              @change="validateEmail">
-            <div class="invalid-feedback">
-              Scrivere un email valida per la spedizione.
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-4 mb-3">
-            <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
-            <div class="invalid-feedback">
-              Il Nome è richiesto
+          <div class="row">
+            <div class="col-sm-4 mb-3">
+              <label for="name">Nome</label>
+              <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
+              <div class="invalid-feedback">
+                Il Nome è richiesto
+              </div>
+            </div>
+            <div class="col-sm-4 mb-3">
+              <label for="number">Numero di Telefono</label>
+              <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
+              <div class="invalid-feedback">
+                Il Numero di telefono è richiesto
+              </div>
+            </div>
+            <div class="col-sm-4 mb-3">
+              <label for="address">Indirizzo</label>
+              <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
+              <div class="invalid-feedback">
+                L'indirizzo è richiesto
+              </div>
             </div>
           </div>
-          <div class="col-sm-4 mb-3">
-            <label for="number">Numero di Telefono</label>
-            <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
-            <div class="invalid-feedback">
-              Il Numero di telefono è richiesto
-            </div>
-          </div>
-          <div class="col-sm-4 mb-3">
-            <label for="address">Indirizzo</label>
-            <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
-            <div class="invalid-feedback">
-              L'indirizzo è richiesto
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-6 mb-3">
-            <label for="cc-number">Numero carta</label>
-            <div class="form-control" id="cc-number"></div>
-            <div class="invalid-feedback">
-              Numero della Carta di Credito è richiesta
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label for="cc-number">Numero carta</label>
+              <div class="form-control" id="cc-number"></div>
+              <div class="invalid-feedback">
+                Numero della Carta di Credito è richiesta
+              </div>
+            </div>
+            <div class="col-sm-3 mb-3">
+              <label for="cc-expiration">Scadenza</label>
+              <div class="form-control" id="cc-expiration"></div>
+              <div class="invalid-feedback">
+                Data di scadenza richiesta
+              </div>
+            </div>
+            <div class="col-sm-3 mb-3">
+              <label for="cc-cvv">CVV</label>
+              <div class="form-control" id="cc-cvv"></div>
+              <div class="invalid-feedback">
+                CVV richiesta
+              </div>
             </div>
           </div>
-          <div class="col-sm-3 mb-3">
-            <label for="cc-expiration">Scadenza</label>
-            <div class="form-control" id="cc-expiration"></div>
-            <div class="invalid-feedback">
-              Data di scadenza richiesta
-            </div>
-          </div>
-          <div class="col-sm-3 mb-3">
-            <label for="cc-cvv">CVV</label>
-            <div class="form-control" id="cc-cvv"></div>
-            <div class="invalid-feedback">
-              CVV richiesta
-            </div>
-          </div>
-        </div>
 
-        <hr class="mb-4">
-        <div class="text-center">
-          <button class="btn btn-primary btn-lg" type="submit">Paga con <span id="card-brand">Carta</span></button>
-        </div>
-      </form>
-      <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-          <div class="toast-header">
-            <strong class="mr-auto">Success!</strong>
-            <small>Just now</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <hr class="mb-4">
+          <div class="text-center">
+            <button class="btn btn-primary btn-lg" type="submit" @click="store.windowScroll">Paga con <span id="card-brand">Carta</span></button>
           </div>
-          <div class="toast-body">
-            Next, submit the payment method nonce to your server.
+        </form>
+        <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+            <div class="toast-header">
+              <strong class="mr-auto">Success!</strong>
+              <small>Just now</small>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+              Next, submit the payment method nonce to your server.
+            </div>
           </div>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
     </div>
   </div>
 </template>
