@@ -37,7 +37,8 @@ header{
 
 .logo{
   img{
-    width: 200px;
+    width: 150px;
+    padding: 10px 0;
   }
 }
 
