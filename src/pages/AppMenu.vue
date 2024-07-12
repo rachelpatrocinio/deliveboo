@@ -75,9 +75,9 @@
         <div v-if="message === true" class="one-restaurant-message text-center p-5 d-flex justify-content-center">
             <div class="modal-message p-5 col-12 col-md-6">
                 <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
-                <div class="d-flex gap-3 justify-content-center">
-                    <div class="btn btn-dark col-6 col-md-3" @click="newDishChart()">Svuota il carrello e aggiungi piatto</div>
-                    <div class="btn btn-orange col-6 col-md-3" @click="message = false">Annulla</div>
+                <div class="d-flex gap-3 flex-wrap justify-content-center py-3">
+                    <div class="btn btn-dark col-12 col-md-5" @click="newDishChart()">Svuota il carrello e aggiungi piatto</div>
+                    <div class="btn btn-orange col-12 col-md-5" @click="message = false">Annulla</div>
                 </div>
             </div>
             <div class="card my-3" v-if="store.chart.length === 0">
