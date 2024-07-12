@@ -64,7 +64,7 @@
                             <button class="btn btn-orange">
                                 VAI AL CARRELLO
                             </button>
-                            </RouterLink>
+                        </RouterLink>
                         <div class="btn btn-dark" @click="emptChart()">Svuota il carrello</div>
                     </div>
                 </div>

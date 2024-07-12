@@ -1,6 +1,11 @@
 <template>
   <div class="container py-5">
-    <h1>€ {{ store.total_price.toFixed(2) }}</h1>
+    <RouterLink to="/carrello">
+        <button class="btn btn-orange">
+            RITORNA AL CARRELLO
+        </button>
+      </RouterLink>
+    <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
     <div class="bootstrap-basic">
       <form @submit.prevent="handleSubmit" class="needs-validation">
         <div class="row">
@@ -227,3 +232,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@use '../style/general';
+</style>
