@@ -79,7 +79,7 @@
             <div class="modal-message p-5">
                 <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
                 <div class="d-flex gap-3 justify-content-center">
-                    <div class="btn btn-dark" @click="emptChart()">Svuota il carrello </div>
+                    <div class="btn btn-dark" @click="newDishChart()">Svuota il carrello </div>
                     <div class="btn btn-orange" @click="message = false">Annulla</div>
                 </div>
             </div>
@@ -130,6 +130,14 @@ export default {
         },
         emptChart() {
             this.store.chart = [];
+            this.message = false;
+            localStorage.chart = JSON.stringify(this.store.chart);
+            this.totalQty();
+            this.totalPrice();
+            this.keep();
+        },
+        newDishChart() {
+            this.store.chart = [this.store.diffDish];
             this.message = false;
             localStorage.chart = JSON.stringify(this.store.chart);
             this.totalQty();
@@ -193,10 +201,11 @@ export default {
         },
         addToChart(dish) {
             if (dish.qty > 0) {
-                this.qtyError = false
+                this.qtyError = false;
+                this.store.diffDish = dish;
                 // Controlla se il piatto è già nel carrello
                 let cartDish = this.store.chart.find((item) => item.id === dish.id);
-
+                
 
                 if (cartDish) {
                     // Se è presente, incrementa la quantità
@@ -212,7 +221,9 @@ export default {
                     this.totalQty();
                 }
                 else {
+
                     this.message = true;
+                    
                 }
                 // this.keep();
                 this.totalPrice();
