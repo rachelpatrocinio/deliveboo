@@ -35,8 +35,8 @@ export default {
         <div v-if="store.total_qty !== 0" class="qty-2">{{ store.total_qty }}</div>
       </div>
       <div class="col-8 d-flex justify-content-around text-end d-none d-md-block">
-        <RouterLink class="link col-4 px-2" to="/admin">Collabora con noi!</RouterLink>
-        <RouterLink class="link col-4 px-2" to="/contatti">Contattaci</RouterLink>
+        <RouterLink class="link col-4 px-2" to="/admin" @click="store.windowScroll">Collabora con noi!</RouterLink>
+        <RouterLink class="link col-4 px-2" to="/contatti" @click="store.windowScroll">Contattaci</RouterLink>
         <RouterLink to="/carrello" class="position-relative col-4 px-2">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
           <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>
@@ -44,7 +44,7 @@ export default {
       </div>
     </div>
   </header>
-  <div class="dropdown d-flex flex-column position-absolute col-12 text-center p-4" v-if="dropdown === true">
+  <div class="dropdown d-flex flex-column col-12 text-center p-4" v-if="dropdown === true">
     <RouterLink class="link mt-2" to="/admin" @click="dropdown = false">Collabora con noi!</RouterLink>
     <RouterLink class="link mt-2" to="/contatti" @click="dropdown = false">Contattaci</RouterLink>
     <RouterLink to="/carrello" class="d-flex justify-content-center mt-2 link" @click="dropdown = false">
@@ -124,6 +124,9 @@ header{
 .dropdown{
   background-color: var(--color-orange);
   top: 80px;
+  position: fixed;
+  z-index: 99;
+
 
   .link{
     border-bottom: 1px solid var(--color-darkgreen);

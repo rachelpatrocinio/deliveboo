@@ -33,4 +33,20 @@
 
 <style lang="scss" scoped>
 @use '../style/general';
+
+.bg-green:hover + .bg-orange{
+    background-color: var(--color-green);
+
+    .btn{
+        background-color: var(--color-orange);
+    }
+}
+
+.bg-green:hover{
+    background-color: var(--color-orange);
+
+    .btn{
+        background-color: var(--color-green);
+    }
+}
 </style>
