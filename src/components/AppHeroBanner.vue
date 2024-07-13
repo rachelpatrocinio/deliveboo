@@ -14,7 +14,6 @@
                             <a href="#types">ORDINA ORA!</a>
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
