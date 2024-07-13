@@ -2,7 +2,9 @@
     <div class="container position-relative py-5">
         <div class="row py-5">
             <div class="mb-4">
-                <button class="btn btn-orange mb-3" @click="goBack">Torna Indietro</button>
+                <button class="btn btn-orange mb-3 back-btn" @click="goBack">
+                    <img src="../../../public/icons/back-button.png" alt="">
+                </button>
                 <h1 class="text-center text-md-start">{{ restaurant.name }}</h1>
             </div>
             <div class="col-12 col-md-8">
@@ -76,12 +78,9 @@
             <div class="modal-message p-5 col-12 col-md-6">
                 <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
                 <div class="d-flex gap-3 flex-wrap justify-content-center py-3">
-                    <div class="btn btn-dark col-12 col-md-5" @click="newDishChart()">Svuota il carrello e aggiungi piatto</div>
-                    <div class="btn btn-orange col-12 col-md-5" @click="message = false">Annulla</div>
+                    <div class="btn btn-dark col-12 col-md-6" @click="newDishChart()">Svuota il carrello e aggiungi piatto</div>
+                    <div class="btn btn-orange col-12 col-md-6" @click="message = false">Annulla</div>
                 </div>
-            </div>
-            <div class="card my-3" v-if="store.chart.length === 0">
-                <h3>Il tuo carrello è vuoto</h3>
             </div>
         </div>
     </div>
@@ -295,5 +294,10 @@ export default {
         padding: 2px;
         border-radius: 99px;
     }
+}
+
+.back-btn{
+    border-radius: 100%;
+    aspect-ratio: 1/1;
 }
 </style>

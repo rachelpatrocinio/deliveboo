@@ -73,6 +73,11 @@
     }
 }
 
+.back-btn{
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+}
+
 .btn-orange{
     background-color: var(--color-orange);
     color: var(--color-dark);

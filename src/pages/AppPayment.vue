@@ -78,7 +78,10 @@
 
           <hr class="mb-4">
           <div class="text-center">
-            <button class="btn btn-primary btn-lg" type="submit" @click="store.windowScroll">Paga con <span id="card-brand">Carta</span></button>
+            <button class="btn btn-orange btn-lg" type="submit" @click="store.windowScroll">
+              <img src="../../../public/icons/credit-card.png" alt="">
+              Paga con <span id="card-brand">Carta</span>
+            </button>
           </div>
         </form>
         <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
