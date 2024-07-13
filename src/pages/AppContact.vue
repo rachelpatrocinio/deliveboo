@@ -1,59 +1,102 @@
 <template>
   <div class="container py-5">
-    <div class="row py-5">
+    <div class="row py-5 d-flex flex-column align-items-center">
+      <div class="w-50 text-center py-3">
+        <h1>Contattaci</h1>
+        <h5 class="mt-3">
+          Benvenuto nella sezione contatti.
+        </h5>
+        <h5 class="mb-3">
+          Come possiamo aiutarti?
+        </h5>
+        <p class="m-0">
+          Per ogni esigenza, noi di Deliveboo saremo a tua disposizione.
+        </p>
+        <p class="m-0">
+          Se hai riscontrato qualche problema e non sai come procedere, 
+        </p>
+        <p>
+          puoi compilare il seguente form, inserendo tutti i campi richiesti (<span class="text-danger fw-bold">*</span>).
+        </p>
+      </div>
       <!-- con il @submit.prevent, preveniamo l'invio del form -->
-      <form v-if="success === false" @submit.prevent="sendMessage" action="" >
-              <div class="mb-5">
-                  <label for="name" class="form-label"><h3>NOME</h3></label>
-                  <input type="text" class="form-control" id="name" v-model="name" placeholder="nome">
-                  <div v-if="errors.name">
-                      <p class="text-danger">{{ errors.name.join(' ') }}</p>
-                  </div>
-              </div>
-              <div class="mb-5">
-                  <label for="email" class="form-label"><h3>EMAIL</h3></label>
-                  <input type="email" class="form-control" id="email" v-model="email" placeholder="email@example.com">
-                  <div v-if="errors.email">
-                      <p class="text-danger">{{ errors.email.join(' ') }}</p>
-                  </div>
-              </div>
-              <div class="mb-3">
-                  <label for="message" class="form-label"><h3>MESSAGGIO</h3></label>
-                  <div class="form-floating">
-                      <textarea v-model="message" id="message" cols="30" rows="10" class="w-100 h-25 form-control"></textarea>
-                  </div>
-                  <div v-if="errors.message">
-                      <p class="text-danger">{{ errors.message.join(' ') }}</p>
-                  </div>
-              </div>
-              <button class="btn btn-orange">INVIO</button>
+      <form
+        v-if="success === false"
+        @submit.prevent="sendMessage"
+        action=""
+        class="w-50"
+      >
+        <div class="mb-5">
+          <label for="name" class="form-label"><h6 class="m-0">Nome <span class="text-danger fw-bold">*</span></h6></label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            v-model="name"
+            placeholder="nome cognome"
+          />
+          <div v-if="errors.name">
+            <p class="text-danger">{{ errors.name.join(" ") }}</p>
+          </div>
+        </div>
+        <div class="mb-5">
+          <label for="email" class="form-label"
+            ><h6 class="m-0">Email <span class="text-danger fw-bold">*</span></h6></label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            v-model="email"
+            placeholder="email@example.com"
+          />
+          <div v-if="errors.email">
+            <p class="text-danger">{{ errors.email.join(" ") }}</p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label"
+            ><h6 class="m-0">Messaggio <span class="text-danger fw-bold">*</span></h6></label
+          >
+          <div class="form-floating">
+            <textarea
+              v-model="message"
+              id="message"
+              rows="5"
+              class="w-100 h-25 form-control"
+            ></textarea>
+          </div>
+          <div v-if="errors.message">
+            <p class="text-danger">{{ errors.message.join(" ") }}</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-orange mt-4">INVIO</button>
+        </div>
       </form>
 
       <div v-else class="text-success py-5">
-          <h1>L'invio è andato a buon fine</h1>
-          <RouterLink to="/">
-            <button class="btn btn-orange mt-2">
-              Torna alla Homepage
-            </button>
-          </RouterLink>
+        <h1>L'invio è andato a buon fine</h1>
+        <RouterLink to="/">
+          <button class="btn btn-orange mt-2">Torna alla Homepage</button>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import { store } from "../store.js";
-
 
 export default {
   data() {
     return {
-    store,
+      store,
       errors: {},
-      name: '',
-      email: '',
-      message: '',
+      name: "",
+      email: "",
+      message: "",
       success: false,
     };
   },
@@ -68,11 +111,10 @@ export default {
       };
       axios
         .post(`http://127.0.0.1:${store.port}/api/contacts`, data)
-        .then(res => {
-            // console.log(res.data)
+        .then((res) => {
+          // console.log(res.data)
           if (res.data.success === true) {
             this.success = true;
-
           } else {
             this.errors = res.data.errors;
           }
@@ -83,5 +125,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '../style/general';
+@use "../style/general";
 </style>

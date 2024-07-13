@@ -14,6 +14,9 @@
             {{ errorMessage }}
           </div>
 
+        <h1 class="mt-5 p-3 text-center">Totale Ordine: <span class="d-block pt-3">€ {{ store.total_price.toFixed(2) }}</span></h1>
+      <div class="bootstrap-basic w-50 align-self-center">
+        <form @submit.prevent="handleSubmit" class="needs-validation p-3">
           <div class="row">
             <div class="col-sm-6 mb-3">
               <label for="cc-name">Nome Titolare Carta</label>
@@ -25,8 +28,15 @@
             </div>
             <div class="col-sm-6 mb-3">
               <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com"
-                @change="validateEmail">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                v-model="email"
+                placeholder="email@example.com"
+                @change="validateEmail"
+                required
+              />
               <div class="invalid-feedback">
                 Scrivere un email valida per il pagamento.
               </div>
