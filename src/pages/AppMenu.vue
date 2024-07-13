@@ -295,9 +295,4 @@ export default {
         border-radius: 99px;
     }
 }
-
-.back-btn{
-    border-radius: 100%;
-    aspect-ratio: 1/1;
-}
 </style>
