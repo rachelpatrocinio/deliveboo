@@ -11,8 +11,7 @@
         <div class="row">
           <div class="col-sm-6 mb-3">
             <label for="cc-name">Nome Titolare Carta</label>
-            <div class="form-control" id="cc-name"></div>
-            <small class="text-muted">Nome completo</small>
+            <input type="text" class="form-control" id="cc-name" placeholder="Nome Cognome" required>
             <div class="invalid-feedback">
               Nome completo è richiesto
             </div>
@@ -20,7 +19,7 @@
           <div class="col-sm-6 mb-3">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" v-model="email" placeholder="email@email.com"
-              @change="validateEmail">
+              @change="validateEmail" required>
             <div class="invalid-feedback">
               Scrivere un email valida per la spedizione.
             </div>
@@ -30,21 +29,21 @@
         <div class="row">
           <div class="col-sm-4 mb-3">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
+            <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome" required>
             <div class="invalid-feedback">
               Il Nome è richiesto
             </div>
           </div>
           <div class="col-sm-4 mb-3">
             <label for="number">Numero di Telefono</label>
-            <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
+            <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare" required>
             <div class="invalid-feedback">
               Il Numero di telefono è richiesto
             </div>
           </div>
           <div class="col-sm-4 mb-3">
             <label for="address">Indirizzo</label>
-            <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
+            <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo" required>
             <div class="invalid-feedback">
               L'indirizzo è richiesto
             </div>
@@ -54,21 +53,21 @@
         <div class="row">
           <div class="col-sm-6 mb-3">
             <label for="cc-number">Numero carta</label>
-            <div class="form-control" id="cc-number"></div>
+            <input class="form-control" id="cc-number" placeholder="4111 1111 1111 1111" required>
             <div class="invalid-feedback">
               Numero della Carta di Credito è richiesta
             </div>
           </div>
           <div class="col-sm-3 mb-3">
             <label for="cc-expiration">Scadenza</label>
-            <div class="form-control" id="cc-expiration"></div>
+            <input class="form-control" id="cc-expiration" placeholder="MM/AA" required>
             <div class="invalid-feedback">
               Data di scadenza richiesta
             </div>
           </div>
           <div class="col-sm-3 mb-3">
             <label for="cc-cvv">CVV</label>
-            <div class="form-control" id="cc-cvv"></div>
+            <input class="form-control" id="cc-cvv" placeholder="CVV" required>
             <div class="invalid-feedback">
               CVV richiesta
             </div>
