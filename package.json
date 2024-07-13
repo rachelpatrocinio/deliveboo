@@ -17,7 +17,7 @@
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
-    "braintree-web": "^3.102.0",
+    "braintree-web": "^3.103.0",
     "braintree-web-drop-in": "^1.42.0",
     "vue": "^3.4.21",
     "vue-axios": "^3.5.2",
