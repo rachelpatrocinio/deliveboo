@@ -100,7 +100,8 @@ export default {
     },
     changePage(n) {
       if (n === this.currentPage) return
-      this.currentPage = n
+      this.currentPage = n;
+      this.store.pageScroll();
       this.fetchRestaurants()
     }
   },

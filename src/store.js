@@ -10,5 +10,9 @@ export const store = reactive({
 
   windowScroll(){
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  },
+
+  pageScroll(){
+    window.scrollTo({ top: 620, left: 0, behavior: "smooth" });
   }
 })

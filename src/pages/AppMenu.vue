@@ -137,7 +137,8 @@ export default {
         },
         changePage(n) {
             if (n === this.currentPage) return
-            this.currentPage = n
+            this.currentPage = n;
+            this.store.windowScroll();
             this.fetchRestaurant()
         },
         goBack() {
