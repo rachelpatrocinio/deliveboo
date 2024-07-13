@@ -1,13 +1,15 @@
 <template>
-  <div class="container py-5">
+  <div class="container py-5 d-flex flex-column">
     <RouterLink to="/carrello">
         <button class="btn btn-orange">
             RITORNA AL CARRELLO
         </button>
       </RouterLink>
-    <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
-    <div class="bootstrap-basic">
-      <form @submit.prevent="handleSubmit" class="needs-validation">
+      <div class="align-self-center">
+        <h1 class="mt-5 p-3">€ {{ store.total_price.toFixed(2) }}</h1>
+      </div>
+    <div class="bootstrap-basic border-radius w-50 align-self-center">
+      <form @submit.prevent="handleSubmit" class="needs-validation p-3">
         <div class="row">
           <div class="col-sm-6 mb-3">
             <label for="cc-name">Nome Titolare Carta</label>
