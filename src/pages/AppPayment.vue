@@ -1,102 +1,101 @@
 <template>
   <div class="container py-5">
-    <div class="row py-5">
+    <div class=" py-5">
       <RouterLink to="/carrello">
         <button class="btn btn-orange">
           RITORNA AL CARRELLO
         </button>
       </RouterLink>
-      <h1 class="mt-5">€ {{ store.total_price.toFixed(2) }}</h1>
-      <div class="bootstrap-basic">
-        <form @submit.prevent="handleSubmit" class="needs-validation">
-<!-- verifica server -->
-          <div class="alert alert-danger my-5" v-if="errorMessage">
-            {{ errorMessage }}
-          </div>
+      <div>
+        <h1 class="text-center fs-1 f">INSERISCI I TUOI DATI</h1>
+        <h1 class="fs-3 p-3 text-center">Totale: € {{ store.total_price.toFixed(2)
+          }}</h1>
+      </div>
 
-        <h1 class="mt-5 p-3 text-center">Totale Ordine: <span class="d-block pt-3">€ {{ store.total_price.toFixed(2) }}</span></h1>
-      <div class="bootstrap-basic w-50 align-self-center">
-        <form @submit.prevent="handleSubmit" class="needs-validation p-3">
-          <div class="row">
-            <div class="col-sm-6 mb-3">
-              <label for="cc-name">Nome Titolare Carta</label>
-              <div class="form-control" id="cc-name"></div>
-              <small class="text-muted">Nome completo</small>
-              <div class="invalid-feedback">
-                Nome completo è richiesto
-              </div>
-            </div>
-            <div class="col-sm-6 mb-3">
+      <!-- <div class="bootstrap-basic w-50 align-self-center"> -->
+      <form @submit.prevent="handleSubmit" class="needs-validation p-3">
+        <!-- verifica server -->
+        <div class="alert alert-danger my-5" v-if="errorMessage">
+          {{ errorMessage }}
+        </div>
+        <div class="d-flex justify-content-around align-items-start gap-5">
+          <div class="col-6">
+            <div class="mb-3">
               <label for="email">Email</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                v-model="email"
-                placeholder="email@example.com"
-                @change="validateEmail"
-                required
-              />
+              <input type="email" class="form-control py-2" id="email" v-model="email" placeholder="email@example.com"
+                @change="validateEmail" required />
               <div class="invalid-feedback">
-                Scrivere un email valida per il pagamento.
+                Inserire un email valida per il pagamento.
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4 mb-3">
+            <div class=" mb-3">
               <label for="name">Nome</label>
-              <input type="text" class="form-control" id="name" v-model="name" placeholder="Nome">
+              <input type="text" class="form-control py-2" id="name" v-model="name" placeholder="Nome">
               <div class="invalid-feedback">
                 Il Nome è richiesto
               </div>
             </div>
-            <div class="col-sm-4 mb-3">
+            <div class="mb-3">
               <label for="number">Numero di Telefono</label>
-              <input type="text" class="form-control" id="number" v-model="number" placeholder="Numero di Cellulare">
+              <input type="text" class="form-control py-2" id="number" v-model="number"
+                placeholder="Numero di Cellulare">
               <div class="invalid-feedback">
                 Il Numero di telefono è richiesto
               </div>
             </div>
-            <div class="col-sm-4 mb-3">
+            <div class="mb-3">
               <label for="address">Indirizzo</label>
-              <input type="text" class="form-control" id="address" v-model="address" placeholder="Indirizzo">
+              <input type="text" class="form-control py-2" id="address" v-model="address" placeholder="Indirizzo">
               <div class="invalid-feedback">
                 L'indirizzo è richiesto
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-6 mb-3">
-              <label for="cc-number">Numero carta</label>
-              <div class="form-control" id="cc-number"></div>
-              <div class="invalid-feedback">
-                Numero della Carta di Credito è richiesta
+          <!-- BRAINTREE -->
+          <div class="col-6">
+            <div class="row row-cols-1 row-cols-lg-2">
+              <div class="mb-3">
+                <label for="cc-name">Nome Titolare Carta</label>
+                <div class="form-control" id="cc-name"></div>
+                <small class="text-muted">Nome completo</small>
+                <div class="invalid-feedback">
+                  Il Nome completo è richiesto
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="cc-number">Numero carta</label>
+                <div class="form-control" id="cc-number"></div>
+                <div class="invalid-feedback">
+                  Numero della Carta di Credito è richiesta
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="cc-expiration">Scadenza</label>
+                <div class="form-control" id="cc-expiration"></div>
+                <div class="invalid-feedback">
+                  Data di scadenza richiesta
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="cc-cvv">CVV</label>
+                <div class="form-control" id="cc-cvv"></div>
+                <div class="invalid-feedback">
+                  CVV richiesta
+                </div>
               </div>
             </div>
-            <div class="col-sm-3 mb-3">
-              <label for="cc-expiration">Scadenza</label>
-              <div class="form-control" id="cc-expiration"></div>
-              <div class="invalid-feedback">
-                Data di scadenza richiesta
-              </div>
-            </div>
-            <div class="col-sm-3 mb-3">
-              <label for="cc-cvv">CVV</label>
-              <div class="form-control" id="cc-cvv"></div>
-              <div class="invalid-feedback">
-                CVV richiesta
-              </div>
+            <hr class="mb-4">
+            <div class="text-center">
+              <button class="btn btn-orange btn-lg" type="submit" @click="store.windowScroll">
+                <img src="../../../public/icons/credit-card.png" alt="">
+                Paga con <span id="card-brand">Carta</span>
+              </button>
             </div>
           </div>
-          <hr class="mb-4">
-          <div class="text-center">
-            <button class="btn btn-orange btn-lg" type="submit" @click="store.windowScroll">
-              <img src="../../../public/icons/credit-card.png" alt="">
-              Paga con <span id="card-brand">Carta</span>
-            </button>
-          </div>
-        </form>
-      </div>
+
+        </div>
+      </form>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -120,15 +119,21 @@ export default {
       total_price: localStorage.total_price,
       hostedFieldsInstance: null,
       clientInstance: null,
-      errorMessage: '', // aggiungi una variabile per il messaggio di errore
+      errorMessage: '',
+      // !! DA FIXARE !!
+      // dishes: localStorage.chart,
+      // new_dishes: []
     };
   },
   mounted() {
     this.setupBraintree();
     this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
     this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : 0;
-    console.log(store.total_price);
-    console.log(store.restaurant_id)
+    // console.log(store.total_price);
+    // console.log(store.restaurant_id)
+    // this.dishesFor()
+    // console.log(localStorage.chart)
+
   },
   methods: {
     setupBraintree() {
@@ -230,7 +235,8 @@ export default {
           number: this.number,
           address: this.address,
           restaurant_id: this.restaurant_id,
-          total_price: this.total_price
+          total_price: this.total_price,
+          dishes: []
         })
           .then(response => {
             console.log('Payment successful:', response.data);
@@ -240,12 +246,20 @@ export default {
               this.$router.push({ name: 'success' });
               this.deleteData();
             }
+
           })
           .catch(error => {
             console.error('Payment error:', error);
             this.errorMessage = 'Errore durante il pagamento. Riprova più tardi.';
           });
       });
+    },
+    // !! DA FIXARE !!
+    dishesFor() {
+      for(let i = 0; i < localStorage.chart.length; i++) {
+        const dish = localStorage.chart[i]
+        console.log(dish)
+      }
     },
     deleteData() {
       localStorage.removeItem('total_price');
