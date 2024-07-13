@@ -5,7 +5,7 @@
         <button class="btn btn-orange">RITORNA AL CARRELLO</button>
       </RouterLink>
         <h1 class="mt-5 p-3 text-center">Totale Ordine: <span class="d-block pt-3">€ {{ store.total_price.toFixed(2) }}</span></h1>
-      <div class="bootstrap-basic border-radius w-50 align-self-center">
+      <div class="bootstrap-basic w-50 align-self-center">
         <form @submit.prevent="handleSubmit" class="needs-validation p-3">
           <div class="row">
             <div class="col-sm-6 mb-3">
@@ -26,7 +26,7 @@
                 class="form-control"
                 id="email"
                 v-model="email"
-                placeholder="email@email.com"
+                placeholder="email@example.com"
                 @change="validateEmail"
                 required
               />
