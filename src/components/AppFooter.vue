@@ -25,7 +25,7 @@ export default {
         <hr class="mt-5">
         <section class="d-flex flex-wrap text-center web-developers">
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/marco.jpeg" alt="">
+            <img class="developers" src="../../../public/developers/marco.png" alt="">
             <h6>Marco Magnano</h6>
             <figure>
               <a href="https://www.linkedin.com/in/marcomagnano93/" target="_blank">
@@ -37,7 +37,7 @@ export default {
             </figure>
           </div>
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/davide.jpeg" alt="">
+            <img class="developers" src="../../../public/developers/davide.png" alt="">
             <h6>Davide Morellato</h6>
             <figure>
               <a href="https://www.linkedin.com/in/davide-m-4826ab177/" target="_blank">
@@ -49,7 +49,7 @@ export default {
             </figure>
           </div>
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/rachel.jpeg" alt="">
+            <img class="developers" src="../../../public/developers/rachel.png" alt="">
             <h6>Rachel A. Patrocinio</h6>
             <figure>
               <a href="https://www.linkedin.com/in/rachel-anne-patrocinio-80811b315/" target="_blank">
@@ -61,7 +61,7 @@ export default {
             </figure>
           </div>
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/gabriele.jpeg" alt="" target="_blank">
+            <img class="developers" src="../../../public/developers/gabriele.png" alt="" target="_blank">
             <h6>Gabriele Corbiani</h6>
             <figure>
               <a href="https://www.linkedin.com/in/gabriele-corbani-01a11a315/">
@@ -73,7 +73,7 @@ export default {
             </figure>
           </div>
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/fabio.jpeg" alt="" target="_blank">
+            <img class="developers" src="../../../public/developers/fabio.png" alt="" target="_blank">
             <h6>Fabio Mazzilli</h6>
             <figure>
               <a href="https://www.linkedin.com/in/fabio-mazzilli-front-end-developer/">
