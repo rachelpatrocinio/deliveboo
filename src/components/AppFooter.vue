@@ -23,8 +23,8 @@ export default {
         </div>
         <div class="col-5 text-end">DeliveBoo S.p.a</div>
         <hr class="mt-5">
-        <section class="d-flex flex-wrap text-center web-developers">
-          <div class="col-12 col-md">
+        <section class="d-flex justify-content-between flex-column flex-md-row text-center web-developers">
+          <div>
             <img class="developers" src="../../../public/developers/marco.png" alt="">
             <h6>Marco Magnano</h6>
             <figure>
@@ -36,9 +36,8 @@ export default {
               </a>
             </figure>
           </div>
-          <div class="col-12 col-md">
-              <div>
-                <img class="developers" src="../../../public/developers/davide.png" alt="">
+          <div>
+            <img class="developers" src="../../../public/developers/davide.png" alt="">
                 <h6>Davide Morellato</h6>
                 <figure>
                   <a href="https://www.linkedin.com/in/davide-m-4826ab177/" target="_blank">
@@ -48,9 +47,9 @@ export default {
                     <img src="../../../public/icons/github.png" alt="Github">
                   </a>
                 </figure>
-            </div>
-            <div class="col-12 col-md">
-              <img class="developers" src="../../../public/developers/rachel.png" alt="">
+          </div>
+          <div>
+            <img class="developers" src="../../../public/developers/rachel.png" alt="">
               <h6>Rachel A. Patrocinio</h6>
               <figure>
                 <a href="https://www.linkedin.com/in/rachel-anne-patrocinio-80811b315/" target="_blank">
@@ -60,9 +59,9 @@ export default {
                   <img src="../../../public/icons/github.png" alt="Github">
                 </a>
               </figure>
-            </div>
-            <div class="col-12 col-md">
-              <img class="developers" src="../../../public/developers/gabriele.png" alt="" target="_blank">
+          </div>
+          <div>
+            <img class="developers" src="../../../public/developers/gabriele.png" alt="" target="_blank">
               <h6>Gabriele Corbiani</h6>
               <figure>
                 <a href="https://www.linkedin.com/in/gabriele-corbani-01a11a315/">
@@ -72,9 +71,9 @@ export default {
                   <img src="../../../public/icons/github.png" alt="Github">
                 </a>
               </figure>
-            </div>
-            <div class="col-12 col-md">
-              <img class="developers" src="../../../public/developers/fabio.png" alt="" target="_blank">
+          </div>
+          <div>
+            <img class="developers" src="../../../public/developers/fabio.png" alt="" target="_blank">
               <h6>Fabio Mazzilli</h6>
               <figure>
                 <a href="https://www.linkedin.com/in/fabio-mazzilli-front-end-developer/">
@@ -84,8 +83,8 @@ export default {
                   <img src="../../../public/icons/github.png" alt="Github">
                 </a>
               </figure>
-            </div>
           </div>
+              
         </section>
       </div>
     </div>
