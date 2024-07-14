@@ -37,52 +37,54 @@ export default {
             </figure>
           </div>
           <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/davide.png" alt="">
-            <h6>Davide Morellato</h6>
-            <figure>
-              <a href="https://www.linkedin.com/in/davide-m-4826ab177/" target="_blank">
-                <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://github.com/Davide-Morellato" target="_blank">
-                <img src="../../../public/icons/github.png" alt="Github">
-              </a>
-            </figure>
-          </div>
-          <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/rachel.png" alt="">
-            <h6>Rachel A. Patrocinio</h6>
-            <figure>
-              <a href="https://www.linkedin.com/in/rachel-anne-patrocinio-80811b315/" target="_blank">
-                <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://github.com/rachelpatrocinio" target="_blank">
-                <img src="../../../public/icons/github.png" alt="Github">
-              </a>
-            </figure>
-          </div>
-          <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/gabriele.png" alt="" target="_blank">
-            <h6>Gabriele Corbiani</h6>
-            <figure>
-              <a href="https://www.linkedin.com/in/gabriele-corbani-01a11a315/">
-                <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://github.com/corgab" target="_blank">
-                <img src="../../../public/icons/github.png" alt="Github">
-              </a>
-            </figure>
-          </div>
-          <div class="col-12 col-md">
-            <img class="developers" src="../../../public/developers/fabio.png" alt="" target="_blank">
-            <h6>Fabio Mazzilli</h6>
-            <figure>
-              <a href="https://www.linkedin.com/in/fabio-mazzilli-front-end-developer/">
-                <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://github.com/fabiomazzilli85" target="_blank">
-                <img src="../../../public/icons/github.png" alt="Github">
-              </a>
-            </figure>
+              <div>
+                <img class="developers" src="../../../public/developers/davide.png" alt="">
+                <h6>Davide Morellato</h6>
+                <figure>
+                  <a href="https://www.linkedin.com/in/davide-m-4826ab177/" target="_blank">
+                    <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
+                  </a>
+                  <a href="https://github.com/Davide-Morellato" target="_blank">
+                    <img src="../../../public/icons/github.png" alt="Github">
+                  </a>
+                </figure>
+            </div>
+            <div class="col-12 col-md">
+              <img class="developers" src="../../../public/developers/rachel.png" alt="">
+              <h6>Rachel A. Patrocinio</h6>
+              <figure>
+                <a href="https://www.linkedin.com/in/rachel-anne-patrocinio-80811b315/" target="_blank">
+                  <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/rachelpatrocinio" target="_blank">
+                  <img src="../../../public/icons/github.png" alt="Github">
+                </a>
+              </figure>
+            </div>
+            <div class="col-12 col-md">
+              <img class="developers" src="../../../public/developers/gabriele.png" alt="" target="_blank">
+              <h6>Gabriele Corbiani</h6>
+              <figure>
+                <a href="https://www.linkedin.com/in/gabriele-corbani-01a11a315/">
+                  <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/corgab" target="_blank">
+                  <img src="../../../public/icons/github.png" alt="Github">
+                </a>
+              </figure>
+            </div>
+            <div class="col-12 col-md">
+              <img class="developers" src="../../../public/developers/fabio.png" alt="" target="_blank">
+              <h6>Fabio Mazzilli</h6>
+              <figure>
+                <a href="https://www.linkedin.com/in/fabio-mazzilli-front-end-developer/">
+                  <img src="../../../public/icons/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/fabiomazzilli85" target="_blank">
+                  <img src="../../../public/icons/github.png" alt="Github">
+                </a>
+              </figure>
+            </div>
           </div>
         </section>
       </div>
