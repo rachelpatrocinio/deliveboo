@@ -4,34 +4,40 @@
     <section class="restaurants py-5 h-100">
       <div class="container">
         <div class="row">
-
+        <!-- TYPES -->
           <div class="col-12 col-md-4 col-lg-2 d-flex flex-column types mb-2" id="types">
             <ul class="p-0 m-0 types-content">
-              <li class="text-center my-2"><h3>Filtra Tipologie</h3></li>
-              <li class="p-3 d-flex">
+              <li class="text-center my-2">
+                <h3>Filtra Tipologie</h3>
+              </li>
+              <li class="py-2 col">
                 <ul class="d-flex flex-wrap p-0">
                   <li v-for="type in types" :key="type.id" class="col-6 col-md-12 my-2 px-2 text-white">
-                    <input class="pointer d-none checkbox" :id="type.name" :value="type.name" v-model="type_names" type="checkbox">
+                    <input class="pointer d-none checkbox" :id="type.name" :value="type.name" v-model="type_names"
+                      type="checkbox">
                     <label :class="type.name" class="type-badge" :for="type.name">{{ type.name }}</label>
                   </li>
                 </ul>
               </li>
-            </ul>       
+            </ul>
           </div>
 
           <div class="col-12 col-md-8 col-lg-10">
-            <ul class="p-0 m-0 d-flex flex-wrap">
+            <ul class="p-0 m-0 row flex-wrap">
               <li v-for="restaurant in restaurants" :key="restaurant.id" class="col-12 col-md-6 col-lg-4 mb-3 p-2">
                 <AppCard :restaurant="restaurant" @click="store.windowScroll"></AppCard>
               </li>
             </ul>
             <div v-if="lastPage > 1">
               <div class="d-flex gap-2 justify-content-center">
-                <p v-for="n in lastPage" @click="changePage(n)" :key="n" :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}</p>
+                <p v-for="n in lastPage" @click="changePage(n)" :key="n"
+                  :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}
+                </p>
               </div>
 
             </div>
-            <h2 class="text-center text-danger mt-5" v-if="restaurants.length === 0 && searchPerformed">Non ho trovato nessun ristorante!</h2>
+            <h2 class="text-center text-danger mt-5" v-if="restaurants.length === 0 && searchPerformed">Non ho trovato
+              nessun ristorante!</h2>
           </div>
         </div>
       </div>
@@ -72,7 +78,7 @@ export default {
         params.types = this.type_names.join(",");
       }
       axios
-        .get(`http://127.0.0.1:${store.port}/api/restaurants`, {params})
+        .get(`http://127.0.0.1:${store.port}/api/restaurants`, { params })
         .then((res) => {
           this.restaurants = res.data.data; // Popola l'array dei ristoranti
           this.searchPerformed = true; // Indica che una ricerca è stata effettuata
@@ -84,10 +90,10 @@ export default {
     },
     //aggiorna i dati nel local storage se diversi da quelli salvati
     keepUp() {
-            this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
-            this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
-            this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
-        },
+      this.store.chart = localStorage.chart ? JSON.parse(localStorage.chart) : [];
+      this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
+      this.store.total_qty = localStorage.total_qty ? JSON.parse(localStorage.total_qty) : 0;
+    },
     // Recupera le tipologie tramite l'API
     fetchTypes() {
       axios.get(`http://127.0.0.1:${store.port}/api/types`)
@@ -110,7 +116,7 @@ export default {
     this.fetchTypes()
     this.fetchRestaurants()
   },
-  mounted(){
+  mounted() {
     this.keepUp();
   },
   watch: {
@@ -130,27 +136,23 @@ export default {
 <style lang="scss" scoped>
 @use '../style/general';
 
-.types{
-  .types-content{
+.types {
+  .types-content {
     border: 2px solid var(--color-darkgreen);
     border-radius: 10px;
   }
 
-  li .type-badge{
+  li .type-badge {
     font-weight: 600;
-    &:hover{
+
+    &:hover {
       transform: scale(1.1);
     }
 
   }
 }
 
-.checkbox:checked + label {
+.checkbox:checked+label {
   border: 4px solid white;
 }
-
-
-
-
-
 </style>

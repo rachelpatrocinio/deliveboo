@@ -20,12 +20,12 @@
                                     <img class="dish-img" src="../../../public/logo.png" alt="Foto Piatto" />
                                 </figure>
                             </div>
-                            <div class="card-body d-flex flex-wrap justify-content-between align-items-center text-center">
+                            <div class="card-body d-flex flex-wrap flex-md-column flex-lg-row justify-content-between align-items-center text-center">
                                 <div class="col-12 col-md-8">
                                     <p class="ingredients d-none d-md-block">{{ dish.description_ingredients }}</p>
                                     <p>€ {{ dish.price }}</p>
                                 </div>
-                                <div class="quantity my-md-4 col-12 col-md-4">
+                                <div class="quantity col-12 col-md-4">
                                     <div class="d-flex justify-content-center gap-2 mt-md-2">
                                         <button class="btn btn-orange" @click="addToChart(dish)">
                                             AGGIUNGI
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 my-4 my-md-0">
                 <div class="summary p-3">
                     <h3 class="mb-4"> Riepilogo Ordine</h3>
                     <ul class="card-body">
@@ -45,7 +45,7 @@
                             carrello</li>
                         <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
                             <div class="d-flex justify-content-between">
-                                <p class="decinc me-1">
+                                <p class="decinc me-1 ">
                                     <img class="pointer" src="../../public/icons/minus-sign.png" alt=""
                                         @click="decrement(cartDish)">
                                     <img class="pointer" src="../../public/icons/plus.png" @click="increment(cartDish)">
@@ -65,13 +65,14 @@
                             {{ store.total_price.toFixed(2) }}€
                         </strong>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="d-flex justify-content-between flex-md-column align-items-center gap-2 mt-3">
                         <RouterLink to="/carrello">
-                            <button class="btn btn-orange" @click="store.windowScroll">
+                            <button class="btn btn-orange d-block" @click="store.windowScroll">
                                 VAI AL CARRELLO
                             </button>
                         </RouterLink>
-                        <div class="btn btn-dark col-4" @click="emptChart()">Svuota il carrello</div>
+                        <button class="btn btn-dark d-block px-3" @click="emptChart()">Svuota il carrello</button>
+
                     </div>
                 </div>
             </div>
@@ -276,8 +277,7 @@ export default {
 
 .dish-img {
     aspect-ratio: 1/1;
-    object-fit: cover;
-    width: 150px;
+    object-fit: contain;
 }
 
 .one-restaurant-message {

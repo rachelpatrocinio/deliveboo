@@ -44,11 +44,11 @@ export default {
       </div>
     </div>
   </header>
-  <div class="dropdown d-flex flex-column col-12 text-center p-4" v-if="dropdown === true">
-    <RouterLink class="link mt-2" to="/admin" @click="dropdown = false">Collabora con noi!</RouterLink>
-    <RouterLink class="link mt-2" to="/contatti" @click="dropdown = false">Contattaci</RouterLink>
+  <div class="dropdown d-flex flex-column col-12 text-center my-4" v-if="dropdown === true">
+    <RouterLink class="link py-3" to="/admin" @click="dropdown = false">Collabora con noi!</RouterLink>
+    <RouterLink class="link py-3" to="/contatti" @click="dropdown = false">Contattaci</RouterLink>
     <RouterLink to="/carrello" class="d-flex justify-content-center mt-2 link" @click="dropdown = false">
-      <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
+      <img class="cart-button py-2" src="../../../public/icons/cart.png" alt="">
       <div v-if="store.total_qty !== 0">{{ store.total_qty }}</div>
     </RouterLink>
   </div>

@@ -1,11 +1,12 @@
 <template>
   <div class="container py-5">
-    <div class=" py-5">
-      <RouterLink to="/carrello">
+    <div class="my-5">
+        <RouterLink to="/carrello" class="d-flex justify-content-center justify-content-md-start py-3 ">
         <button class="btn btn-orange">
           RITORNA AL CARRELLO
         </button>
       </RouterLink>
+
       <div>
         <h1 class="text-center fs-1 f">INSERISCI I TUOI DATI</h1>
         <h1 class="fs-3 p-3 text-center">Totale: € {{ store.total_price.toFixed(2)
@@ -18,8 +19,8 @@
         <div class="alert alert-danger my-5" v-if="errorMessage">
           {{ errorMessage }}
         </div>
-        <div class="d-flex justify-content-around align-items-start gap-5">
-          <div class="col-6">
+        <div class="row justify-content-around align-items-start gap-5 flex-column flex-lg-row">
+          <div class="col-lg-6">
             <div class="mb-3">
               <label for="email">Email</label>
               <input type="email" class="form-control py-2" id="email" v-model="email" placeholder="email@example.com"
@@ -52,7 +53,7 @@
             </div>
           </div>
           <!-- BRAINTREE -->
-          <div class="col-6">
+          <div class="col">
             <div class="row row-cols-1 row-cols-lg-2">
               <div class="mb-3">
                 <label for="cc-name">Nome Titolare Carta</label>

@@ -19,9 +19,9 @@
       </div>
       <ul class="mt-5" v-if="store.chart.length > 0">
         <li class="d-flex" v-for="(dish, i) in store.chart" :key="i">
-          <div class="col-2 d-md-flex">
+          <div class="col-2 d-md-flex gap-5">
             <img class="pointer" src="../../public/icons/minus-sign.png" alt="" @click="decrement(dish)">
-            <span class="mx-4 d-none d-md-block">{{ dish.qty }}</span>
+            <!-- <span class="mx-4 d-none d-md-block">{{ dish.qty }}</span> -->
             <img class="pointer" src="../../public/icons/plus.png" @click="increment(dish)">
           </div>
           <p class="col-6 col-md-4 m-0">
