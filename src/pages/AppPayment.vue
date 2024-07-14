@@ -120,19 +120,16 @@ export default {
       hostedFieldsInstance: null,
       clientInstance: null,
       errorMessage: '',
-      // !! DA FIXARE !!
-      // dishes: localStorage.chart,
-      // new_dishes: []
+      new_dishes: [],
     };
   },
   mounted() {
     this.setupBraintree();
     this.store.total_price = localStorage.total_price ? JSON.parse(localStorage.total_price) : 0;
     this.store.restaurant_id = localStorage.restaurant_id ? JSON.parse(localStorage.restaurant_id) : 0;
-    // console.log(store.total_price);
-    // console.log(store.restaurant_id)
-    // this.dishesFor()
-    // console.log(localStorage.chart)
+    const storedChart = localStorage.getItem('chart');
+    this.store.chart = JSON.parse(storedChart);
+    this.dishesFor();
 
   },
   methods: {
@@ -226,7 +223,7 @@ export default {
           this.handleBraintreeError(err);
           return;
         }
-        console.log('Payment Method Nonce:', payload.nonce);
+        // console.log('Payment Method Nonce:', payload.nonce);
         // Invia il nonce al backend
         axios.post(`http://127.0.0.1:${store.port}/api/checkout`, {
           paymentMethodNonce: payload.nonce,
@@ -236,15 +233,18 @@ export default {
           address: this.address,
           restaurant_id: this.restaurant_id,
           total_price: this.total_price,
-          dishes: []
+          dishes: this.new_dishes,
         })
           .then(response => {
-            console.log('Payment successful:', response.data);
-            if (response.success === false) {
-              this.errorMessage = 'Pagamento non riuscito';
-            } else {
+            // console.log('Payment successful:', response.data);
+            // console.log(response.data.success)
+            if (response.data.success === true) {
               this.$router.push({ name: 'success' });
               this.deleteData();
+
+            } else {
+              this.errorMessage = 'Pagamento non riuscito';
+
             }
 
           })
@@ -254,11 +254,17 @@ export default {
           });
       });
     },
-    // !! DA FIXARE !!
     dishesFor() {
-      for(let i = 0; i < localStorage.chart.length; i++) {
-        const dish = localStorage.chart[i]
-        console.log(dish)
+      for (let i = 0; i < this.store.chart.length; i++) {
+        const dish = this.store.chart[i];
+        
+        const dishData = {
+          id: dish.id,
+          qty: dish.qty
+        }
+
+        this.new_dishes.push(dishData)
+        // console.log(this.new_dishes)
       }
     },
     deleteData() {
@@ -267,7 +273,7 @@ export default {
       localStorage.removeItem('chart');
       localStorage.removeItem('total_qty');
     }
-  },
+  }
 };
 </script>
 

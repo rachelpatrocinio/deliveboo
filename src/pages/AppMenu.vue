@@ -129,7 +129,7 @@ export default {
                         dish.qty = 1;
                     });
 
-                    console.log(this.currentPage)
+                    // console.log(this.currentPage)
                 })
                 .catch((error) => {
                     console.error("There was an error fetching the restaurant data!", error);
@@ -168,7 +168,7 @@ export default {
             this.store.total_qty = 0;
             for (let i = 0; i < this.store.chart.length; i++) {
                 const singleDish = this.store.chart[i];
-                console.log(singleDish);
+                // console.log(singleDish);
                 const singleDishQty = singleDish.qty
                 this.store.total_qty += singleDishQty
             }
@@ -176,7 +176,7 @@ export default {
         },
         increment(dish) {
             dish.qty++;
-            this.updateQty(dish);
+            // this.updateQty(dish);
             this.totalPrice();
             this.totalQty();
             this.totalPrice();
@@ -184,7 +184,7 @@ export default {
         },
         decrement(dish) {
             if (dish.qty >= 2) dish.qty--;
-            this.updateQty(dish);
+            // this.updateQty(dish);
             this.totalQty();
             this.totalPrice();
             this.keep();
@@ -193,16 +193,16 @@ export default {
             this.store.total_price = 0;
             for (let i = 0; i < this.store.chart.length; i++) {
                 const singleDish = this.store.chart[i];
-                console.log(singleDish);
+                // console.log(singleDish);
                 const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
                 this.store.total_price += singleDishPrice
             }
             this.keep();
         },
         // Debug
-        updateQty(dish) {
-            console.log(`${dish.name}: ${dish.qty}`);
-        },
+        // updateQty(dish) {
+        //     console.log(`${dish.name}: ${dish.qty}`);
+        // },
         //funzione per il salvataggio del carrello nel localStorage come stringa [JSON.stringify()]
         keep() {
             localStorage.chart = JSON.stringify(this.store.chart);

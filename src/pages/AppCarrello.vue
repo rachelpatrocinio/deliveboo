@@ -77,7 +77,9 @@ export default {
   methods: {
     //funzione per il salvataggio del carrello nel localStorage
     saveChart() {
+      localStorage.setItem('chart', this.store.chart);
       localStorage.chart = JSON.stringify(this.store.chart);
+      
     },
     // salva i dati nel local storage
     keep() {
@@ -118,14 +120,14 @@ export default {
       this.store.total_price = 0;
       for (let i = 0; i < this.store.chart.length; i++) {
         const singleDish = this.store.chart[i];
-        console.log(singleDish);
+        // console.log(singleDish);
         const singleDishPrice = this.partialTotal(singleDish.price, singleDish.qty)
         this.store.total_price += singleDishPrice
 
         // recuperare restaurant_id
         const restaurant_id = singleDish.restaurant_id
         this.store.restaurant_id = restaurant_id
-        console.log(this.store.restaurant_id)
+        // console.log(this.store.restaurant_id)
       }
       localStorage.restaurant_id = JSON.stringify(this.store.restaurant_id);
       this.keep();
@@ -134,7 +136,7 @@ export default {
       this.store.total_qty = 0;
       for (let i = 0; i < this.store.chart.length; i++) {
         const singleDish = this.store.chart[i];
-        console.log(singleDish);
+        // console.log(singleDish);
         const singleDishQty = singleDish.qty
         this.store.total_qty += singleDishQty
       }
@@ -142,16 +144,16 @@ export default {
     },
     increment(dish) {
       dish.qty++;
-      this.updateQty(dish);
-      console.log(this.totalDishPrice);
+      // this.updateQty(dish);
+      // console.log(this.totalDishPrice);
       this.totalPrice();
       this.totalQty();
       this.keep();
     },
     decrement(dish) {
       if (dish.qty >= 2) dish.qty--;
-      this.updateQty(dish);
-      console.log(this.totalDishPrice);
+      // this.updateQty(dish);
+      // console.log(this.totalDishPrice);
       this.totalPrice();
       this.totalQty();
       this.keep();
@@ -165,9 +167,9 @@ export default {
       this.message = false;
     },
     // Debug
-    updateQty(dish) {
-      console.log(`${dish.name}: ${dish.qty}`);
-    },
+    // updateQty(dish) {
+    //   console.log(`${dish.name}: ${dish.qty}`);
+    // },
     goBack() {
       this.$router.back();
     },
