@@ -104,7 +104,7 @@
           <hr />
           <div class="text-end">
             <h1 class="fs-4">Totale</h1>
-            <h1 class="fs-6">{{ store.total_price.toFixed(2) }}€</h1>
+            <h1 class="fs-6">{{ store.total_price.toFixed(2) }} €</h1>
           </div>
           <div
             class="d-flex justify-content-between flex-md-column align-items-center gap-2 mt-3"
