@@ -41,7 +41,7 @@ export default {
       <div class="col-8 d-flex justify-content-around text-end d-none d-md-block">
         <RouterLink class="link col-4 px-2" to="/admin" @click="store.windowScroll">Collabora con noi!</RouterLink>
         <RouterLink class="link col-4 px-2" to="/contatti" @click="store.windowScroll">Contattaci</RouterLink>
-        <RouterLink to="/carrello" class="position-relative col-4 px-2">
+        <RouterLink to="/carrello" class="position-relative col-4 px-2" @click="store.windowScroll">
           <img class="cart-button mx-2" src="../../../public/icons/cart.png" alt="">
           <div v-if="store.total_qty !== 0" class="qty">{{ store.total_qty }}</div>
         </RouterLink>
