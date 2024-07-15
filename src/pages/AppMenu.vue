@@ -43,27 +43,26 @@
                     <ul class="card-body">
                         <li class="text-center" v-if="store.chart.length === 0"> Non hai aggiunto nessun piatto nel
                             carrello</li>
-                        <li class="d-flex justify-content-between" v-for="(cartDish, i) in store.chart" :key="i">
-                            <div class="d-flex justify-content-between">
-                                <p class="decinc me-1 ">
+                        <li class="d-flex justify-content-between flex-md-column flex-xl-row py-md-2" v-for="(cartDish, i) in store.chart" :key="i">
+                            <!-- <div class="d-flex justify-content-between"> -->
+                                <div class="decinc py-2 d-flex gap-lg-2">
                                     <img class="pointer" src="../../public/icons/minus-sign.png" alt=""
                                         @click="decrement(cartDish)">
                                     <img class="pointer" src="../../public/icons/plus.png" @click="increment(cartDish)">
-                                </p>
-                                <p>
+                                </div>
+                                <p class="m-0 px-2">
                                     {{ cartDish.qty }}x {{ cartDish.name }}
                                 </p>
-                            </div>
-                            <p>
-                                {{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €
-                            </p>
+                                <p class="my-0">{{ partialTotal(cartDish.price, cartDish.qty).toFixed(2) }} €</p>
+
+                            <!-- </div> -->
+
                         </li>
                     </ul>
                     <hr>
                     <div class="text-end">
-                        <strong>
-                            {{ store.total_price.toFixed(2) }}€
-                        </strong>
+                        <h1 class="fs-4">Totale</h1>
+                        <h1 class="fs-6">{{ store.total_price.toFixed(2) }}€</h1>
                     </div>
                     <div class="d-flex justify-content-between flex-md-column align-items-center gap-2 mt-3">
                         <RouterLink to="/carrello">
