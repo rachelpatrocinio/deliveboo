@@ -42,9 +42,23 @@
       </ul>
 
       <hr>
-      <div v-if="store.chart.length > 0" class="my-4 d-flex justify-content-between">
-        <h3>Totale: € {{ store.total_price.toFixed(2) }}</h3>
-        <a v-if="store.chart.length > 0" href="/pagamento" class="btn btn-orange">VAI AL PAGAMENTO</a> <!-- NON TOCCARE -->
+      <div
+        v-if="store.chart.length > 0"
+        class="my-4 d-flex justify-content-between"
+      >
+        <div class="col-auto me-3">
+          <h4>Totale</h4>
+          <p class="fs-4">€ {{ store.total_price.toFixed(2) }}</p>
+        </div>
+        <div class="col-auto">
+          <a
+            v-if="store.chart.length > 0"
+            href="/pagamento"
+            class="btn btn-orange"
+            >VAI AL PAGAMENTO</a
+          >
+        </div>
+        <!-- NON TOCCARE -->
       </div>
 
       <div v-if="store.chart.length === 0" class="py-5">
