@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
-    <div class="d-flex justify-content-center py-5 flex-sm-column">
-      <div class="text-center p-3 col-7 col-sm-auto">
+    <div class="d-flex justify-content-center align-items-center py-5 flex-column">
+      <div class="text-center p-3 col-12 col-sm-auto">
         <h1>Contattaci</h1>
         <h5 class="mt-3">
           Benvenuto nella sezione contatti.
@@ -21,7 +21,7 @@
         </p>
       </div>
       <!-- con il @submit.prevent, preveniamo l'invio del form -->
-      <div class="">
+      <div class="col-12 col-md-6">
         <form v-if="success === false" @submit.prevent="sendMessage" action="">
           <div class="mb-5">
             <label for="name" class="form-label">
