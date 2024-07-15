@@ -137,10 +137,7 @@
         </p>
       </div>
     </div>
-    <div
-      v-if="message === true"
-      class="one-restaurant-message text-center p-5 d-flex justify-content-center"
-    >
+    <div v-if="message === true"class="one-restaurant-message text-center p-5 d-flex justify-content-center">
       <div class="modal-message p-5 col-12 col-md-6">
         <h4>Puoi selezionare piatti da un solo ristorante alla volta!</h4>
         <div class="d-flex gap-3 flex-wrap justify-content-center py-3">
@@ -152,6 +149,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="added p-3 text-success" v-if="add === true">
+      <img src="../../public/icons/check.png" alt="">
+      AGGIUNTO SUL CARRELLO
     </div>
   </div>
 </template>
@@ -174,6 +175,7 @@ export default {
       idCard: "",
       lastPage: null,
       currentPage: 1,
+      add: false
     };
   },
   methods: {
@@ -326,6 +328,12 @@ export default {
         // this.keep();
         this.totalPrice();
         this.keep();
+
+        this.add = true;
+        setTimeout(() => {
+          this.add = false;
+        }, 3000);
+
       } else {
         this.qtyError = true;
       }
@@ -397,5 +405,26 @@ export default {
     padding: 2px;
     border-radius: 99px;
   }
+}
+
+.added{
+  position: fixed;
+  right: 30px;
+  bottom: 100px;
+  z-index: 99;
+  background-color: white;
+  border-radius: 10px;
+  animation: slide-in-right 0.3s ease-in;
+}
+
+@keyframes slide-in-right{
+    0%{
+        opacity:0;
+        transform: translateX(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }
 </style>
