@@ -127,7 +127,7 @@ header{
 
 .dropdown{
   background-color: var(--color-orange);
-  top: 70px;
+  top: 68px;
   position: fixed;
   z-index: 99;
 
