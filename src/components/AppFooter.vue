@@ -17,9 +17,9 @@ export default {
     <div class="container py-5 text-white">
       <div class="row justify-content-between">
         <div class="col-5">
-          <a href="https://www.facebook.com/" target="_blank"><img class="px-2" src="../../../public/icons/facebook.png" alt=""></a>
-          <a href="https://www.instagram.com/" target="_blank"><img class="px-2" src="../../../public/icons/instagram.png" alt=""></a>
-          <a href="https://www.youtube.com/watch?v=HDCfV4s__Pg" target="_blank"><img class="px-2" src="../../../public/icons/youtube.png" alt=""></a>
+          <a href="https://www.facebook.com/story.php/?story_fbid=1156932028684753&id=100031039012164" target="_blank"><img class="px-2" src="../../../public/icons/facebook.png" alt=""></a>
+          <a href="https://www.instagram.com/p/C70sR3ItcU5/" target="_blank"><img class="px-2" src="../../../public/icons/instagram.png" alt=""></a>
+          <a href="https://www.youtube.com/watch?v=fjQPLqm8cJM" target="_blank"><img class="px-2" src="../../../public/icons/youtube.png" alt=""></a>
         </div>
         <div class="col-5 text-end">DeliveBoo S.p.a</div>
         <hr class="mt-5">
