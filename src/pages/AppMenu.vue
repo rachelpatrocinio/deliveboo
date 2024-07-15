@@ -131,7 +131,7 @@
           @click="changePage(n)"
           :key="n"
           :class="n === currentPage ? 'bg-green text-white' : 'bg-white'"
-          class="cursor-pointer btn"
+          class="cursor-pointer btn width-btn"
         >
           {{ n }}
         </p>
