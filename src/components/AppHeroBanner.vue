@@ -10,7 +10,7 @@
                         chef. Scopri nuove cucine, esplora menù variegati e goditi la comodità di un servizio rapido e
                         affidabile!</p>
                     <div class="text-center">
-                        <button class="btn btn-orange pb-1">
+                        <button class="btn btn-orange pb-1 grow">
                             <a @click="store.pageScroll">ORDINA ORA!</a>
                         </button>
                     </div>
@@ -39,6 +39,33 @@ export default {
 
     .title {
         font-size: 50px;
+    }
+}
+
+.grow{
+    animation-name: grow;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes grow{
+    0%{
+        transform: scale(1.1);
+        transition: all .1s ease-in-out;
+
+    }
+
+    50%{
+        transform: scale(1.0);
+        transition: all .1s ease-in-out;
+
+    }
+
+    100%{
+        transform: scale(1.1);
+        transition: all .1s ease-in-out;
+
     }
 }
 </style>

@@ -361,7 +361,7 @@ export default {
 
 .dish-img {
   aspect-ratio: 1/1;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .one-restaurant-message {
