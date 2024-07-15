@@ -17,13 +17,10 @@
               alt="Foto Ristorante"
             />
         </figure>
-        <h5 class="mt-2 ms-2">
-          <font-awesome-icon
-            :icon="['fas', 'map-location-dot']"
-            class="text-warning"
-          />
+        <img class="map mt-3 ms-4" src="../../../public/icons/map.png" alt="map">
+        <h6 class="mt-4 ms-2">
           {{ restaurant.address }}
-        </h5>
+        </h6>
       </div>
       <div class="col-12 col-md-8">
         <div class="row">
@@ -351,6 +348,11 @@ export default {
 
 <style lang="scss" scoped>
 @use "../style/general";
+
+.map{
+    width: 25px;
+    height: 25px;
+}
 
 .item-number {
   width: 50px;
