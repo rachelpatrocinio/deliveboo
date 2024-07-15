@@ -57,10 +57,12 @@
           </div>
         </form>
 
-        <div v-else class="text-success py-5">
-          <h1>L'invio è andato a buon fine</h1>
+        <div v-else class="text-center py-3">
+          <h2 class="text-success ">L'invio è andato a buon fine.</h2>
+          <h4 class="pt-3 m-0">Grazie per averci contatto.</h4>
+          <h5 class="m-1">Le risponderemo al più presto!</h5>
           <RouterLink to="/">
-            <button class="btn btn-orange mt-2">Torna alla Homepage</button>
+            <button class="btn btn-orange mt-5">Torna alla Homepage</button>
           </RouterLink>
         </div>
       </div>
