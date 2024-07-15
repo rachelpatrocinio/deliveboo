@@ -5,7 +5,7 @@
     <img v-if="restaurant.thumb" class="restaurant-img mt-3" :src="imgPath + restaurant.thumb" alt="Foto Ristorante">
     <img v-else class="restaurant-img mt-3" src="../../../public/logo.png" alt="Foto Ristorante">
     <ul class="d-flex justify-content-center align-center flex-md-column flex-xxl-row mt-3 p-0 gap-1 gap-lg-3 ">
-        <li class="px-2 type-badge text-white btn btn-primary py-2" v-for="type in restaurant.types">
+        <li class="px-2 type-badge text-white btn py-2" :class="type.name" v-for="type in restaurant.types">
          {{ type.name }}
         </li>
     </ul>

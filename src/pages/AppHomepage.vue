@@ -31,7 +31,7 @@
             <div v-if="lastPage > 1">
               <div class="d-flex gap-2 justify-content-center">
                 <p v-for="n in lastPage" @click="changePage(n)" :key="n"
-                  :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}
+                  :class="n === currentPage ? 'bg-green text-white' : 'bg-white'" class="cursor-pointer btn">{{ n }}
                 </p>
               </div>
 
