@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
     <div class="d-flex justify-content-center align-items-center py-5 flex-column">
-      <div class="text-center p-3 col-12 col-sm-auto">
+      <div class="text-center p-3 col-12 col-sm-auto" :class="success === true ? 'd-none' : 'd-block'">
         <h1>Contattaci</h1>
         <h5 class="mt-3">
           Benvenuto nella sezione contatti.
