@@ -141,4 +141,16 @@ header{
     }
   }
 }
+
+@media screen and (min-width: 450px){
+  .dropdown{
+    top: 92px;
+  }
+}
+
+@media screen and (min-width: 789px){
+  .dropdown{
+    display: none;
+  }
+}
 </style>

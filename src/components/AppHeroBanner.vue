@@ -11,7 +11,7 @@
                         affidabile!</p>
                     <div class="text-center">
                         <button class="btn btn-orange pb-1">
-                            <a href="#types">ORDINA ORA!</a>
+                            <a @click="store.pageScroll">ORDINA ORA!</a>
                         </button>
                     </div>
                 </div>
@@ -21,8 +21,13 @@
 </template>
 
 <script>
+import { store } from "../store.js";
 export default {
-
+        data() {
+            return {
+            store,
+        }
+    }
 }
 </script>
 
