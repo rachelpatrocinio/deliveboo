@@ -16,6 +16,10 @@ export default {
       else{
         this.dropdown = false
       }
+    },
+    closeDropDown(){
+      this.dropdown = false;
+      this.store.windowScroll();
     }
   },
   created() {
@@ -45,9 +49,9 @@ export default {
     </div>
   </header>
   <div class="dropdown d-flex flex-column col-12 text-center my-4" v-if="dropdown === true">
-    <RouterLink class="link py-3" to="/admin" @click="dropdown = false">Collabora con noi!</RouterLink>
-    <RouterLink class="link py-3" to="/contatti" @click="dropdown = false">Contattaci</RouterLink>
-    <RouterLink to="/carrello" class="d-flex justify-content-center mt-2 link" @click="dropdown = false">
+    <RouterLink class="link py-3" to="/admin" @click="closeDropDown">Collabora con noi!</RouterLink>
+    <RouterLink class="link py-3" to="/contatti" @click="closeDropDown">Contattaci</RouterLink>
+    <RouterLink to="/carrello" class="d-flex justify-content-center mt-2 link" @click="closeDropDown">
       <img class="cart-button py-2" src="../../../public/icons/cart.png" alt="">
       <div v-if="store.total_qty !== 0">{{ store.total_qty }}</div>
     </RouterLink>
@@ -123,7 +127,7 @@ header{
 
 .dropdown{
   background-color: var(--color-orange);
-  top: 80px;
+  top: 70px;
   position: fixed;
   z-index: 99;
 
