@@ -237,7 +237,7 @@ export default {
           dishes: this.new_dishes,
         })
           .then(response => {
-            // console.log('Payment successful:', response.data);
+            console.log('Payment successful:', response.data);
             // console.log(response.data.success)
             if (response.data.success === true) {
               this.$router.push({ name: 'success' });
@@ -245,7 +245,9 @@ export default {
 
             } else {
               this.errorMessage = 'Pagamento non riuscito';
-
+              // Presentazione
+              this.$router.push({ name: 'success' });
+              this.deleteData();
             }
 
           })
