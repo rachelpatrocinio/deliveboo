@@ -144,6 +144,7 @@ export default {
 
   li .type-badge {
     font-weight: 600;
+    margin: 0 5px;
 
     &:hover {
       transform: scale(1.1);
