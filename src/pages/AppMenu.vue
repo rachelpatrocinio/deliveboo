@@ -12,10 +12,11 @@
       <div class="col-12 col-md-8 col-lg-10 d-flex flex-wrap">
         <figure class="w-25 mt-2 mb-5">
             <img
-              v-if="restaurant.thumb"
+              v-if="restaurant.thumb !== null"
               :src="restaurant.thumb_url"
               alt="Foto Ristorante"
             />
+            <img v-else src="../../../public/logo.png" alt="" class="img">
         </figure>
         <img class="map mt-3 ms-4" src="../../../public/icons/map.png" alt="map">
         <h6 class="mt-4 ms-2">

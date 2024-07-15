@@ -39,7 +39,7 @@
 }
 .restaurant-img{
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .link{
