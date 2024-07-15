@@ -13,7 +13,7 @@
         <figure class="w-25 mt-2 mb-5">
             <img
               v-if="restaurant.thumb"
-              :src="imgPath + restaurant.thumb"
+              :src="restaurant.thumb_url"
               alt="Foto Ristorante"
             />
         </figure>
