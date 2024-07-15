@@ -2,11 +2,14 @@
 import { store } from "./store.js";
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
+import UpButton from './components/UpButton.vue';
+
 
 export default {
   components: {
     AppHeader,
     AppFooter,
+    UpButton
   },
   data() {
     return {
@@ -21,6 +24,7 @@ export default {
     <AppHeader></AppHeader>
     <main class="main">
       <RouterView />
+      <UpButton></UpButton>
     </main>
     <AppFooter></AppFooter>
   </div>
